@@ -32,7 +32,7 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
   socket.on('light', function(data) { //get light switch status from client
     lightvalue = data;
     if (lightvalue != LED.readSync()) { //only change LED if status has changed
-      LED.writeSync(lightvalue); //turn LED on or off
+      LED.writeSync(1); //turn LED on or off
       // var port = server.address().port;
       console.log('NOTHING HAPPENED!!');
     }

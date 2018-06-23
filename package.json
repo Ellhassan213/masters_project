@@ -25,6 +25,7 @@
   "homepage": "https://github.com/resin-io-projects/simple-server-node#readme",
   "dependencies": {
     "express": "*",
+    "onoff": "^3.1.0",
     "socket.io": "^2.1.1"
   }
 }

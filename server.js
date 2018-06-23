@@ -33,9 +33,8 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
     lightvalue = data;
     if (lightvalue != LED.readSync()) { //only change LED if status has changed
       LED.writeSync(lightvalue); //turn LED on or off
-    }
-  });
-});
+      // var port = server.address().port;
+      console.log('NOTHING HAPPENING');
 
 process.on('SIGINT', function () { //on ctrl+c
   LED.writeSync(0); // Turn LED off

@@ -4,14 +4,24 @@
 # Note the node:slim image doesn't have node-gyp
 FROM resin/%%RESIN_MACHINE_NAME%%-node
 
-# use apt-get if you need to install dependencies,
-# for instance if you need ALSA sound utils, just uncomment the lines below.
-#RUN apt-get update && apt-get install -yq \
-#    alsa-utils libasound2-dev && \
-#    apt-get clean && rm -rf /var/lib/apt/lists/*
+# Enable systemd init system in container
+ENV INITSYSTEM on
+
+# install deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    arduino \
+    g++ \
+    gcc \
+    usbutils \
+    make
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
+
+ENV ARDUINODIR /usr/share/arduino
+ENV BOARD uno
+
+RUN cd blink && make
 
 # Copies the package.json first for better cache on later pushes
 COPY package.json package.json
@@ -19,16 +29,10 @@ COPY package-lock.json package-lock.json
 
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
-#RUN npm i -g npm
 RUN JOBS=MAX npm install --production --unsafe-perm # && npm cache clean --force && rm -rf /tmp/*
-#RUN npm install socket.io --save
-#RUN npm install onoff
 
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
-# Enable systemd init system in container
-ENV INITSYSTEM on
-
-# server.js will run when container starts up on the device
-CMD ["npm", "start"]
+# run start.sh when the container starts
+CMD ["bash","start.sh"]

@@ -7,4 +7,4 @@ if [ "${PROGRAMMER:-}" == "1" ]; then
   popd
 fi
 
-node /app/server.js
+node /usr/src/app/server.js

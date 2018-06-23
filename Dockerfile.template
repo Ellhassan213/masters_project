@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     usbutils \
     make
 
-COPY /usr/src/app
+COPY /usr/src /app
 
 # Defines our working directory in container
 WORKDIR /usr/src/app

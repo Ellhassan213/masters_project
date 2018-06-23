@@ -8,7 +8,7 @@ var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'bo
 http.listen(80); //listen to port 8080
 
 function handler (req, res) { //create server
-  fs.readFile(__dirname + '/usr/src/app/index.html', function(err, data) { //read file index.html in public folder
+  fs.readFile('/usr/src/app/index.html', function(err, data) { //read file index.html in public folder
     if (err) {
       res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
       return res.end("404 Not Found Here!");

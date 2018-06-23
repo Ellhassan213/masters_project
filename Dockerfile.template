@@ -21,7 +21,7 @@ WORKDIR /usr/src/app
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
-RUN make
+RUN cd arduino && make
 
 # Copies the package.json first for better cache on later pushes
 COPY package.json package.json

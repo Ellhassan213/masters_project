@@ -15,10 +15,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     usbutils \
     make
 
-COPY /usr/src /app
-
 # Defines our working directory in container
 WORKDIR /usr/src/app
+
+# This will copy all files in our root to the working  directory in the container
+COPY . ./
 
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
@@ -32,9 +33,6 @@ COPY package-lock.json package-lock.json
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
 RUN JOBS=MAX npm install --production --unsafe-perm # && npm cache clean --force && rm -rf /tmp/*
-
-# This will copy all files in our root to the working  directory in the container
-COPY . ./
 
 # run start.sh when the container starts
 CMD ["bash","start.sh"]

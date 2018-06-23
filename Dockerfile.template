@@ -22,6 +22,7 @@ COPY package-lock.json package-lock.json
 #RUN npm i -g npm
 RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean --force && rm -rf /tmp/*
 RUN npm install socket.io --save
+RUN npm install onoff
 
 # This will copy all files in our root to the working  directory in the container
 COPY . ./

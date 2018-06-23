@@ -33,7 +33,6 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
     lightvalue = data;
     if (lightvalue != LED.readSync()) { //only change LED if status has changed
       LED.writeSync(lightvalue); //turn LED on or off
-      console.log('NOTHING HAPPENED!!');
     }
   });
 });

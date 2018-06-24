@@ -19,11 +19,11 @@ port.on('open', function() {
 
   for(var i = 0; i < 1000; i++){}
 
-  port.write('2', function(err) {
+  port.write('0', function(err) {
     if (err) {
       return console.log('Error on write: ', err.message);
     }
-    console.log('message written');
+    console.log('Serial Port Initialised');
   });
 });
 
@@ -53,7 +53,7 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
     lightvalue = data;
     if (lightvalue != LED.readSync()) { //only change LED if status has changed
       LED.writeSync(lightvalue); //turn LED on or off
-      port.write('2');
+      port.write('25');
     }
   });
 });

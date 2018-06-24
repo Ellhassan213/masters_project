@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 /*Global Variables */
-char char_in = -1;
+int char_in = -1;
 char data_in[100];
 int itr = 0;
 
@@ -39,7 +39,7 @@ int decoder(){
 
     int arg_1 = concatenate(data_in[0], data_in[1]);
     
-    if(char_in == '2'){
+    if(char_in == 2){
 
         (*blinking_pointer)(300);
     }

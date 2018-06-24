@@ -6,6 +6,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <Adafruit_GFX.h>   // Core graphics library
+#include <RGBmatrixPanel.h> // Hardware-specific library
+
 /*Global Variables */
 char char_in = -1;
 char data_in[100];

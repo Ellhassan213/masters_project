@@ -31,7 +31,7 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
 
 port.on('open', function() {
   sleepms(2000);
-  port.write(buffer, function(err) {
+  port.write(0x01, function(err) {
     if (err) {
       return console.log('Error on write: ', err.message);
     }

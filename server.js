@@ -29,7 +29,7 @@ http.listen(80); //listen to port 8080
 //   console.log('message read');
 // });
 
-var SerialPort = require("serialport").SerialPort;
+var SerialPort = require("serialport");
 var port = new SerialPort('/dev/ttyACM0', {
   baudrate: 9600
 });

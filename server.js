@@ -16,19 +16,13 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
   }
 });
 
-// sleepms(2000);
-
-for(var i = 0; i < 5; i++){
+sleepms(2000);
 port.write('2', function(err) {
   if (err) {
     return console.log('Error on write: ', err.message);
   }
   console.log('message written');
 });
-
-// port.write('2');
-// console.log('message written');
-}
 
 port.on('data', function (data) {
   console.log('Data:', data);

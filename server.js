@@ -15,17 +15,17 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
   }
 });
 
-port.on('open', function() {
+// port.on('open', function() {
 
-  for(var i = 0; i < 1000; i++){}
+//   for(var i = 0; i < 1000; i++){}
 
-  port.write('0', function(err) {
-    if (err) {
-      return console.log('Error on write: ', err.message);
-    }
-    console.log('Serial Port Initialised');
-  });
-});
+//   port.write('0', function(err) {
+//     if (err) {
+//       return console.log('Error on write: ', err.message);
+//     }
+//     console.log('Serial Port Initialised');
+//   });
+// });
 
 function handler (req, res) { //create server
   fs.readFile('/usr/src/app/index.html', function(err, data) { //read file index.html in public folder

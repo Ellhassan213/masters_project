@@ -15,7 +15,7 @@ buffer[3] = 0xFA;
 buffer[4] = 0x00;
 buffer[5] = 0x56;
 buffer[6] = 0x00;
-buffer[7] = 0x03;
+buffer[7] = 0x06;
 buffer[8] = 0x9E;
 buffer[9] = 0x00;
 

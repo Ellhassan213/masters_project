@@ -7,19 +7,6 @@ var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'bo
 var SerialPort = require('serialport');
 var sleepms = require('sleep-ms');
 
-var buffer = new Buffer(10);
-buffer[0] = 0x05;
-buffer[1] = 0xAA;
-buffer[2] = 0x55;
-buffer[3] = 0xFA;
-buffer[4] = 0x00;
-buffer[5] = 0x56;
-buffer[6] = 0x00;
-buffer[7] = 0x06;
-buffer[8] = 0x9E;
-buffer[9] = 0x00;
-
-
 http.listen(80); //listen to port 80
 
 
@@ -31,7 +18,7 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
 
 port.on('open', function() {
   sleepms(2000);
-  port.write(0x01, function(err) {
+  port.write('2', function(err) {
     if (err) {
       return console.log('Error on write: ', err.message);
     }

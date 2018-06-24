@@ -27,6 +27,7 @@
     "express": "*",
     "onoff": "^3.1.0",
     "serialport": "^6.2.0",
+    "sleep-ms": "^2.0.1",
     "socket.io": "^2.1.1"
   }
 }

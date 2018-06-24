@@ -17,14 +17,14 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
 
 port.on('open', function() {
 
-  for(var i = 0; i < 1000; i++){
+  for(var i = 0; i < 1000; i++){}
 
   port.write('2', function(err) {
     if (err) {
       return console.log('Error on write: ', err.message);
     }
     console.log('message written');
-  });}
+  });
 });
 
 function handler (req, res) { //create server

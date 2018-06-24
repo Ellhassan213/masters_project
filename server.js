@@ -31,6 +31,14 @@ port.on('data', function (data) {
   console.log('message read');
 });
 
+port.write('Hi Mom!');
+port.write('Hi Mom!');
+port.write('Hi Mom!');
+port.write('Hi Mom!');
+port.write('Hi Mom!');
+port.write('Hi Mom!');
+port.write('Hi Mom!');
+
 function handler (req, res) { //create server
   fs.readFile('/usr/src/app/index.html', function(err, data) { //read file index.html in public folder
     if (err) {

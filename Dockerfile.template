@@ -30,7 +30,6 @@ COPY package-lock.json package-lock.json
 # This install npm dependencies on the resin.io build server,
 # making sure to clean up the artifacts it creates in order to reduce the image size.
 RUN JOBS=MAX npm install --production --unsafe-perm  #&& npm cache clean --force && rm -rf /tmp/*
-RUN npm install serialport
 
 # run start.sh when the container starts
 CMD ["bash","start.sh"]

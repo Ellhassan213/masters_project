@@ -4,31 +4,44 @@ var io = require('socket.io')(http) //require socket.io module and pass the http
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
-var SerialPort = require('serialport');
+// var SerialPort = require('serialport');
 var sleepms = require('sleep-ms');
 
 http.listen(80); //listen to port 80
 
 
-var port = new SerialPort('/dev/ttyACM0', function (err) {
-  if (err) {
-    return console.log('Error: ', err.message);
-  }
-});
+// var port = new SerialPort('/dev/ttyACM0', function (err) {
+//   if (err) {
+//     return console.log('Error: ', err.message);
+//   }
+// });
 
-sleepms(2000);
-port.write('2', function(err) {
-  if (err) {
-    return console.log('Error on write: ', err.message);
-  }
-  console.log('message written');
-});
+// sleepms(2000);
+// port.write('2', function(err) {
+//   if (err) {
+//     return console.log('Error on write: ', err.message);
+//   }
+//   console.log('message written');
+// });
 
-port.on('data', function (data) {
-  console.log('Data:', data);
-  console.log('message read');
-});
+// port.on('data', function (data) {
+//   console.log('Data:', data);
+//   console.log('message read');
+// });
 
+const raspi = require('raspi').init;
+const Serial = require('raspi-serial').Serial;
+ 
+raspi.init(() => {
+  var serial = new Serial();
+  serial.open(() => {
+    sleepms(2000);
+    serial.write('2');
+    serial.on('data', (data) => {
+      process.stdout.write(data);
+    });
+  });
+});
 
 
 

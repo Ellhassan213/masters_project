@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include </usr/src/app/Adafruit_GFX.h>   // Core graphics library
+#include </Adafruit_GFX/Adafruit_GFX.h>   // Core graphics library
 #include <RGBmatrixPanel.h> // Hardware-specific library
 
 /*Global Variables */

@@ -42,7 +42,7 @@ serialPort.on("open", function () {
   });
 
   sleepms(2000);
-  serialPort.write(new Buffer('4','ascii'), function(err, results) {
+  serialPort.write(new Buffer('2','ascii'), function(err, results) {
     console.log('err ' + err);
     console.log('results ' + results);
   });

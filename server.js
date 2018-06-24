@@ -17,19 +17,13 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
 });
 
 sleepms(2000);
-port.write(new Buffer('12','ascii'), function(err) {
+port.write('12', function(err) {
   if (err) {
     return console.log('Error on write: ', err.message);
   }
   console.log('message written');
 });
 
-
-// Switches the port into "flowing mode"
-port.on('data', function (data) {
-  console.log('Data:', data);
-});
- 
 // Read data that is available but keep the stream from entering "flowing mode"
 port.on('readable', function () {
   console.log('Data:', port.read());

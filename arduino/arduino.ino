@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 /*Global Variables */
-int char_in = -1;
+char char_in = -1;
 char data_in[100];
 int itr = 0;
 

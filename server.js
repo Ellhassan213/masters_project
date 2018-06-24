@@ -30,19 +30,19 @@ http.listen(80); //listen to port 8080
 // });
 
 var SerialPort = require("serialport").SerialPort;
-var port = new SerialPort("/dev/ttyACM0", {
+var port = new SerialPort('/dev/ttyACM0', {
   baudrate: 9600
 });
 
-serialPort.on("open", function () {
+port.on("open", function () {
   console.log('open');
 
-  serialPort.on('data', function(data) {
+  port.on('data', function(data) {
     console.log('data received: ' + data);
   });
 
   sleepms(2000);
-  serialPort.write(new Buffer('2','ascii'), function(err, results) {
+  port.write(new Buffer('2','ascii'), function(err, results) {
     console.log('err ' + err);
     console.log('results ' + results);
   });

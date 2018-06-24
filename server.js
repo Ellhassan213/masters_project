@@ -35,11 +35,12 @@ var serialport = require("serialport");
 var SerialPort = serialport.SerialPort; // localize object constructor
 
 var sp = new SerialPort('/dev/ttyACM0', {
-   parser: serialport.parsers.readline("\r"),
-   baudrate: 9600
+  //  parser: serialport.parsers.readline("\r"),
+   baudRate: 9600
 });
 
 sp.on("open", function () {
+  sleepms(2000);
    sp.write(0x80);
    sp.write('123456\r');
    console.log ("comm port ready");

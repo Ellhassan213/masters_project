@@ -72,6 +72,6 @@ void setup(){
 
 void loop(){
 
-    // decoder();
-    (*blinking_pointer)(300);
+    decoder();
+    // (*blinking_pointer)(300);
 }

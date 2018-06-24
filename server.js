@@ -7,6 +7,21 @@ var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'bo
 
 http.listen(80); //listen to port 8080
 
+var SerialPort = require('serialport');
+var port = new SerialPort('/dev/ttyACM0', function (err) {
+  if (err) {
+    return console.log('Error: ', err.message);
+  }
+});
+ 
+port.write('0123456789', function(err) {
+  if (err) {
+    return console.log('Error on write: ', err.message);
+  }
+  console.log('message written');
+});
+
+
 function handler (req, res) { //create server
   fs.readFile('/usr/src/app/index.html', function(err, data) { //read file index.html in public folder
     if (err) {

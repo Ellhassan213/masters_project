@@ -25,6 +25,18 @@ port.write('0123456789', function(err) {
 });
 
 
+// Switches the port into "flowing mode"
+port.on('data', function (data) {
+  console.log('Data:', data);
+});
+ 
+// Read data that is available but keep the stream from entering "flowing mode"
+port.on('readable', function () {
+  console.log('Data:', port.read());
+});
+
+
+
 function handler (req, res) { //create server
   fs.readFile('/usr/src/app/index.html', function(err, data) { //read file index.html in public folder
     if (err) {

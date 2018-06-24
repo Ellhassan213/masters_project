@@ -33,7 +33,7 @@ int decoder(){
         char_in = Serial.read();
         data_in[itr] = (char_in - '0');
 
-        Serial.print(char_in);
+        Serial.write(char_in);
         itr++;
     }
 

@@ -10,7 +10,7 @@ var sleepms = require('sleep-ms');
 http.listen(80); //listen to port 80
 
 
-var port = new SerialPort('/dev/tqskyACM0', function (err) {
+var port = new SerialPort('/dev/ttyACM0', function (err) {
   if (err) {
     return console.log('Error: ', err.message);
   }

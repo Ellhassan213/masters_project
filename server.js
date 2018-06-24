@@ -25,7 +25,11 @@ port.write('12', function(err) {
 });
 
 // Read data that is available but keep the stream from entering "flowing mode"
-port.on('readable', function () {
+port.on('readable', function (err) {
+  if(err){
+    return console.log('Error on read ', err.message);
+  }
+  console.log('message read');
   console.log('Data:', port.read());
 });
 

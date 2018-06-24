@@ -4,30 +4,50 @@ var io = require('socket.io')(http) //require socket.io module and pass the http
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
-var SerialPort = require('serialport');
+// var SerialPort = require('serialport');
 var sleepms = require('sleep-ms');
 
 http.listen(80); //listen to port 8080
 
 
-var port = new SerialPort('/dev/ttyACM0', function (err) {
-  if (err) {
-    return console.log('Error: ', err.message);
-  }
+// var port = new SerialPort('/dev/ttyACM0', function (err) {
+//   if (err) {
+//     return console.log('Error: ', err.message);
+//   }
+// });
+
+// sleepms(2000);
+// port.write(new Buffer('2','ascii'), function(err) {
+//   if (err) {
+//     return console.log('Error on write: ', err.message);
+//   }
+//   console.log('message written');
+// });
+
+// port.on('data', function (data) {
+//   console.log('Data:', data);
+//   console.log('message read');
+// });
+
+var SerialPort = require("serialport").SerialPort;
+var port = new SerialPort("/dev/ttyACM0", {
+  baudrate: 9600
 });
 
-sleepms(2000);
-port.write(new Buffer('2','ascii'), function(err) {
-  if (err) {
-    return console.log('Error on write: ', err.message);
-  }
-  console.log('message written');
+serialPort.on("open", function () {
+  console.log('open');
+
+  serialPort.on('data', function(data) {
+    console.log('data received: ' + data);
+  });
+
+  sleepms(2000);
+  serialPort.write(new Buffer('4','ascii'), function(err, results) {
+    console.log('err ' + err);
+    console.log('results ' + results);
+  });
 });
 
-port.on('data', function (data) {
-  console.log('Data:', data);
-  console.log('message read');
-});
 
 
 function handler (req, res) { //create server

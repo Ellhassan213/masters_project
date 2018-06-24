@@ -17,11 +17,14 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
 });
 
 sleepms(2000);
-port.write('2', function(err) {
-  if (err) {
-    return console.log('Error on write: ', err.message);
-  }
-  console.log('message written');
+port.on('open', function() {
+  sleepms(2000);
+  port.write('2', function(err) {
+    if (err) {
+      return console.log('Error on write: ', err.message);
+    }
+    console.log('message written');
+  });
 });
 
 port.on('data', function (data) {

@@ -17,28 +17,16 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
 });
 
 port.on('open', function() {
-  sleepms(4000);
-  port.write('2sdtfyug', function(err) {
+
+  for(var i = 0; i < 100; i++){
+  sleepms(2000);
+  port.write('2', function(err) {
     if (err) {
       return console.log('Error on write: ', err.message);
     }
     console.log('message written');
-  });
+  });}
 });
-
-port.on('data', function (data) {
-  console.log('Data:', data);
-  console.log('message read');
-});
-
-port.write('Hi Mom!');
-port.write('Hi Mom!');
-port.write('Hi Mom!');
-port.write('Hi Mom!');
-port.write('Hi Mom!');
-port.write('Hi Mom!');
-port.write('Hi Mom!');
-console.log('shit');
 
 function handler (req, res) { //create server
   fs.readFile('/usr/src/app/index.html', function(err, data) { //read file index.html in public folder

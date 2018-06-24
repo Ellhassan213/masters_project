@@ -42,7 +42,7 @@ port.on("open", function () {
   });
 
   sleepms(2000);
-  port.write(new Buffer('2','ascii'), function(err, results) {
+  port.write('2', function(err, results) {
     console.log('err ' + err);
     console.log('results ' + results);
   });

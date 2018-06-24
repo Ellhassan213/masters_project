@@ -29,7 +29,7 @@ unsigned concatenate(unsigned first, unsigned second){
 int decoder(){
 
     while(Serial.available() > 0){
-      
+      (*blinking_pointer)(300);
         char_in = Serial.read();
         data_in[itr] = (char_in - '0');
 

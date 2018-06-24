@@ -31,7 +31,7 @@ http.listen(80); //listen to port 8080
 
 var SerialPort = require("serialport");
 var port = new SerialPort('/dev/ttyACM0', {
-  baudrate: 9600
+  baudRate: 9600
 });
 
 port.on("open", function () {

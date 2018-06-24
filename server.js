@@ -5,7 +5,6 @@ var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
 var SerialPort = require('serialport');
-var sleepms = require('sleep-ms');
 
 http.listen(80); //listen to port 80
 
@@ -18,8 +17,8 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
 
 port.on('open', function() {
 
-  for(var i = 0; i < 100; i++){
-  sleepms(2000);
+  for(var i = 0; i < 1000; i++){
+
   port.write('2', function(err) {
     if (err) {
       return console.log('Error on write: ', err.message);

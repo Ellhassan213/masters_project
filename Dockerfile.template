@@ -17,7 +17,7 @@ WORKDIR /usr/src/app
 
 # This will copy all files in our root to the working  directory in the container
 #ADD . ./
-RUN cp -avr . ./
+RUN cp -avr . /usr/src/app
 
 RUN cp -avr Adafruit_GFX /usr/share/arduino/libraries/
 RUN cp -avr RGBmatrixPanel /usr/share/arduino/libraries/

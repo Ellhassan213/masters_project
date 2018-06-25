@@ -2,25 +2,21 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node
 
 # Enable systemd init system in container
-#ENV INITSYSTEM on
+ENV INITSYSTEM on
 
 # install deps
-#RUN apt-get update && apt-get install -y --no-install-recommends \
- #   arduino \
- #   g++ \
- #   gcc \
- #   usbutils \
- #   make
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    arduino \
+    g++ \
+    gcc \
+    usbutils \
+    make
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
 # This will copy all files in our root to the working  directory in the container
-#COPY . ./
-
-COPY Adafruit_GFX Adafruit_GFX
-RUN cd Adafruit_GFX && ls
-COPY Adafruit_GFX /usr/src/app
+COPY . ./
 
 #RUN cp -avr Adafruit_GFX /usr/share/arduino/libraries/
 #RUN cp -avr RGBmatrixPanel /usr/share/arduino/libraries/
@@ -29,7 +25,7 @@ ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
 
-#RUN ls && cd arduino && make
+RUN cd arduino && make
 
 # Copies the xxx.json first for better cache on later pushes
 COPY package.json package.json

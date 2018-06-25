@@ -18,7 +18,7 @@ WORKDIR /usr/src/app
 # This will copy all files in our root to the working  directory in the container
 #COPY . ./
 
-COPY Adafruit_GFX ./
+COPY Adafruit_GFX /usr/src/app
 RUN cd Adafruit_GFX && ls
 
 #RUN cp -avr Adafruit_GFX /usr/share/arduino/libraries/

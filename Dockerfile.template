@@ -24,7 +24,7 @@ COPY . ./
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
-RUN cd /usr/share/arduino
+RUN cd /usr/share/arduino && git clone https://github.com/adafruit/Adafruit-GFX-Library.git
 RUN cd arduino && make
 
 # Copies the xxx.json first for better cache on later pushes

@@ -20,7 +20,7 @@ WORKDIR /usr/src/app
 
 COPY Adafruit_GFX Adafruit_GFX
 COPY Adafruit_GFX /usr/src/app
-RUN ls
+RUN cd Adafruit_GFX && ls
 
 #RUN cp -avr Adafruit_GFX /usr/share/arduino/libraries/
 #RUN cp -avr RGBmatrixPanel /usr/share/arduino/libraries/

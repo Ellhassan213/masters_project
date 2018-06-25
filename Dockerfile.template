@@ -13,3 +13,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     make
 
 RUN ls -l
+RUN cd /usr && ls

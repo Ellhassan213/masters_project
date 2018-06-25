@@ -21,7 +21,7 @@ COPY . ./
 #RUN cp -avr Adafruit_GFX  /usr/share/arduino/libraries/
 #RUN cp -avr RGBmatrixPanel  /usr/share/arduino/libraries/
 
-rsync -r Adafruit_GFX/ /usr/share/arduino/libraries/
+RUN rsync -r Adafruit_GFX/ /usr/share/arduino/libraries/
 
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno

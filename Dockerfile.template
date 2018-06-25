@@ -5,18 +5,21 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node
 ENV INITSYSTEM on
 
 # install deps
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    arduino \
-    g++ \
-    gcc \
-    usbutils \
-    make
+#RUN apt-get update && apt-get install -y --no-install-recommends \
+ #   arduino \
+ #   g++ \
+ #   gcc \
+ #   usbutils \
+ #   make
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
 
 # This will copy all files in our root to the working  directory in the container
-COPY . ./
+#COPY . ./
+
+COPY Adafruit_GFX ./
+RUN cd Adafruit_GFX && ls
 
 #RUN cp -avr Adafruit_GFX /usr/share/arduino/libraries/
 #RUN cp -avr RGBmatrixPanel /usr/share/arduino/libraries/
@@ -24,8 +27,8 @@ COPY . ./
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
-RUN cd Adafruit_GFX && ls
-RUN ls && cd arduino && make
+
+#RUN ls && cd arduino && make
 
 # Copies the xxx.json first for better cache on later pushes
 COPY package.json package.json

@@ -15,7 +15,6 @@ var port = new SerialPort('/dev/ttyACM0', function (err) {
   }
 });
 
-
 function handler (req, res) { //create server
   fs.readFile('/usr/src/app/index.html', function(err, data) { //read file index.html in public folder
     if (err) {

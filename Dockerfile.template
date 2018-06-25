@@ -18,8 +18,8 @@ WORKDIR /usr/src/app
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
-RUN cp -a /arduino/Adafruit_GFX/ . /usr/share/arduino/libraries/
-RUN cp -a /arduino/RGBmatrixPanel/ . /usr/share/arduino/libraries/
+RUN cp -avr /arduino/Adafruit_GFX  /usr/share/arduino/libraries/
+RUN cp -avr /arduino/RGBmatrixPanel  /usr/share/arduino/libraries/
 
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno

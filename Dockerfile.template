@@ -21,10 +21,7 @@ COPY . ./
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
-RUN cd /usr/share/arduino/libraries && git clone https://github.com/adafruit/Adafruit-GFX-Library.git && mv Adafruit-GFX-Library Adafruit_GFX
-RUN cd /usr/share/arduino/libraries && git clone https://github.com/adafruit/RGB-matrix-Panel.git && mv RGB-matrix-Panel RGBmatrixPanel
-
-RUN cd arduino && make
+RUN cd /usr/share/arduino/libraries && git clone https://github.com/adafruit/Adafruit-GFX-Library.git && mv Adafruit-GFX-Library Adafruit_GFX && git clone https://github.com/adafruit/RGB-matrix-Panel.git && mv RGB-matrix-Panel RGBmatrixPanel && cd arduino && make
 
 # Copies the xxx.json first for better cache on later pushes
 COPY package.json package.json

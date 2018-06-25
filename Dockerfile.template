@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /usr/src/app
 
 # This will copy all files in our root to the working  directory in the container
-COPY arduino /usr/src/app
+COPY . ./
 
 #RUN cp -avr Adafruit_GFX /usr/share/arduino/libraries/
 #RUN cp -avr RGBmatrixPanel /usr/share/arduino/libraries/
@@ -24,7 +24,7 @@ COPY arduino /usr/src/app
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
-RUN cd arduino && make
+RUN ls && cd arduino && make
 
 # Copies the xxx.json first for better cache on later pushes
 COPY package.json package.json

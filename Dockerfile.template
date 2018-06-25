@@ -18,13 +18,12 @@ WORKDIR /usr/src/app
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
 
-#RUN cp -avr Adafruit_GFX /usr/share/arduino/libraries/
-#RUN cp -avr RGBmatrixPanel /usr/share/arduino/libraries/
+RUN cd /usr/share/arduino/libraries && git clone https://github.com/adafruit/Adafruit-GFX-Library.git && mv Adafruit-GFX-Library Adafruit_GFX
+RUN cd /usr/share/arduino/libraries && git clone https://github.com/adafruit/RGB-matrix-Panel.git && mv RGB-matrix-Panel RGBmatrixPanel
 
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
-RUN cd /usr/share/arduino && git clone https://github.com/adafruit/Adafruit-GFX-Library.git
 RUN cd arduino && make
 
 # Copies the xxx.json first for better cache on later pushes

@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     usbutils \
     make
 
-RUN cp -avr simple-server-node /usr/src/app
+RUN cp -avr README.md /usr/src/app
 
 # Defines our working directory in container
 WORKDIR /usr/src/app

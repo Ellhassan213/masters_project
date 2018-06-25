@@ -24,6 +24,7 @@ COPY . ./
 ENV ARDUINODIR /usr/share/arduino
 ENV BOARD uno
 
+RUN cd Adafruit_GFX && ls
 RUN ls && cd arduino && make
 
 # Copies the xxx.json first for better cache on later pushes

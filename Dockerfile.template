@@ -2,7 +2,7 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node
 
 # Enable systemd init system in container
-ENV INITSYSTEM on
+#ENV INITSYSTEM on
 
 # install deps
 #RUN apt-get update && apt-get install -y --no-install-recommends \

@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     usbutils \
     make
 
+WORKDIR /usr
 RUN cp -avr /Adafruit_GFX/ /usr/share/arduino/libraries/
 RUN cp -avr RGBmatrixPanel /usr/share/arduino/libraries/
 

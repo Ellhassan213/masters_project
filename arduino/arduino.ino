@@ -32,6 +32,7 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 int (*blinking_pointer)(double);
 void (*align_pointer)(double);
 void (*middleBox_pointer)();
+void (*pixel_pointer)(double, double, double);
 void (*rings_pointer)(double, double, double, double, double);
 
 /* Functions */
@@ -118,6 +119,29 @@ int blinking(double exposure){
     return 0;
 }
 
+void pixel(double x, double y, double colour){
+
+    int r = 0; int g = 0; int b = 0;
+
+    if(colour == 01){
+        
+        r = 7; g = 0; b = 0;
+    }
+    else if(colour == 02){
+
+        r = 0; g = 7; b = 0;
+    }
+    else if(colour == 03){
+
+        r = 0; g = 0; b = 7;
+    }
+    else{
+
+        r = 7; g = 7; b = 7;
+    }
+
+    matrix.drawPixel(x, y, matrix.Color333(r, g, b));
+}
 
 unsigned concatenate(unsigned first, unsigned second){
 
@@ -194,6 +218,7 @@ void setup(){
     align_pointer = align;
     middleBox_pointer = middleBox;
     rings_pointer = rings;
+    pixel_pointer = pixel;
 
     // initialize digital pins
     pinMode(13, OUTPUT);

@@ -30,18 +30,31 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 /* Function Pointers */
 
 int (*blinking_pointer)(double);
-void (*align_pointer)(int);
+void (*align_pointer)(double);
 void (*middleBox_pointer)();
-void (*rings_pointer)(int, double, double, int, int, int);
+void (*rings_pointer)(double, double, double, double);
 
 /* Functions */
 
-void rings(int count, double radius, double offset, int r, int g, int b){
+void rings(int count, double radius, double offset, double colour){
 
   double theta = offset;
   double delta = (2 * PI) / count;
   double x = 0;
   double y = 0;
+
+  if(colour == 01){
+
+      int r = 7; int g = 0; int b = 0;
+  }
+  else if(colour == 02){
+
+      int r = 0; int g = 7; int b = 0;
+  }
+  else if(colour == 03){
+
+      int r = 0; int g = 0; int b = 7;
+  }
   
   for(int i = 0; i < count; i++){
 
@@ -72,7 +85,7 @@ void middleBox(){
   delay(500);  
 }
 
-void align(int d){
+void align(double delay){
 
   // Align
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
@@ -105,14 +118,27 @@ int decoder(){
         itr++;
     }
 
-    int arg_1 = concatenate(data_in[0], data_in[1]);
-    int arg_2 = concatenate(data_in[2], data_in[3]);
-    int arg_3 = concatenate(data_in[4], data_in[5]);
-    int arg_4 = concatenate(data_in[6], data_in[7]);
+    double id = concatenate(data_in[0], data_in[1]);
+    double arg_1 = concatenate(data_in[2], data_in[3]);
+    double arg_2 = concatenate(data_in[4], data_in[5]);
+    double arg_3 = concatenate(data_in[6], data_in[7]);
+    double arg_4 = concatenate(data_in[8], data_in[9]);
     
-    if(arg_1 == 01){
+    if(id == 01){
 
-        (*blinking_pointer)(300);
+        (*blinking_pointer)(arg_1);
+    }
+    else if(id == 02){
+
+        (*align_pointer)(arg_1);
+    }
+    else if(id == 03){
+
+        (*middleBox_pointer)(arg_1);
+    }
+    else if(id == 04){
+
+        (*rings_pointer)(arg_1, arg_2, arg_3, arg_4);
     }
 
   return 0;

@@ -135,7 +135,7 @@ int decoder(){
     }
     else if(id == 03){
 
-        (*middleBox_pointer)(arg_1);
+        (*middleBox_pointer)();
     }
     else if(id == 04){
 

@@ -34,7 +34,6 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
     lightvalue = data;
     if (lightvalue != LED.readSync()) { //only change LED if status has changed
       LED.writeSync(lightvalue); //turn LED on or off
-      // port.write('25');
     }
   });
 });
@@ -43,7 +42,8 @@ io.sockets.on('connection', function (matrix_socket) {// WebSocket Connection
   
   matrix_socket.on('message', function(data) { //get light switch status from client
 
-      port.write('25');
+      port.write('data');
+      console.log("Data: " + data);
   });
 });
 

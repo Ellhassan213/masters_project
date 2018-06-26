@@ -39,7 +39,7 @@ int decoder(){
 
     int arg_1 = concatenate(data_in[0], data_in[1]);
     
-    if(arg_1 == 25){
+    if(arg_1 == 01){
 
         (*blinking_pointer)(300);
     }

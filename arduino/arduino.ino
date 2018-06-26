@@ -36,24 +36,26 @@ void (*rings_pointer)(double, double, double, double);
 
 /* Functions */
 
-void rings(int count, double radius, double offset, double colour){
+void rings(double count, double radius, double offset, double colour){
 
   double theta = offset;
   double delta = (2 * PI) / count;
   double x = 0;
   double y = 0;
+  
+  int r = 0; int g = 0; int b = 0;
 
   if(colour == 01){
-
-      int r = 7; int g = 0; int b = 0;
+      
+      r = 7; g = 0; b = 0;
   }
   else if(colour == 02){
 
-      int r = 0; int g = 7; int b = 0;
+      r = 0; g = 7; b = 0;
   }
   else if(colour == 03){
 
-      int r = 0; int g = 0; int b = 7;
+      r = 0; g = 0; b = 7;
   }
   
   for(int i = 0; i < count; i++){
@@ -68,7 +70,6 @@ void rings(int count, double radius, double offset, double colour){
     matrix.drawPixel(x, y, 0);
     digitalWrite(11, LOW);
     delay(500);
-    matrix.clear();
     
     theta += delta;    
   }
@@ -85,7 +86,7 @@ void middleBox(){
   delay(500);  
 }
 
-void align(double delay){
+void align(double d){
 
   // Align
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
@@ -144,12 +145,12 @@ int decoder(){
   return 0;
 }
 
-int blinking(double time_delay){
+int blinking(double d){
     
     digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
-    delay(time_delay);              // wait for a second
+    delay(d);              // wait for a second
     digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
-    delay(time_delay);             // wait for a second
+    delay(d);             // wait for a second
 
     return 0;
 }

@@ -31,7 +31,7 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 int (*blinking_pointer)(double);
 void (*align_pointer)(int);
-void (*middleBox_pointer);
+void (*middleBox_pointer)();
 void (*rings_pointer)(int, double, double, int, int, int);
 
 /* Functions */

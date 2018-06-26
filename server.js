@@ -43,7 +43,7 @@ io.sockets.on('connection', function (matrix_socket) {// WebSocket Connection
   matrix_socket.on('message', function(data) { //get light switch status from client
 
       port.write(data);
-      console.log("Data: " + data);
+      console.log("Data to arduino: " + data);
   });
 });
 

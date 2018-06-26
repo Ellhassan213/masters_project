@@ -8,11 +8,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background-image: "metal1.jpg";
-    background-repeat: repeat-x;
-}
-
 input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
@@ -93,9 +88,12 @@ input[type=submit]:hover {
         </div>
         <div class="col-75">
           <select id="function" name="function">
-            <option value="01">Circle</option>
-            <option value="02">Square</option>
-            <option value="03">Pixel</option>
+              <option value="01">BlinkTest</option>
+              <option value="02">Ring</option>
+              <option value="03">Square</option>
+              <option value="04">Pixel</option>
+              <option value="05">AlignPattern</option>
+              <option value="06">MiddleBox</option>
           </select>
         </div>
       </div>
@@ -120,10 +118,19 @@ input[type=submit]:hover {
 
       <div class="row">
           <div class="col-25">
-            <label for="arg2">Argument3</label>
+            <label for="arg3">Argument3</label>
           </div>
           <div class="col-75">
             <input type="text" id="arg3" name="argument3" placeholder="Third argument..">
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-25">
+            <label for="arg4">Argument4</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="arg4" name="argument4" placeholder="Fourth argument..">
           </div>
       </div>
     

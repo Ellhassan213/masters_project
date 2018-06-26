@@ -150,19 +150,19 @@ socket.on('light', function (data) { //get button status from client
 
 
 <p>Click the "Try it" button to display the value of the first element in the form.</p>
-<button onclick="myFunction()">Try it</button>
+<button onclick="form_function()">Program Arduino</button>
 <p id="demo"></p>
 
 <script>
-function myFunction() {
+function form_function() {
 
-  var x = [];
+  var elements_array = [];
   var elements = document.getElementById("matrix_form").elements;
     for(var i = 0; i < elements.length; i++){
-      x[i] = elements[i].value;
+      elements_array[i] = elements[i].value;
     }
-    var y = x[0] + x[1] + x[2] + x[3];
-    document.getElementById("demo").innerHTML = y;
+    var data = elements_array.join("");
+    document.getElementById("demo").innerHTML = data;
 }
 </script>
 

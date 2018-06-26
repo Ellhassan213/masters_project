@@ -32,47 +32,58 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 int (*blinking_pointer)(double);
 void (*align_pointer)(double);
 void (*middleBox_pointer)();
-void (*rings_pointer)(double, double, double, double);
+void (*rings_pointer)(double, double, double, double, double);
 
 /* Functions */
 
-void rings(double count, double radius, double offset, double colour){
+void rings(double count, double radius, double offset, double colour, double exposure){
 
-  double theta = offset;
-  double delta = (2 * PI) / count;
-  double x = 0;
-  double y = 0;
-  
-  int r = 0; int g = 0; int b = 0;
-
-  if(colour == 01){
-      
-      r = 7; g = 0; b = 0;
-  }
-  else if(colour == 02){
-
-      r = 0; g = 7; b = 0;
-  }
-  else if(colour == 03){
-
-      r = 0; g = 0; b = 7;
-  }
-  
-  for(int i = 0; i < count; i++){
-
-    x = radius * cos(theta) + (matrix.width() / 2);
-    y = radius * sin(theta) + (matrix.height() / 2);
-
-    matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
-    digitalWrite(11, HIGH);
-    delay(500);
-
-    matrix.drawPixel(x, y, 0);
-    digitalWrite(11, LOW);
-    delay(500);
+    double delta = (2 * PI) / count;
+    double x = 0;
+    double y = 0;
+    double theta = 0;
     
-    theta += delta;    
-  }
+    int r = 0; int g = 0; int b = 0;
+
+    if(offset == 3){
+        theta = PI / 3;
+    }
+    else if(offset == 4){
+        theta = PI / 4;
+    }
+
+    if(colour == 01){
+        
+        r = 7; g = 0; b = 0;
+    }
+    else if(colour == 02){
+
+        r = 0; g = 7; b = 0;
+    }
+    else if(colour == 03){
+
+        r = 0; g = 0; b = 7;
+    }
+    else{
+
+        r = 7; g = 7; b = 7;
+    }
+    
+    for(int i = 0; i < count; i++){
+
+        x = radius * cos(theta) + (matrix.width() / 2);
+        y = radius * sin(theta) + (matrix.height() / 2);
+
+        matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
+        digitalWrite(11, HIGH);
+        delay(exposure);
+
+        matrix.drawPixel(x, y, 0);
+        digitalWrite(11, LOW);
+        delay(exposure);
+        
+        theta += delta;    
+    }
 }
 
 void middleBox(){
@@ -82,22 +93,31 @@ void middleBox(){
   matrix.drawPixel(15, 16, matrix.Color333(7, 7, 7));
   matrix.drawPixel(16, 16, matrix.Color333(7, 7, 7));
   matrix.drawPixel(16, 15, matrix.Color333(7, 7, 7));
-
-  delay(500);  
 }
 
-void align(double d){
+void align(double exposure){
 
   // Align
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
-  delay(d);
+  delay(exposure);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
-  delay(d);
+  delay(exposure);
   matrix.drawPixel(13, 16, matrix.Color333(7, 7, 7));
-  delay(d);
+  delay(exposure);
   matrix.drawPixel(19, 16, matrix.Color333(7, 7, 7));
-  delay(d);  
+  delay(exposure);  
 }
+
+int blinking(double exposure){
+    
+    digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(exposure);              // wait for a second
+    digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
+    delay(exposure);             // wait for a second
+
+    return 0;
+}
+
 
 unsigned concatenate(unsigned first, unsigned second){
 
@@ -120,40 +140,45 @@ int decoder(){
     }
 
     double id = concatenate(data_in[0], data_in[1]);
-    double arg_1 = concatenate(data_in[2], data_in[3]);
-    double arg_2 = concatenate(data_in[4], data_in[5]);
-    double arg_3 = concatenate(data_in[6], data_in[7]);
-    double arg_4 = concatenate(data_in[8], data_in[9]);
     
     if(id == 01){
 
-        (*blinking_pointer)(arg_1);
+        double e1 = concatenate(data_in[2], data_in[3]);
+        double e2 = concatenate(data_in[4], data_in[5]);
+
+        double exposure = concatenate(e1, e2);
+        (*blinking_pointer)(exposure);
     }
     else if(id == 02){
 
-        (*align_pointer)(arg_1);
+        double e1 = concatenate(data_in[2], data_in[3]);
+        double e2 = concatenate(data_in[4], data_in[5]);
+
+        double exposure = concatenate(e1, e2);
+        (*align_pointer)(exposure);
     }
     else if(id == 03){
 
         (*middleBox_pointer)();
     }
     else if(id == 04){
+        
+        double count = concatenate(data_in[2], data_in[3]);
+        double radius = concatenate(data_in[4], data_in[5]);
+        double offset = concatenate(data_in[6], data_in[7]);
+        double colour = concatenate(data_in[8], data_in[9]);
 
-        (*rings_pointer)(arg_1, arg_2, arg_3, arg_4);
+        double e1 = concatenate(data_in[10], data_in[11]);
+        double e2 = concatenate(data_in[12], data_in[13]);
+
+        double exposure = concatenate(e1, e2);
+
+        (*rings_pointer)(count, radius, offset, colour, exposure);
     }
 
   return 0;
 }
 
-int blinking(double d){
-    
-    digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
-    delay(d);              // wait for a second
-    digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
-    delay(d);             // wait for a second
-
-    return 0;
-}
 
 
 /* Arduino Built-in Functions*/

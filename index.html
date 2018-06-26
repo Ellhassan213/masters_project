@@ -81,7 +81,7 @@ input[type=submit]:hover {
   <p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other.</p>
 
   <div class="container">
-    <form action="/action_page.php">
+    <form id="matrix_form">
     
       <div class="row">
         <div class="col-25">
@@ -146,6 +146,24 @@ socket.on('light', function (data) { //get button status from client
   document.getElementById("light").checked = data; //change checkbox according to push button on Raspberry Pi
   socket.emit("light", data); //send push button status to back to server
 });
+</script>
+
+
+<p>Click the "Try it" button to display the value of the first element in the form.</p>
+<button onclick="myFunction()">Try it</button>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+
+  var x = [];
+  var elements = document.getElementById("matrix_form").elements;
+    for(var i = 0; i < 4; i++){
+    	x[i] = elements[i].value;
+    }
+    var y = x[0] + x[1];
+    document.getElementById("demo").innerHTML = y;
+}
 </script>
 
 </html> 

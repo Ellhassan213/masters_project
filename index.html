@@ -151,7 +151,7 @@ socket.on('light', function (data) { //get button status from client
 
 <script>
 
-var matrix_socket = matrix_io(); //load socket.io-client and connect to the host that serves the page
+var matrix_socket = io(); //load socket.io-client and connect to the host that serves the page
 window.addEventListener("load", function(){ //when page loads
 
   var prg_arduino_data= document.getElementById("prg_arduino_btn");

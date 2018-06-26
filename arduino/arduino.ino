@@ -110,7 +110,6 @@ int decoder(){
     if(arg_1 == 01){
 
         (*blinking_pointer)(300);
-        (*align)(100);
     }
 
   return 0;

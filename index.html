@@ -167,6 +167,7 @@ window.addEventListener("load", function(){ //when page loads
     var data = elements_array.join("");
     document.getElementById("demo").innerHTML = data;
 
+    matrix_socket.emit('message', data);
   });
 });
 

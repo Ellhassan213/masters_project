@@ -3,7 +3,7 @@ var fs = require('fs'); //require filesystem module
 var io = require('socket.io')(http) //require socket.io module and pass the http object (server)
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED = new Gpio(4, 'out'); //use GPIO pin 4 as output
-var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
+// var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
 var SerialPort = require('serialport');
 
 http.listen(80); //listen to port 80
@@ -28,15 +28,15 @@ function handler (req, res) { //create server
 }
 
 io.sockets.on('connection', function (socket) {// WebSocket Connection
-  var lightvalue = 0; //static variable for current status
-  pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton
-    if (err) { //if an error
-      console.error('There was an error', err); //output error message to console
-      return;
-    }
-    lightvalue = value;
-    socket.emit('light', lightvalue); //send button status to client
-  });
+  // var lightvalue = 0; //static variable for current status
+  // pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton
+  //   if (err) { //if an error
+  //     console.error('There was an error', err); //output error message to console
+  //     return;
+  //   }
+  //   lightvalue = value;
+  //   socket.emit('light', lightvalue); //send button status to client
+  // });
   socket.on('light', function(data) { //get light switch status from client
     lightvalue = data;
     if (lightvalue != LED.readSync()) { //only change LED if status has changed

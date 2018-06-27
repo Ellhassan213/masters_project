@@ -22,7 +22,6 @@
 
 /*Global Variables */
 char char_in = -1;
-char previous_char_in = 10;
 char data_in[20];
 int itr = 0;
 
@@ -35,6 +34,8 @@ void (*align_pointer)(double);
 void (*middleBox_pointer)();
 void (*pixel_pointer)(double, double, double);
 void (*rings_pointer)(double, double, double, double, double);
+void (*rectangle_pointer)(double, double, double, double, double);
+void (*rectangle_fill_pointer)(double, double, double, double, double, double);
 
 /* Functions */
 
@@ -46,6 +47,66 @@ void clean_up(){
   data_in[i] = 0;
   }
   matrix.clear();
+}
+
+void rectangle_fill(double x, double y, double w, double h, double colour, double exposure){
+
+  int r = 0; int g = 0; int b = 0;
+
+  if(colour == 01){
+      
+      r = 7; g = 0; b = 0;
+  }
+  else if(colour == 02){
+
+      r = 0; g = 7; b = 0;
+  }
+  else if(colour == 03){
+
+      r = 0; g = 0; b = 7;
+  }
+  else{
+
+      r = 7; g = 7; b = 7;
+  }
+  
+  for(double i = x; i < w; i++) {
+    for(double j = y; j < h; j++){
+
+      matrix.drawPixel(i, j, matrix.Color333(r, g, b));
+
+      digitalWrite(11, HIGH);
+      delay(exposure);
+
+      matrix.drawPixel(i, j, 0);
+      digitalWrite(11, LOW);
+      delay(exposure);
+    }
+  }
+}
+
+void rectangle(double x, double y, double w, double h, double colour){
+
+    int r = 0; int g = 0; int b = 0;
+
+    if(colour == 01){
+        
+        r = 7; g = 0; b = 0;
+    }
+    else if(colour == 02){
+
+        r = 0; g = 7; b = 0;
+    }
+    else if(colour == 03){
+
+        r = 0; g = 0; b = 7;
+    }
+    else{
+
+        r = 7; g = 7; b = 7;
+    }
+
+  matrix.fillRect(x, y, w, h, matrix.Color333(r, g, b));
 }
 
 void rings(double count, double radius, double offset, double colour, double exposure){
@@ -166,11 +227,10 @@ void decoder(){
     while(Serial.available() > 0){
 
         char_in = Serial.read();
-        previous_char_in = char_in;
-
+        
         data_in[itr] = (char_in - '0');
 
-        delay(100);
+        delay(10);
         itr++;
     }
 
@@ -213,6 +273,7 @@ void decoder(){
 
         double exposure = concatenate(e1, e2);
 
+        clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
 }
@@ -229,6 +290,8 @@ void setup(){
     middleBox_pointer = middleBox;
     rings_pointer = rings;
     pixel_pointer = pixel;
+    rectangle_pointer = rectangle;
+    rectangle_fill_pointer = rectangle_fill;
 
     // initialize digital pins
     pinMode(13, OUTPUT);
@@ -243,5 +306,5 @@ void setup(){
 
 void loop(){
 
-    decoder();
+   decoder();
 }

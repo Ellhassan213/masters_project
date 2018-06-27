@@ -236,7 +236,7 @@ void decoder(){
 
     double id = concatenate(data_in[0], data_in[1]);
 
-    if(id == 01){
+    if(id == 01){   // execute blinking function
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -246,7 +246,7 @@ void decoder(){
         clean_up();
         (*blinking_pointer)(exposure);
     }
-    else if(id == 02){
+    else if(id == 02){  // execute align function
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -256,12 +256,12 @@ void decoder(){
         clean_up();
         (*align_pointer)(exposure);
     }
-    else if(id == 03){
+    else if(id == 03){  // execute middle box function
 
         clean_up();
         (*middleBox_pointer)();
     }
-    else if(id == 04){
+    else if(id == 04){  // execute single ring function
         
         double count = concatenate(data_in[2], data_in[3]);
         double radius = concatenate(data_in[4], data_in[5]);
@@ -275,6 +275,42 @@ void decoder(){
 
         clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);
+    }
+    else if(id == 05){ // execute single pixel function
+
+        double x = concatenate(data_in[2], data_in[3]);
+        double y = concatenate(data_in[4], data_in[5]);
+        double colour = concatenate(data_in[6], data_in[7]);
+
+        clean_up();
+        (*pixel_pointer)(x, y, colour);
+    }
+    else if(id == 06){ // execute rectangle function
+
+        double x = concatenate(data_in[2], data_in[3]);
+        double y = concatenate(data_in[4], data_in[5]);
+        double width = concatenate(data_in[6], data_in[7]);
+        double height = concatenate(data_in[8], data_in[9]);
+        double colour = concatenate(data_in[10], data_in[11]);
+
+        clean_up();
+        (*rectangle_pointer)(x, y, width, height, colour);
+    }
+    else if(id == 07){ // execute rectangle increamental fill function
+
+        double x = concatenate(data_in[2], data_in[3]);
+        double y = concatenate(data_in[4], data_in[5]);
+        double width = concatenate(data_in[6], data_in[7]);
+        double height = concatenate(data_in[8], data_in[9]);
+        double colour = concatenate(data_in[10], data_in[11]);
+        
+        double e1 = concatenate(data_in[12], data_in[13]);
+        double e2 = concatenate(data_in[14], data_in[15]);
+
+        double exposure = concatenate(e1, e2);
+
+        clean_up();
+        (*rectangle_fill_pointer)(x, y, width, height, colour, exposure);
     }
 }
 
@@ -306,5 +342,6 @@ void setup(){
 
 void loop(){
 
-   decoder();
+    decoder();
+    // rectangle_fill(8, 8, 24, 24, 2, 10);
 }

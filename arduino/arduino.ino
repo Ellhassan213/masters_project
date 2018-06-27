@@ -38,6 +38,15 @@ void (*rings_pointer)(double, double, double, double, double);
 
 /* Functions */
 
+void clean_up)(){
+
+    char_in = 0;
+    itr = 0;
+    for(int i = 0; i < sizeof(data_in); i++){
+        data_in[i] = 0;
+    }
+}
+
 void rings(double count, double radius, double offset, double colour, double exposure){
 
     double delta = (2 * PI) / count;
@@ -91,6 +100,7 @@ void rings(double count, double radius, double offset, double colour, double exp
 void middleBox(){
   
   // draw middle box
+  clean_up();
   matrix.drawPixel(15, 15, matrix.Color333(7, 7, 7));
   matrix.drawPixel(15, 16, matrix.Color333(7, 7, 7));
   matrix.drawPixel(16, 16, matrix.Color333(7, 7, 7));
@@ -100,6 +110,7 @@ void middleBox(){
 void align(double exposure){
 
   // Align
+  clean_up();
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
@@ -165,52 +176,39 @@ void decoder(){
 
     double id = concatenate(data_in[0], data_in[1]);
 
-    if(previous_char_in == char_in){
-        
-        if(id == 01){
+    if(id == 01){
 
-            double e1 = concatenate(data_in[2], data_in[3]);
-            double e2 = concatenate(data_in[4], data_in[5]);
+        double e1 = concatenate(data_in[2], data_in[3]);
+        double e2 = concatenate(data_in[4], data_in[5]);
 
-            double exposure = concatenate(e1, e2);
-            (*blinking_pointer)(exposure);
-        }
-        if(id == 02){
-
-            double e1 = concatenate(data_in[2], data_in[3]);
-            double e2 = concatenate(data_in[4], data_in[5]);
-
-            double exposure = concatenate(e1, e2);
-            (*align_pointer)(exposure);
-        }
-        if(id == 03){
-
-            (*middleBox_pointer)();
-        }
-        if(id == 04){
-            
-            double count = concatenate(data_in[2], data_in[3]);
-            double radius = concatenate(data_in[4], data_in[5]);
-            double offset = concatenate(data_in[6], data_in[7]);
-            double colour = concatenate(data_in[8], data_in[9]);
-
-            double e1 = concatenate(data_in[10], data_in[11]);
-            double e2 = concatenate(data_in[12], data_in[13]);
-
-            double exposure = concatenate(e1, e2);
-
-            (*rings_pointer)(count, radius, offset, colour, exposure);
-        }
+        double exposure = concatenate(e1, e2);
+        (*blinking_pointer)(exposure);
     }
+    if(id == 02){
 
-    if(previous_char_in != char_in){
+        double e1 = concatenate(data_in[2], data_in[3]);
+        double e2 = concatenate(data_in[4], data_in[5]);
 
-        char_in = 0;
-        itr = 0;
-        for(int i = 0; i < sizeof(data_in); i++){
-            data_in[i] = 0;
-        }
-        matrix.clear();
+        double exposure = concatenate(e1, e2);
+        (*align_pointer)(exposure);
+    }
+    if(id == 03){
+
+        (*middleBox_pointer)();
+    }
+    if(id == 04){
+        
+        double count = concatenate(data_in[2], data_in[3]);
+        double radius = concatenate(data_in[4], data_in[5]);
+        double offset = concatenate(data_in[6], data_in[7]);
+        double colour = concatenate(data_in[8], data_in[9]);
+
+        double e1 = concatenate(data_in[10], data_in[11]);
+        double e2 = concatenate(data_in[12], data_in[13]);
+
+        double exposure = concatenate(e1, e2);
+
+        (*rings_pointer)(count, radius, offset, colour, exposure);
     }
 }
 

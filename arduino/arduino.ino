@@ -21,7 +21,7 @@
 #define clear() fillScreen(0)
 
 /*Global Variables */
-char char_in = -1;
+char char_in = 0;
 char previous_char_in = 10;
 char data_in[20];
 int itr = 0;
@@ -166,7 +166,6 @@ void decoder(){
     while(Serial.available() > 0){
 
         char_in = Serial.read();
-        previous_char_in = char_in;
 
         data_in[itr] = (char_in - '0');
 
@@ -185,17 +184,33 @@ void decoder(){
     }
     if(id == 02){
 
+        // char_in = 0;
+        // itr = 0;
+        // for(int i = 0; i < sizeof(data_in); i++){
+        //     data_in[i] = 0;
+        // }
+        // matrix.clear();
+
+        clean_up();
+
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
 
         double exposure = concatenate(e1, e2);
 
-        clean_up();
         (*align_pointer)(exposure);
     }
     if(id == 03){
 
+        // char_in = 0;
+        // itr = 0;
+        // for(int i = 0; i < sizeof(data_in); i++){
+        //     data_in[i] = 0;
+        // }
+        // matrix.clear();
+
         clean_up();
+
         (*middleBox_pointer)();
     }
     if(id == 04){

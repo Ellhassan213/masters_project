@@ -201,7 +201,6 @@ void decoder(){
     }
 
     char_in = 0;
-    data_in = 0;
     itr = 0;
 }
 

@@ -202,8 +202,8 @@ void decoder(){
             (*rings_pointer)(count, radius, offset, colour, exposure);
         }
     }
-    
-    if(previous_char_in == char_in){
+
+    if(previous_char_in != char_in){
 
         char_in = 0;
         itr = 0;

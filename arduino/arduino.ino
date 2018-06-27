@@ -175,11 +175,11 @@ int decoder(){
     }
     else if(id == 02){
 
-        double e1 = concatenate(data_in[2], data_in[3]);
-        double e2 = concatenate(data_in[4], data_in[5]);
+        // double e1 = concatenate(data_in[2], data_in[3]);
+        // double e2 = concatenate(data_in[4], data_in[5]);
 
-        double exposure = concatenate(e1, e2);
-        align(exposure);
+        // double exposure = concatenate(e1, e2);
+        align(0);
     }
     else if(id == 03){
 

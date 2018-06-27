@@ -99,6 +99,7 @@ void middleBox(){
 void align(double exposure){
 
   // Align
+  matrix.begin();
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
@@ -152,7 +153,7 @@ unsigned concatenate(unsigned first, unsigned second){
     return first * power + second;
 }
 
-int decoder(){
+void decoder(){
 
     while(Serial.available() > 0){
 
@@ -175,11 +176,11 @@ int decoder(){
     }
     else if(id == 02){
 
-        // double e1 = concatenate(data_in[2], data_in[3]);
-        // double e2 = concatenate(data_in[4], data_in[5]);
+        double e1 = concatenate(data_in[2], data_in[3]);
+        double e2 = concatenate(data_in[4], data_in[5]);
 
-        // double exposure = concatenate(e1, e2);
-        align(0);
+        double exposure = concatenate(e1, e2);
+        align(exposure);
     }
     else if(id == 03){
 
@@ -199,8 +200,6 @@ int decoder(){
 
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
-
-  return 0;
 }
 
 

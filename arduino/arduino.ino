@@ -90,7 +90,6 @@ void rings(double count, double radius, double offset, double colour, double exp
 void middleBox(){
   
   // draw middle box
-  matrix.clear();
   matrix.drawPixel(15, 15, matrix.Color333(7, 7, 7));
   matrix.drawPixel(15, 16, matrix.Color333(7, 7, 7));
   matrix.drawPixel(16, 16, matrix.Color333(7, 7, 7));
@@ -100,7 +99,6 @@ void middleBox(){
 void align(double exposure){
 
   // Align
-  matrix.clear();
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
@@ -199,6 +197,8 @@ void decoder(){
 
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
+
+      matrix.clear();
 }
 
 

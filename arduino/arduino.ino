@@ -184,14 +184,14 @@ void decoder(){
     }
     if(id == 02){
 
-        // char_in = 0;
-        // itr = 0;
-        // for(int i = 0; i < sizeof(data_in); i++){
-        //     data_in[i] = 0;
-        // }
-        // matrix.clear();
+        char_in = 0;
+        itr = 0;
+        for(int i = 0; i < sizeof(data_in); i++){
+            data_in[i] = 0;
+        }
+        matrix.clear();
 
-        clean_up();
+        // clean_up();
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -202,14 +202,14 @@ void decoder(){
     }
     if(id == 03){
 
-        // char_in = 0;
-        // itr = 0;
-        // for(int i = 0; i < sizeof(data_in); i++){
-        //     data_in[i] = 0;
-        // }
-        // matrix.clear();
+        char_in = 0;
+        itr = 0;
+        for(int i = 0; i < sizeof(data_in); i++){
+            data_in[i] = 0;
+        }
+        matrix.clear();
 
-        clean_up();
+        // clean_up();
 
         (*middleBox_pointer)();
     }

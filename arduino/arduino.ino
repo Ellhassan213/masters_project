@@ -107,8 +107,6 @@ void align(double exposure){
   delay(exposure);
   matrix.drawPixel(19, 16, matrix.Color333(7, 7, 7));
   delay(exposure);  
-
-  return 0;
 }
 
 int blinking(double exposure){

@@ -199,9 +199,6 @@ void decoder(){
 
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
-
-    char_in = 0;
-    itr = 0;
 }
 
 

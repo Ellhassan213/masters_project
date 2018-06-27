@@ -22,6 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
+char previous_char_in = 10;
 char data_in[20];
 int itr = 0;
 
@@ -152,54 +153,66 @@ unsigned concatenate(unsigned first, unsigned second){
 
 void decoder(){
 
-    while(Serial.available() > 0){
+    if(previous_char_in == char_in){
 
-        char_in = Serial.read();
-        data_in[itr] = (char_in - '0');
-
-        // Serial.write(char_in);
-        itr++;
+        ; // Do nothing!
     }
 
-    double id = concatenate(data_in[0], data_in[1]);
-    
-    if(id == 01){
-
-        double e1 = concatenate(data_in[2], data_in[3]);
-        double e2 = concatenate(data_in[4], data_in[5]);
-
-        double exposure = concatenate(e1, e2);
-        (*blinking_pointer)(exposure);
-    }
-    if(id == 02){
-
-        double e1 = concatenate(data_in[2], data_in[3]);
-        double e2 = concatenate(data_in[4], data_in[5]);
-
-        double exposure = concatenate(e1, e2);
-        (*align_pointer)(exposure);
-    }
-    if(id == 03){
-
-        (*middleBox_pointer)();
-    }
-    if(id == 04){
+    else{
         
-        double count = concatenate(data_in[2], data_in[3]);
-        double radius = concatenate(data_in[4], data_in[5]);
-        double offset = concatenate(data_in[6], data_in[7]);
-        double colour = concatenate(data_in[8], data_in[9]);
+        char_in = 0;
+        itr = 0;
+        for(int i = 0; i < sizeof(data_in); i++){
+            data_in[i] = 0;
+        }
+        matrix.clear();
 
-        double e1 = concatenate(data_in[10], data_in[11]);
-        double e2 = concatenate(data_in[12], data_in[13]);
+        while(Serial.available() > 0){
 
-        double exposure = concatenate(e1, e2);
+            char_in = Serial.read();
+            previous_char_in = char_in;
 
-        (*rings_pointer)(count, radius, offset, colour, exposure);
-    }
+            data_in[itr] = (char_in - '0');
 
-    for(int i = 0; i < sizeof(data_in); i++){
-        data_in[i] = 0;
+            itr++;
+        }
+
+        double id = concatenate(data_in[0], data_in[1]);
+        
+        if(id == 01){
+
+            double e1 = concatenate(data_in[2], data_in[3]);
+            double e2 = concatenate(data_in[4], data_in[5]);
+
+            double exposure = concatenate(e1, e2);
+            (*blinking_pointer)(exposure);
+        }
+        if(id == 02){
+
+            double e1 = concatenate(data_in[2], data_in[3]);
+            double e2 = concatenate(data_in[4], data_in[5]);
+
+            double exposure = concatenate(e1, e2);
+            (*align_pointer)(exposure);
+        }
+        if(id == 03){
+
+            (*middleBox_pointer)();
+        }
+        if(id == 04){
+            
+            double count = concatenate(data_in[2], data_in[3]);
+            double radius = concatenate(data_in[4], data_in[5]);
+            double offset = concatenate(data_in[6], data_in[7]);
+            double colour = concatenate(data_in[8], data_in[9]);
+
+            double e1 = concatenate(data_in[10], data_in[11]);
+            double e2 = concatenate(data_in[12], data_in[13]);
+
+            double exposure = concatenate(e1, e2);
+
+            (*rings_pointer)(count, radius, offset, colour, exposure);
+        }
     }
 }
 

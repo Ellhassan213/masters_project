@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[100];
+char data_in[20];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -30,7 +30,7 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 /* Function Pointers */
 
 void (*blinking_pointer)(double);
-void (*align_pointer)(double);
+// void (*align_pointer)(double);
 void (*middleBox_pointer)();
 void (*pixel_pointer)(double, double, double);
 void (*rings_pointer)(double, double, double, double, double);
@@ -171,19 +171,19 @@ void decoder(){
         double exposure = concatenate(e1, e2);
         (*blinking_pointer)(exposure);
     }
-    else if(id == 02){
+    if(id == 02){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
 
         double exposure = concatenate(e1, e2);
-        (*align_pointer)(exposure);
+        align(exposure);
     }
-    else if(id == 03){
+    if(id == 03){
 
         (*middleBox_pointer)();
     }
-    else if(id == 04){
+    if(id == 04){
         
         double count = concatenate(data_in[2], data_in[3]);
         double radius = concatenate(data_in[4], data_in[5]);
@@ -207,7 +207,7 @@ void setup(){
 
     // initialise function pointers
     blinking_pointer = blinking;
-    align_pointer = align;
+    // align_pointer = align;
     middleBox_pointer = middleBox;
     rings_pointer = rings;
     pixel_pointer = pixel;

@@ -29,8 +29,8 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 /* Function Pointers */
 
-int (*blinking_pointer)(double);
-//int (*align_pointer)(double);
+void (*blinking_pointer)(double);
+void (*align_pointer)(double);
 void (*middleBox_pointer)();
 void (*pixel_pointer)(double, double, double);
 void (*rings_pointer)(double, double, double, double, double);
@@ -109,14 +109,12 @@ void align(double exposure){
   delay(exposure);  
 }
 
-int blinking(double exposure){
+void blinking(double exposure){
     
     digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
     delay(exposure);              // wait for a second
     digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
     delay(exposure);             // wait for a second
-
-    return 0;
 }
 
 void pixel(double x, double y, double colour){
@@ -179,7 +177,7 @@ void decoder(){
         double e2 = concatenate(data_in[4], data_in[5]);
 
         double exposure = concatenate(e1, e2);
-        align(exposure);
+        (*align_pointer)(exposure);
     }
     else if(id == 03){
 
@@ -207,13 +205,9 @@ void decoder(){
 
 void setup(){
 
-    // initialise serial comms and matrix control
-    Serial.begin(9600); 
-    matrix.begin();
-
     // initialise function pointers
     blinking_pointer = blinking;
-    //align_pointer = align;
+    align_pointer = align;
     middleBox_pointer = middleBox;
     rings_pointer = rings;
     pixel_pointer = pixel;
@@ -223,6 +217,10 @@ void setup(){
 
     pinMode(11, OUTPUT);
     digitalWrite(11, LOW);
+
+    // initialise serial comms and matrix control
+    Serial.begin(9600); 
+    matrix.begin();
 }
 
 void loop(){

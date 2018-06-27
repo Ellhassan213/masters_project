@@ -38,7 +38,7 @@ void (*rings_pointer)(double, double, double, double, double);
 
 /* Functions */
 
-void clean_up)(){
+void clean_up(){
 
     char_in = 0;
     itr = 0;

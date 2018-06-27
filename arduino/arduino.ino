@@ -45,6 +45,7 @@ void clean_up(){
     for(int i = 0; i < sizeof(data_in); i++){
         data_in[i] = 0;
     }
+    matrix.clear();
 }
 
 void rings(double count, double radius, double offset, double colour, double exposure){
@@ -100,7 +101,6 @@ void rings(double count, double radius, double offset, double colour, double exp
 void middleBox(){
   
   // draw middle box
-  clean_up();
   matrix.drawPixel(15, 15, matrix.Color333(7, 7, 7));
   matrix.drawPixel(15, 16, matrix.Color333(7, 7, 7));
   matrix.drawPixel(16, 16, matrix.Color333(7, 7, 7));
@@ -110,7 +110,6 @@ void middleBox(){
 void align(double exposure){
 
   // Align
-  clean_up();
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
@@ -190,10 +189,13 @@ void decoder(){
         double e2 = concatenate(data_in[4], data_in[5]);
 
         double exposure = concatenate(e1, e2);
+
+        clean_up();
         (*align_pointer)(exposure);
     }
     if(id == 03){
 
+        clean_up();
         (*middleBox_pointer)();
     }
     if(id == 04){

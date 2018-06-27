@@ -99,7 +99,6 @@ void middleBox(){
 void align(double exposure){
 
   // Align
-  matrix.begin();
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
@@ -160,7 +159,7 @@ void decoder(){
         char_in = Serial.read();
         data_in[itr] = (char_in - '0');
 
-        Serial.write(char_in);
+        // Serial.write(char_in);
         itr++;
     }
 

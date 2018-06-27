@@ -14,36 +14,6 @@
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
-void setup(){
-
-  matrix.begin();
-
-  pinMode(11, OUTPUT);
-  digitalWrite(11, LOW);
-
-//  rings(12, 10, 0, 0, 7, 0);
-//  rings(8, 8, PI/4, 0, 7, 0);
-  
-
-//  middleBox();
-
-//  align(0);
-}
-
-void loop(){
-
-rings(8, 4, PI/3, 0, 7, 0);
-
-//  pinMode(13, OUTPUT);
-//  digitalWrite(13, HIGH);
-//  delay(500);
-//  digitalWrite(13, LOW);
-//  delay(500);
-//    rings(8, 4, PI/3, 0, 7, 0);
-//  rings(8, 8, PI/4, 7, 0, 0);
-//  rings(12, 10, 0, 0, 7, 0);
-}
-
 void rings(int count, double radius, double offset, int r, int g, int b){
 
   double theta = offset;
@@ -91,4 +61,35 @@ void align(int d){
   delay(d);
   matrix.drawPixel(19, 16, matrix.Color333(7, 7, 7));
   delay(d);  
+}
+
+
+void setup(){
+
+  matrix.begin();
+
+  pinMode(11, OUTPUT);
+  digitalWrite(11, LOW);
+
+//  rings(12, 10, 0, 0, 7, 0);
+//  rings(8, 8, PI/4, 0, 7, 0);
+  
+
+//  middleBox();
+
+//  align(0);
+}
+
+void loop(){
+
+rings(8, 4, PI/3, 0, 7, 0);
+
+//  pinMode(13, OUTPUT);
+//  digitalWrite(13, HIGH);
+//  delay(500);
+//  digitalWrite(13, LOW);
+//  delay(500);
+//    rings(8, 4, PI/3, 0, 7, 0);
+//  rings(8, 8, PI/4, 7, 0, 0);
+//  rings(12, 10, 0, 0, 7, 0);
 }

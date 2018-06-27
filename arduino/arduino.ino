@@ -30,7 +30,7 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 /* Function Pointers */
 
 void (*blinking_pointer)(double);
-// void (*align_pointer)(double);
+void (*align_pointer)(double);
 void (*middleBox_pointer)();
 void (*pixel_pointer)(double, double, double);
 void (*rings_pointer)(double, double, double, double, double);
@@ -177,7 +177,7 @@ void decoder(){
         double e2 = concatenate(data_in[4], data_in[5]);
 
         double exposure = concatenate(e1, e2);
-        align(exposure);
+        (*align_pointer)(exposure);
     }
     if(id == 03){
 
@@ -207,7 +207,7 @@ void setup(){
 
     // initialise function pointers
     blinking_pointer = blinking;
-    // align_pointer = align;
+    align_pointer = align;
     middleBox_pointer = middleBox;
     rings_pointer = rings;
     pixel_pointer = pixel;

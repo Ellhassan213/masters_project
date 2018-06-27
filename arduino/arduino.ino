@@ -152,32 +152,20 @@ unsigned concatenate(unsigned first, unsigned second){
 }
 
 void decoder(){
+        
+    while(Serial.available() > 0){
 
-    if(previous_char_in == char_in){
+        char_in = Serial.read();
+        previous_char_in = char_in;
 
-        ; // Do nothing!
+        data_in[itr] = (char_in - '0');
+
+        itr++;
     }
 
-    else{
-        
-        char_in = 0;
-        itr = 0;
-        for(int i = 0; i < sizeof(data_in); i++){
-            data_in[i] = 0;
-        }
-        matrix.clear();
+    double id = concatenate(data_in[0], data_in[1]);
 
-        while(Serial.available() > 0){
-
-            char_in = Serial.read();
-            previous_char_in = char_in;
-
-            data_in[itr] = (char_in - '0');
-
-            itr++;
-        }
-
-        double id = concatenate(data_in[0], data_in[1]);
+    if(previous_char_in == char_in){
         
         if(id == 01){
 
@@ -213,6 +201,15 @@ void decoder(){
 
             (*rings_pointer)(count, radius, offset, colour, exposure);
         }
+    }
+    else{
+
+        char_in = 0;
+        itr = 0;
+        for(int i = 0; i < sizeof(data_in); i++){
+            data_in[i] = 0;
+        }
+        matrix.clear();
     }
 }
 

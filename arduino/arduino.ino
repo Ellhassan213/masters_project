@@ -99,6 +99,7 @@ void middleBox(){
 int align(double exposure){
 
   // Align
+  while(1){
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
@@ -106,7 +107,7 @@ int align(double exposure){
   matrix.drawPixel(13, 16, matrix.Color333(7, 7, 7));
   delay(exposure);
   matrix.drawPixel(19, 16, matrix.Color333(7, 7, 7));
-  delay(exposure);  
+  delay(exposure); } 
   return 0;
 }
 

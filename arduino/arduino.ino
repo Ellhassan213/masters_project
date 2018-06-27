@@ -30,7 +30,7 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 /* Function Pointers */
 
 int (*blinking_pointer)(double);
-void (*align_pointer)(double);
+int (*align_pointer)(double);
 void (*middleBox_pointer)();
 void (*pixel_pointer)(double, double, double);
 void (*rings_pointer)(double, double, double, double, double);
@@ -96,7 +96,7 @@ void middleBox(){
   matrix.drawPixel(16, 15, matrix.Color333(7, 7, 7));
 }
 
-void align(double exposure){
+int align(double exposure){
 
   // Align
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
@@ -107,6 +107,7 @@ void align(double exposure){
   delay(exposure);
   matrix.drawPixel(19, 16, matrix.Color333(7, 7, 7));
   delay(exposure);  
+  return 0;
 }
 
 int blinking(double exposure){

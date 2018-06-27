@@ -198,7 +198,7 @@ void decoder(){
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
 
-    for(int i = 0; i < sizeof(data_in), i++){
+    for(int i = 0; i < sizeof(data_in); i++){
         data_in[i] = 0;
     }
 }

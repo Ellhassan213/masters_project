@@ -158,14 +158,14 @@ void rings(double count, double radius, double offset, double colour, double exp
     //     theta += delta;    
     // }
 
-  matrix.drawPixel(12, 13, matrix.Color333(7, 7, 7));
-  delay(exposure);
-  matrix.drawPixel(15, 19, matrix.Color333(7, 7, 7));
-  delay(exposure);
-  matrix.drawPixel(18, 16, matrix.Color333(7, 7, 7));
-  delay(exposure);
-  matrix.drawPixel(22, 16, matrix.Color333(7, 7, 7));
-  delay(exposure); 
+//   matrix.drawPixel(12, 13, matrix.Color333(7, 7, 7));
+//   delay(exposure);
+//   matrix.drawPixel(15, 19, matrix.Color333(7, 7, 7));
+//   delay(exposure);
+//   matrix.drawPixel(18, 16, matrix.Color333(7, 7, 7));
+//   delay(exposure);
+//   matrix.drawPixel(22, 16, matrix.Color333(7, 7, 7));
+//   delay(exposure); 
 
   matrix.drawPixel(24, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
@@ -293,7 +293,7 @@ void decoder(){
 
         int16_t exposure = concatenate(e1, e2);
 
-        clean_up();
+        // clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
     else if(id == 05){ // execute single pixel function

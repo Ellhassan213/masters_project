@@ -159,12 +159,12 @@ void rings(double count, double radius, double offset, double colour, double exp
     //     theta += delta;    
     // }
 
-    double x_container[12];
-    double y_container[12];
+    int x_container[12];
+    int y_container[12];
 
     
 
-    for(int i = 0; i < count; i++){
+    for(int i = 0; i < 12; i++){
 
         x = radius * cos(theta) + (32 / 2);
         y = radius * sin(theta) + (32 / 2);

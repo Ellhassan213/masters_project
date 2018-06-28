@@ -265,15 +265,15 @@ void decoder(){
     }
     else if(id == 04){
         
-        double count = concatenate(data_in[2], data_in[3]);
-        double radius = concatenate(data_in[4], data_in[5]);
-        double offset = concatenate(data_in[6], data_in[7]);
-        double colour = concatenate(data_in[8], data_in[9]);
+        int16_t count = concatenate(data_in[2], data_in[3]);
+        int16_t radius = concatenate(data_in[4], data_in[5]);
+        int16_t offset = concatenate(data_in[6], data_in[7]);
+        uint16_t colour = concatenate(data_in[8], data_in[9]);
 
-        double e1 = concatenate(data_in[10], data_in[11]);
-        double e2 = concatenate(data_in[12], data_in[13]);
+        int16_t e1 = concatenate(data_in[10], data_in[11]);
+        int16_t e2 = concatenate(data_in[12], data_in[13]);
 
-        double exposure = concatenate(e1, e2);
+        int16_t exposure = concatenate(e1, e2);
 
         // clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);

@@ -277,7 +277,7 @@ void decoder(){
 
         // double exposure = concatenate(e1, e2);
 
-        clean_up();
+        // clean_up();
         // (*rings_pointer)(count, radius, offset, colour, exposure);
         (*rings_pointer)(12, 10, 0, 01, 0500);
     }

@@ -231,7 +231,7 @@ void decoder(){
         
         data_in[itr] = (char_in - '0');
 
-        delay(10);
+        delay(50);
         itr++;
     }
 

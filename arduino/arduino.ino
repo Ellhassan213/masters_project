@@ -293,7 +293,7 @@ void decoder(){
 
         int16_t exposure = concatenate(e1, e2);
 
-        // clean_up();
+        clean_up();
         (*rings_pointer)(12, 10, 0, 1, 500);
     }
     else if(id == 05){ // execute single pixel function

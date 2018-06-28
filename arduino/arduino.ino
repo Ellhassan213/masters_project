@@ -236,7 +236,7 @@ void decoder(){
 
     double id = concatenate(data_in[0], data_in[1]);
 
-    if(nid == 01){
+    if(id == 01){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);

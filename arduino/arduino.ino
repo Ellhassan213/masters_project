@@ -144,15 +144,15 @@ void rings(double count, double radius, double offset, double colour, double exp
     
     for(int i = 0; i < count; i++){
 
-        x = radius * cos(theta) + (matrix.width() / 2);
-        y = radius * sin(theta) + (matrix.height() / 2);
+        x = radius * cos(theta) + (16);
+        y = radius * sin(theta) + (16);
 
         matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
-        digitalWrite(11, HIGH);
+        // digitalWrite(11, HIGH);
         delay(exposure);
 
-        matrix.drawPixel(x, y, 0);
-        digitalWrite(11, LOW);
+        // matrix.drawPixel(x, y, 0);
+        // digitalWrite(11, LOW);
         delay(exposure);
         
         theta += delta;    

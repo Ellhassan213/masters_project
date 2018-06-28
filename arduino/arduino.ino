@@ -47,6 +47,7 @@ void clean_up(){
   data_in[i] = 0;
   }
   matrix.clear();
+  delay(50);
 }
 
 void rectangle_fill(double x, double y, double w, double h, double colour, double exposure){

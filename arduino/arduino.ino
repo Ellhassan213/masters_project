@@ -21,8 +21,8 @@
 #define clear() fillScreen(0)
 
 /*Global Variables */
-char char_in = -1;
-char data_in[20];
+char char_in = 0;
+char data_in[50];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -147,7 +147,6 @@ void rings(double count, double radius, double offset, double colour, double exp
         x = radius * cos(theta) + (32 / 2);
         y = radius * sin(theta) + (32 / 2);
 
-        delay(2000);
         matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
         digitalWrite(11, HIGH);
         delay(exposure);
@@ -237,7 +236,7 @@ void decoder(){
 
     double id = concatenate(data_in[0], data_in[1]);
 
-    if(id == 01){
+    if(id == 1){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -247,7 +246,7 @@ void decoder(){
         clean_up();
         (*blinking_pointer)(exposure);
     }
-    else if(id == 02){
+    else if(id == 2){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -257,12 +256,12 @@ void decoder(){
         clean_up();
         (*align_pointer)(exposure);
     }
-    else if(id == 03){
+    else if(id == 3){
 
         clean_up();
         (*middleBox_pointer)();
     }
-    else if(id == 04){
+    else if(id == 4){
         
         double count = concatenate(data_in[2], data_in[3]);
         double radius = concatenate(data_in[4], data_in[5]);
@@ -277,7 +276,7 @@ void decoder(){
         clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
-    else if(id == 05){ // execute single pixel function
+    else if(id == 5){ // execute single pixel function
 
         double x = concatenate(data_in[2], data_in[3]);
         double y = concatenate(data_in[4], data_in[5]);
@@ -286,7 +285,7 @@ void decoder(){
         clean_up();
         (*pixel_pointer)(x, y, colour);
     }
-    else if(id == 06){ // execute rectangle function
+    else if(id == 6){ // execute rectangle function
 
         double x = concatenate(data_in[2], data_in[3]);
         double y = concatenate(data_in[4], data_in[5]);
@@ -297,7 +296,7 @@ void decoder(){
         clean_up();
         (*rectangle_pointer)(x, y, width, height, colour);
     }
-    else if(id == 07){ // execute rectangle increamental fill function
+    else if(id == 7){ // execute rectangle increamental fill function
 
         double x = concatenate(data_in[2], data_in[3]);
         double y = concatenate(data_in[4], data_in[5]);

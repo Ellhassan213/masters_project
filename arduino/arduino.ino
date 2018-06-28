@@ -274,7 +274,6 @@ void decoder(){
         double exposure = concatenate(e1, e2);
 
         clean_up();
-        delay(2000);
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
     else if(id == 05){ // execute single pixel function

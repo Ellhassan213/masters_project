@@ -142,49 +142,49 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         r = 7; g = 7; b = 7;
     }
     
-    // for(int i = 0; i < count; i++){
+    for(int i = 0; i < count; i++){
 
-    //     x = radius * cos(theta) + (16);
-    //     y = radius * sin(theta) + (16);
+        x = radius * cos(theta) + (16);
+        y = radius * sin(theta) + (16);
 
-    //     matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
-    //     // digitalWrite(11, HIGH);
-    //     // delay(exposure);
+        matrix.drawPixel(int16_t(x), int16_t(y), matrix.Color333(r, g, b)); 
+        // digitalWrite(11, HIGH);
+        // delay(exposure);
 
-    //     // matrix.drawPixel(x, y, 0);
-    //     // digitalWrite(11, LOW);
-    //     // delay(exposure);
+        // matrix.drawPixel(x, y, 0);
+        // digitalWrite(11, LOW);
+        // delay(exposure);
         
-    //     theta += delta;    
-    // }
+        theta += delta;    
+    }
 
-for(int i = 0; i < 10; i++){
-  matrix.drawPixel(12, 13, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear();
-  matrix.drawPixel(15, 19, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear();
-  matrix.drawPixel(18, 16, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear();
-  matrix.drawPixel(22, 16, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear(); 
+// for(int i = 0; i < 10; i++){
+//   matrix.drawPixel(12, 13, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear();
+//   matrix.drawPixel(15, 19, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear();
+//   matrix.drawPixel(18, 16, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear();
+//   matrix.drawPixel(22, 16, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear(); 
 
-  matrix.drawPixel(24, 13, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear();
-  matrix.drawPixel(16, 23, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear();
-  matrix.drawPixel(13, 25, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear();
-  matrix.drawPixel(19, 9, matrix.Color333(r, g, b));
-  delay(exposure);
-  matrix.clear();
-}
+//   matrix.drawPixel(24, 13, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear();
+//   matrix.drawPixel(16, 23, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear();
+//   matrix.drawPixel(13, 25, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear();
+//   matrix.drawPixel(19, 9, matrix.Color333(r, g, b));
+//   delay(exposure);
+//   matrix.clear();
+// }
 }
 
 void middleBox(){

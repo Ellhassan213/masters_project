@@ -43,7 +43,7 @@ void clean_up(){
   
   char_in = 0;
   itr = 0;
-  for(int i = 0; i < sizeof(data_in); i++){
+  for(int i = 0; i < 12; i++){
   data_in[i] = 0;
   }
   matrix.clear();
@@ -112,8 +112,8 @@ void rectangle(double x, double y, double w, double h, double colour){
 void rings(double count, double radius, double offset, double colour, double exposure){
 
     double delta = (2 * PI) / count;
-    double x = 0;
-    double y = 0;
+    int16_t x = 0;
+    int16_t y = 0;
     double theta = 0;
     
     int r = 0; int g = 0; int b = 0;
@@ -230,6 +230,8 @@ void decoder(){
         
         data_in[itr] = (char_in - '0');
 
+//        Serial.write(data_in[itr]);
+
         delay(10);
         itr++;
     }
@@ -259,8 +261,7 @@ void decoder(){
     else if(id == 03){
 
         clean_up();
-        // (*middleBox_pointer)();
-        (*rings_pointer)(12, 10, 00, 01, 0500);
+         (*middleBox_pointer)();
     }
     else if(id == 04){
         

@@ -149,11 +149,11 @@ void rings(double count, double radius, double offset, double colour, double exp
 
         matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
         // digitalWrite(11, HIGH);
-        delay(exposure);
+        // delay(exposure);
 
         // matrix.drawPixel(x, y, 0);
         // digitalWrite(11, LOW);
-        delay(exposure);
+        // delay(exposure);
         
         theta += delta;    
     }

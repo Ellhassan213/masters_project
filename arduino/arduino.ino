@@ -109,7 +109,7 @@ void rectangle(double x, double y, double w, double h, double colour){
   matrix.fillRect(x, y, w, h, matrix.Color333(r, g, b));
 }
 
-void rings(double count, double radius, double offset, double colour, double exposure){
+void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, int16_t  exposure){
 
     double delta = (2 * PI) / count;
     int16_t x = 0;
@@ -293,7 +293,7 @@ void decoder(){
 
         int16_t exposure = concatenate(e1, e2);
 
-        clean_up();
+        // clean_up();
         rings(count, radius, offset, colour, exposure);
     }
     else if(id == 05){ // execute single pixel function

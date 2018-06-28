@@ -29,13 +29,13 @@ RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
 /* Function Pointers */
 
-void (*blinking_pointer)(double);
-void (*align_pointer)(double);
-void (*middleBox_pointer)();
-void (*pixel_pointer)(double, double, double);
-// void (*rings_pointer)(double, double, double, double, double);
-void (*rectangle_pointer)(double, double, double, double, double);
-void (*rectangle_fill_pointer)(double, double, double, double, double, double);
+// void (*blinking_pointer)(int16_t);
+// void (*align_pointer)(int16_t);
+// void (*middleBox_pointer)();
+// void (*pixel_pointer)(int16_t, int16_t, int16_t);
+// void (*rings_pointer)(int16_t, int16_t, int16_t, int16_t, int16_t);
+// void (*rectangle_pointer)(int16_t, int16_t, int16_t, int16_t, int16_t);
+// void (*rectangle_fill_pointer)(int16_t, int16_t, int16_t, int16_t, int16_t, int16_t);
 
 /* Functions */
 
@@ -43,15 +43,16 @@ void clean_up(){
   
   char_in = 0;
   itr = 0;
-  for(int i = 0; i < 12; i++){
-  data_in[i] = 0;
+  for(int i = 0; i < sizeof(data_in); i++){
+      
+      data_in[i] = 0;
   }
   matrix.clear();
 }
 
-void rectangle_fill(double x, double y, double w, double h, double colour, double exposure){
+void rectangle_fill(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour, int16_t exposure){
 
-  int r = 0; int g = 0; int b = 0;
+  int16_t r, g, b;
 
   if(colour == 01){
       
@@ -70,24 +71,24 @@ void rectangle_fill(double x, double y, double w, double h, double colour, doubl
       r = 7; g = 7; b = 7;
   }
   
-  for(double i = x; i < w; i++) {
-    for(double j = y; j < h; j++){
+  for(int16_t i = x; i < w; i++) {
+    for(int16_t j = y; j < h; j++){
 
       matrix.drawPixel(i, j, matrix.Color333(r, g, b));
 
       digitalWrite(11, HIGH);
       delay(exposure);
 
-      matrix.drawPixel(i, j, 0);
+      matrix.clear();
       digitalWrite(11, LOW);
       delay(exposure);
     }
   }
 }
 
-void rectangle(double x, double y, double w, double h, double colour){
+void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
 
-    uint16_t r = 0; uint16_t g = 0; uint16_t b = 0;
+    int16_t r, g, b;
 
     if(colour == 01){
         
@@ -147,44 +148,44 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         x = radius * cos(theta) + (16);
         y = radius * sin(theta) + (16);
 
-        matrix.drawPixel(i + 12, i + 10, matrix.Color333(r, g, b)); 
-        // digitalWrite(11, HIGH);
-        // delay(exposure);
+        matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
+        digitalWrite(11, HIGH);
+        delay(exposure);
 
-        // matrix.drawPixel(x, y, 0);
-        // digitalWrite(11, LOW);
-        // delay(exposure);
+        matrix.clear();
+        digitalWrite(11, LOW);
+        delay(exposure);
         
         theta += delta;    
     }
 
-// for(int i = 0; i < 10; i++){
-//   matrix.drawPixel(12, 13, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear();
-//   matrix.drawPixel(15, 19, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear();
-//   matrix.drawPixel(18, 16, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear();
-//   matrix.drawPixel(22, 16, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear(); 
+    // for(int i = 0; i < 10; i++){
+    //   matrix.drawPixel(12, 13, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear();
+    //   matrix.drawPixel(15, 19, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear();
+    //   matrix.drawPixel(18, 16, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear();
+    //   matrix.drawPixel(22, 16, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear(); 
 
-//   matrix.drawPixel(24, 13, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear();
-//   matrix.drawPixel(16, 23, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear();
-//   matrix.drawPixel(13, 25, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear();
-//   matrix.drawPixel(19, 9, matrix.Color333(r, g, b));
-//   delay(exposure);
-//   matrix.clear();
-// }
+    //   matrix.drawPixel(24, 13, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear();
+    //   matrix.drawPixel(16, 23, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear();
+    //   matrix.drawPixel(13, 25, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear();
+    //   matrix.drawPixel(19, 9, matrix.Color333(r, g, b));
+    //   delay(exposure);
+    //   matrix.clear();
+    // }
 }
 
 void middleBox(){
@@ -196,7 +197,7 @@ void middleBox(){
   matrix.drawPixel(16, 15, matrix.Color333(7, 7, 7));
 }
 
-void align(double exposure){
+void align(int16_t exposure){
 
   // Align
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
@@ -209,7 +210,7 @@ void align(double exposure){
   delay(exposure);  
 }
 
-void blinking(double exposure){
+void blinking(int16_t exposure){
     
     digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
     delay(exposure);              // wait for a second
@@ -217,9 +218,9 @@ void blinking(double exposure){
     delay(exposure);             // wait for a second
 }
 
-void pixel(double x, double y, double colour){
+void pixel(int16_t x, int16_t y, uint16_t colour){
 
-    int r = 0; int g = 0; int b = 0;
+    int16_t r, g, b;
 
     if(colour == 01){
         
@@ -258,38 +259,36 @@ void decoder(){
         
         data_in[itr] = (char_in - '0');
 
-//        Serial.write(data_in[itr]);
-
         delay(10);
         itr++;
     }
 
-    double id = concatenate(data_in[0], data_in[1]);
+    int16_t id = concatenate(data_in[0], data_in[1]);
 
     if(id == 01){
 
-        double e1 = concatenate(data_in[2], data_in[3]);
-        double e2 = concatenate(data_in[4], data_in[5]);
+        int16_t e1 = concatenate(data_in[2], data_in[3]);
+        int16_t e2 = concatenate(data_in[4], data_in[5]);
 
-        double exposure = concatenate(e1, e2);
+        int16_t exposure = concatenate(e1, e2);
         
         clean_up();
-        (*blinking_pointer)(exposure);
+        blinking(exposure);
     }
     else if(id == 02){
 
-        double e1 = concatenate(data_in[2], data_in[3]);
-        double e2 = concatenate(data_in[4], data_in[5]);
+        int16_t e1 = concatenate(data_in[2], data_in[3]);
+        int16_t e2 = concatenate(data_in[4], data_in[5]);
 
-        double exposure = concatenate(e1, e2);
+        int16_t exposure = concatenate(e1, e2);
 
         clean_up();
-        (*align_pointer)(exposure);
+        align(exposure);
     }
     else if(id == 03){
 
         clean_up();
-        (*middleBox_pointer)();
+        middleBox();
     }
     else if(id == 04){
         
@@ -308,127 +307,127 @@ void decoder(){
     }
     else if(id == 05){ // execute single pixel function
 
-        double x = concatenate(data_in[2], data_in[3]);
-        double y = concatenate(data_in[4], data_in[5]);
-        double colour = concatenate(data_in[6], data_in[7]);
+        int16_t x = concatenate(data_in[2], data_in[3]);
+        int16_t y = concatenate(data_in[4], data_in[5]);
+        uint16_t colour = concatenate(data_in[6], data_in[7]);
 
         clean_up();
-        (*pixel_pointer)(x, y, colour);
+        pixel(x, y, colour);
     }
     else if(id == 06){ // execute rectangle function
 
-        double x = concatenate(data_in[2], data_in[3]);
-        double y = concatenate(data_in[4], data_in[5]);
-        double width = concatenate(data_in[6], data_in[7]);
-        double height = concatenate(data_in[8], data_in[9]);
-        double colour = concatenate(data_in[10], data_in[11]);
+        int16_t x = concatenate(data_in[2], data_in[3]);
+        int16_t y = concatenate(data_in[4], data_in[5]);
+        int16_t width = concatenate(data_in[6], data_in[7]);
+        int16_t height = concatenate(data_in[8], data_in[9]);
+        uint16_t colour = concatenate(data_in[10], data_in[11]);
 
         clean_up();
-        (*rectangle_pointer)(x, y, width, height, colour);
+        rectangle(x, y, width, height, colour);
     }
     else if(id == 07){ // execute rectangle increamental fill function
 
-        double x = concatenate(data_in[2], data_in[3]);
-        double y = concatenate(data_in[4], data_in[5]);
-        double width = concatenate(data_in[6], data_in[7]);
-        double height = concatenate(data_in[8], data_in[9]);
-        double colour = concatenate(data_in[10], data_in[11]);
+        int16_t x = concatenate(data_in[2], data_in[3]);
+        int16_t y = concatenate(data_in[4], data_in[5]);
+        int16_t width = concatenate(data_in[6], data_in[7]);
+        int16_t height = concatenate(data_in[8], data_in[9]);
+        uint16_t colour = concatenate(data_in[10], data_in[11]);
         
-        double e1 = concatenate(data_in[12], data_in[13]);
-        double e2 = concatenate(data_in[14], data_in[15]);
+        int16_t e1 = concatenate(data_in[12], data_in[13]);
+        int16_t e2 = concatenate(data_in[14], data_in[15]);
 
-        double exposure = concatenate(e1, e2);
+        int16_t exposure = concatenate(e1, e2);
 
         clean_up();
-        (*rectangle_fill_pointer)(x, y, width, height, colour, exposure);
+        rectangle_fill(x, y, width, height, colour, exposure);
     }
     else if(id == 10){  // execute multiple concentric rings
 
-        double n_o_r = concatenate(data_in[2], data_in[3]);
+        int16_t n_o_r = concatenate(data_in[2], data_in[3]);
 
         if(n_o_r == 01){    // 1 ring requested
 
-            double count = concatenate(data_in[4], data_in[5]);
-            double radius = concatenate(data_in[6], data_in[7]);
-            double offset = concatenate(data_in[8], data_in[9]);
-            double colour = concatenate(data_in[10], data_in[11]);
+            int16_t count = concatenate(data_in[4], data_in[5]);
+            int16_t radius = concatenate(data_in[6], data_in[7]);
+            int16_t offset = concatenate(data_in[8], data_in[9]);
+            uint16_t colour = concatenate(data_in[10], data_in[11]);
 
-            double e1 = concatenate(data_in[12], data_in[13]);
-            double e2 = concatenate(data_in[14], data_in[15]);
+            int16_t e1 = concatenate(data_in[12], data_in[13]);
+            int16_t e2 = concatenate(data_in[14], data_in[15]);
 
-            double exposure = concatenate(e1, e2);
+            int16_t exposure = concatenate(e1, e2);
 
             clean_up();
-            // (*rings_pointer)(count, radius, offset, colour, exposure);
+            rings(count, radius, offset, colour, exposure);
         }
         else if(n_o_r == 02){   // 2 rings requested
 
-            double count_1 = concatenate(data_in[4], data_in[5]);
-            double radius_1 = concatenate(data_in[6], data_in[7]);
-            double offset_1 = concatenate(data_in[8], data_in[9]);
-            double colour_1 = concatenate(data_in[10], data_in[11]);
+            int16_t count_1 = concatenate(data_in[4], data_in[5]);
+            int16_t radius_1 = concatenate(data_in[6], data_in[7]);
+            int16_t offset_1 = concatenate(data_in[8], data_in[9]);
+            uint16_t colour_1 = concatenate(data_in[10], data_in[11]);
 
-            double e1_1 = concatenate(data_in[12], data_in[13]);
-            double e2_1 = concatenate(data_in[14], data_in[15]);
+            int16_t e1_1 = concatenate(data_in[12], data_in[13]);
+            int16_t e2_1 = concatenate(data_in[14], data_in[15]);
 
-            double exposure_1 = concatenate(e1_1, e2_1);
+            int16_t exposure_1 = concatenate(e1_1, e2_1);
 
 
 
-            double count_2 = concatenate(data_in[16], data_in[17]);
-            double radius_2 = concatenate(data_in[18], data_in[19]);
-            double offset_2 = concatenate(data_in[20], data_in[21]);
-            double colour_2 = concatenate(data_in[22], data_in[23]);
+            int16_t count_2 = concatenate(data_in[16], data_in[17]);
+            int16_t radius_2 = concatenate(data_in[18], data_in[19]);
+            int16_t offset_2 = concatenate(data_in[20], data_in[21]);
+            uint16_t colour_2 = concatenate(data_in[22], data_in[23]);
 
-            double e1_2 = concatenate(data_in[24], data_in[25]);
-            double e2_2 = concatenate(data_in[26], data_in[27]);
+            int16_t e1_2 = concatenate(data_in[24], data_in[25]);
+            int16_t e2_2 = concatenate(data_in[26], data_in[27]);
 
-            double exposure_2 = concatenate(e1_2, e2_2);
+            int16_t exposure_2 = concatenate(e1_2, e2_2);
 
             clean_up();
-            // (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
-            // (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
+            rings(count_1, radius_1, offset_1, colour_1, exposure_1);
+            rings(count_2, radius_2, offset_2, colour_2, exposure_2);
         }
         else if(n_o_r == 03){   // 3 rings requested
 
-            double count_1 = concatenate(data_in[4], data_in[5]);
-            double radius_1 = concatenate(data_in[6], data_in[7]);
-            double offset_1 = concatenate(data_in[8], data_in[9]);
-            double colour_1 = concatenate(data_in[10], data_in[11]);
+            int16_t count_1 = concatenate(data_in[4], data_in[5]);
+            int16_t radius_1 = concatenate(data_in[6], data_in[7]);
+            int16_t offset_1 = concatenate(data_in[8], data_in[9]);
+            uint16_t colour_1 = concatenate(data_in[10], data_in[11]);
 
-            double e1_1 = concatenate(data_in[12], data_in[13]);
-            double e2_1 = concatenate(data_in[14], data_in[15]);
+            int16_t e1_1 = concatenate(data_in[12], data_in[13]);
+            int16_t e2_1 = concatenate(data_in[14], data_in[15]);
 
-            double exposure_1 = concatenate(e1_1, e2_1);
-
-
-
-            double count_2 = concatenate(data_in[16], data_in[17]);
-            double radius_2 = concatenate(data_in[18], data_in[19]);
-            double offset_2 = concatenate(data_in[20], data_in[21]);
-            double colour_2 = concatenate(data_in[22], data_in[23]);
-
-            double e1_2 = concatenate(data_in[24], data_in[25]);
-            double e2_2 = concatenate(data_in[26], data_in[27]);
-
-            double exposure_2 = concatenate(e1_2, e2_2);
+            int16_t exposure_1 = concatenate(e1_1, e2_1);
 
 
 
-            double count_3 = concatenate(data_in[28], data_in[29]);
-            double radius_3 = concatenate(data_in[30], data_in[31]);
-            double offset_3 = concatenate(data_in[32], data_in[33]);
-            double colour_3 = concatenate(data_in[34], data_in[35]);
+            int16_t count_2 = concatenate(data_in[16], data_in[17]);
+            int16_t radius_2 = concatenate(data_in[18], data_in[19]);
+            int16_t offset_2 = concatenate(data_in[20], data_in[21]);
+            uint16_t colour_2 = concatenate(data_in[22], data_in[23]);
 
-            double e1_3 = concatenate(data_in[36], data_in[37]);
-            double e2_3 = concatenate(data_in[38], data_in[39]);
+            int16_t e1_2 = concatenate(data_in[24], data_in[25]);
+            int16_t e2_2 = concatenate(data_in[26], data_in[27]);
 
-            double exposure_3 = concatenate(e1_3, e2_3);
+            int16_t exposure_2 = concatenate(e1_2, e2_2);
+
+
+
+            int16_t count_3 = concatenate(data_in[28], data_in[29]);
+            int16_t radius_3 = concatenate(data_in[30], data_in[31]);
+            int16_t offset_3 = concatenate(data_in[32], data_in[33]);
+            uint16_t colour_3 = concatenate(data_in[34], data_in[35]);
+
+            int16_t e1_3 = concatenate(data_in[36], data_in[37]);
+            int16_t e2_3 = concatenate(data_in[38], data_in[39]);
+
+            int16_t exposure_3 = concatenate(e1_3, e2_3);
 
             clean_up();
-            // (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
-            // (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
-            // (*rings_pointer)(count_3, radius_3, offset_3, colour_3, exposure_3);  
+            rings(count_1, radius_1, offset_1, colour_1, exposure_1);
+            rings(count_2, radius_2, offset_2, colour_2, exposure_2);
+            rings(count_3, radius_3, offset_3, colour_3, exposure_3);  
         }
     }
 }
@@ -440,13 +439,13 @@ void decoder(){
 void setup(){
 
     // initialise function pointers
-    blinking_pointer = blinking;
-    align_pointer = align;
-    middleBox_pointer = middleBox;
+    // blinking_pointer = blinking;
+    // align_pointer = align;
+    // middleBox_pointer = middleBox;
     // rings_pointer = rings;
-    pixel_pointer = pixel;
-    rectangle_pointer = rectangle;
-    rectangle_fill_pointer = rectangle_fill;
+    // pixel_pointer = pixel;
+    // rectangle_pointer = rectangle;
+    // rectangle_fill_pointer = rectangle_fill;
 
     // initialize digital pins
     pinMode(13, OUTPUT);

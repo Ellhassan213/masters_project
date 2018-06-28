@@ -111,10 +111,10 @@ void rectangle(double x, double y, double w, double h, double colour){
 
 void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, int16_t  exposure){
 
-    double delta = (2 * PI) / count;
+    int16_t delta = (2 * PI) / count;
     int16_t x = 0;
     int16_t y = 0;
-    double theta = 0;
+    int16_t theta = 0;
     
     int16_t r, g, b;
 
@@ -125,22 +125,22 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
     //     theta = PI / 4;
     // }
 
-    // if(colour == 01){
+    if(colour == 01){
         
-    //     r = 7; g = 0; b = 0;
-    // }
-    // else if(colour == 02){
+        r = 7; g = 0; b = 0;
+    }
+    else if(colour == 02){
 
-    //     r = 0; g = 7; b = 0;
-    // }
-    // else if(colour == 03){
+        r = 0; g = 7; b = 0;
+    }
+    else if(colour == 03){
 
-    //     r = 0; g = 0; b = 7;
-    // }
-    // else{
+        r = 0; g = 0; b = 7;
+    }
+    else{
 
-    //     r = 7; g = 7; b = 7;
-    // }
+        r = 7; g = 7; b = 7;
+    }
     
     // for(int i = 0; i < count; i++){
 
@@ -158,29 +158,29 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
     //     theta += delta;    
     // }
 
-  matrix.drawPixel(12, 13, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(12, 13, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
-  matrix.drawPixel(15, 19, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(15, 19, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
-  matrix.drawPixel(18, 16, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(18, 16, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
-  matrix.drawPixel(22, 16, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(22, 16, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear(); 
 
-  matrix.drawPixel(24, 13, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(24, 13, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
-  matrix.drawPixel(16, 23, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(16, 23, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
-  matrix.drawPixel(13, 25, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(13, 25, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
-  matrix.drawPixel(19, 9, matrix.Color333(7, 7, 7));
+  matrix.drawPixel(19, 9, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
 }

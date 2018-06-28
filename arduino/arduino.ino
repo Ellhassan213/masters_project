@@ -142,7 +142,7 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         r = 7; g = 7; b = 7;
     }
     
-    for(int i = 0; i < count; i++){
+    // for(int i = 0; i < count; i++){
 
         x = radius * cos(theta) + (16);
         y = radius * sin(theta) + (16);
@@ -155,8 +155,8 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         // digitalWrite(11, LOW);
         // delay(exposure);
         
-        theta += delta;    
-    }
+    //     theta += delta;    
+    // }
 
 // //   matrix.drawPixel(12, 13, matrix.Color333(7, 7, 7));
 // //   delay(exposure);

@@ -106,7 +106,7 @@ void rectangle(double x, double y, double w, double h, double colour){
         r = 7; g = 7; b = 7;
     }
 
-  matrix.fillRect(x, y, w, h, matrix.Color333(r, g, b));
+  matrix.drawRect(x, y, w, h, matrix.Color333(r, g, b));
 }
 
 void rings(double count, double radius, double offset, double colour, double exposure){

@@ -349,7 +349,7 @@ void decoder(){
             double exposure = concatenate(e1, e2);
 
             clean_up();
-            (*rings_pointer)(count, radius, offset, colour, exposure);
+            // (*rings_pointer)(count, radius, offset, colour, exposure);
         }
         else if(n_o_r == 02){   // 2 rings requested
 
@@ -376,8 +376,8 @@ void decoder(){
             double exposure_2 = concatenate(e1_2, e2_2);
 
             clean_up();
-            (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
-            (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
+            // (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
+            // (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
         }
         else if(n_o_r == 03){   // 3 rings requested
 
@@ -416,9 +416,9 @@ void decoder(){
             double exposure_3 = concatenate(e1_3, e2_3);
 
             clean_up();
-            (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
-            (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
-            (*rings_pointer)(count_3, radius_3, offset_3, colour_3, exposure_3);  
+            // (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
+            // (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
+            // (*rings_pointer)(count_3, radius_3, offset_3, colour_3, exposure_3);  
         }
     }
 }

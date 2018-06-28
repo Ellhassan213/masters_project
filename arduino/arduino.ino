@@ -87,7 +87,7 @@ void rectangle_fill(double x, double y, double w, double h, double colour, doubl
 
 void rectangle(double x, double y, double w, double h, double colour){
 
-    int r = 0; int g = 0; int b = 0;
+    uint16_t r = 0; uint16_t g = 0; uint16_t b = 0;
 
     if(colour == 01){
         
@@ -224,19 +224,21 @@ unsigned concatenate(unsigned first, unsigned second){
 
 void decoder(){
         
-    while(Serial.available() > 0){
+//     while(Serial.available() > 0){
 
-        char_in = Serial.read();
+//         char_in = Serial.read();
         
-        data_in[itr] = (char_in - '0');
+//         data_in[itr] = (char_in - '0');
 
-//        Serial.write(data_in[itr]);
+// //        Serial.write(data_in[itr]);
 
-        delay(10);
-        itr++;
-    }
+//         delay(10);
+//         itr++;
+//     }
 
-    double id = concatenate(data_in[0], data_in[1]);
+//     double id = concatenate(data_in[0], data_in[1]);
+
+    double id = 04;
 
     if(id == 01){
 
@@ -265,18 +267,19 @@ void decoder(){
     }
     else if(id == 04){
         
-        double count = concatenate(data_in[2], data_in[3]);
-        double radius = concatenate(data_in[4], data_in[5]);
-        double offset = concatenate(data_in[6], data_in[7]);
-        double colour = concatenate(data_in[8], data_in[9]);
+        // double count = concatenate(data_in[2], data_in[3]);
+        // double radius = concatenate(data_in[4], data_in[5]);
+        // double offset = concatenate(data_in[6], data_in[7]);
+        // double colour = concatenate(data_in[8], data_in[9]);
 
-        double e1 = concatenate(data_in[10], data_in[11]);
-        double e2 = concatenate(data_in[12], data_in[13]);
+        // double e1 = concatenate(data_in[10], data_in[11]);
+        // double e2 = concatenate(data_in[12], data_in[13]);
 
-        double exposure = concatenate(e1, e2);
+        // double exposure = concatenate(e1, e2);
 
         clean_up();
-        (*rings_pointer)(count, radius, offset, colour, exposure);
+        // (*rings_pointer)(count, radius, offset, colour, exposure);
+        (*rings_pointer)(12, 10, 0, 01, 0500);
     }
     else if(id == 05){ // execute single pixel function
 

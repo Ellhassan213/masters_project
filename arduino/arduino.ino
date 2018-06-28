@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[50];
+char data_in[20];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -47,7 +47,6 @@ void clean_up(){
   data_in[i] = 0;
   }
   matrix.clear();
-  delay(50);
 }
 
 void rectangle_fill(double x, double y, double w, double h, double colour, double exposure){
@@ -231,7 +230,7 @@ void decoder(){
         
         data_in[itr] = (char_in - '0');
 
-        delay(50);
+        delay(10);
         itr++;
     }
 

@@ -159,8 +159,8 @@ void rings(double count, double radius, double offset, double colour, double exp
     //     theta += delta;    
     // }
 
-    double x_container[count];
-    double y_container[count];
+    double x_container[12];
+    double y_container[12];
 
     
 

@@ -151,7 +151,7 @@ void rings(double count, double radius, double offset, double colour, double exp
         digitalWrite(11, HIGH);
         delay(exposure);
 
-        matrix.drawPixel(x, y, 0);
+        // matrix.drawPixel(x, y, 0);
         digitalWrite(11, LOW);
         delay(exposure);
         

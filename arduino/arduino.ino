@@ -158,6 +158,7 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
     //     theta += delta;    
     // }
 
+for(int i = 0; i < 10; i++){
   matrix.drawPixel(12, 13, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
@@ -183,6 +184,7 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
   matrix.drawPixel(19, 9, matrix.Color333(r, g, b));
   delay(exposure);
   matrix.clear();
+}
 }
 
 void middleBox(){

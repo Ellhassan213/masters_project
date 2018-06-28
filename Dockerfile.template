@@ -4,11 +4,21 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node
 # Enable systemd init system in container
 ENV INITSYSTEM on
 
+#!/bin/dash
+RUN wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-6.3.0/gcc-6.3.0.tar.bz2 \
+&& tar xf gcc-6.3.0.tar.bz2 \
+&& cd gcc-6.3.0 \
+&& contrib/download_prerequisites \
+&& mkdir obj \
+&& cd obj \
+
+# for Pi3 and new Pi2
+&& ../configure -v --enable-languages=c,c++ --with-cpu=cortex-a53 \
+  --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf \
+
 # install deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     arduino \
-    g++ \
-    gcc \
     usbutils \
     make
 

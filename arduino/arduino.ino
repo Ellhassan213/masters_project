@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[100];
+char data_in[50];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -236,7 +236,7 @@ void decoder(){
 
     double id = concatenate(data_in[0], data_in[1]);
 
-    if(id == 01){   // execute blinking function
+    if(id == 01){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -246,7 +246,7 @@ void decoder(){
         clean_up();
         (*blinking_pointer)(exposure);
     }
-    else if(id == 02){  // execute align function
+    else if(id == 02){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -256,12 +256,12 @@ void decoder(){
         clean_up();
         (*align_pointer)(exposure);
     }
-    else if(id == 03){  // execute middle box function
+    else if(id == 03){
 
         clean_up();
         (*middleBox_pointer)();
     }
-    else if(id == 04){  // execute single ring function
+    else if(id == 04){
         
         double count = concatenate(data_in[2], data_in[3]);
         double radius = concatenate(data_in[4], data_in[5]);
@@ -432,5 +432,6 @@ void setup(){
 void loop(){
 
     decoder();
-    // rectangle_fill(8, 8, 24, 24, 2, 10);
+//  rectangle_fill(8, 8, 24, 24, 2, 10);
+//  rectangle_fill(8, 8, 24, 24, 2, 10);
 }

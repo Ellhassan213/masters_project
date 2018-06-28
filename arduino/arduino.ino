@@ -111,36 +111,36 @@ void rectangle(double x, double y, double w, double h, double colour){
 
 void rings(double count, double radius, double offset, double colour, double exposure){
 
-    double delta = (2 * PI) / count;
-    int16_t x = 0;
-    int16_t y = 0;
-    double theta = 0;
+    // double delta = (2 * PI) / count;
+    // int16_t x = 0;
+    // int16_t y = 0;
+    // double theta = 0;
     
-    int r = 0; int g = 0; int b = 0;
+    // int r = 0; int g = 0; int b = 0;
 
-    if(offset == 3){
-        theta = PI / 3;
-    }
-    else if(offset == 4){
-        theta = PI / 4;
-    }
+    // if(offset == 3){
+    //     theta = PI / 3;
+    // }
+    // else if(offset == 4){
+    //     theta = PI / 4;
+    // }
 
-    if(colour == 01){
+    // if(colour == 01){
         
-        r = 7; g = 0; b = 0;
-    }
-    else if(colour == 02){
+    //     r = 7; g = 0; b = 0;
+    // }
+    // else if(colour == 02){
 
-        r = 0; g = 7; b = 0;
-    }
-    else if(colour == 03){
+    //     r = 0; g = 7; b = 0;
+    // }
+    // else if(colour == 03){
 
-        r = 0; g = 0; b = 7;
-    }
-    else{
+    //     r = 0; g = 0; b = 7;
+    // }
+    // else{
 
-        r = 7; g = 7; b = 7;
-    }
+    //     r = 7; g = 7; b = 7;
+    // }
     
     // for(int i = 0; i < count; i++){
 
@@ -293,7 +293,7 @@ void decoder(){
 
         int16_t exposure = concatenate(e1, e2);
 
-        // clean_up();
+        clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
     else if(id == 05){ // execute single pixel function

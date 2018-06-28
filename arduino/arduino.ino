@@ -111,70 +111,70 @@ void rectangle(double x, double y, double w, double h, double colour){
 
 void rings(double count, double radius, double offset, double colour, double exposure){
 
-    // double delta = (2 * PI) / count;
-    // int16_t x = 0;
-    // int16_t y = 0;
-    // double theta = 0;
+    double delta = (2 * PI) / count;
+    int16_t x = 0;
+    int16_t y = 0;
+    double theta = 0;
     
-    // int r = 0; int g = 0; int b = 0;
+    int r = 0; int g = 0; int b = 0;
 
-    // if(offset == 3){
-    //     theta = PI / 3;
-    // }
-    // else if(offset == 4){
-    //     theta = PI / 4;
-    // }
+    if(offset == 3){
+        theta = PI / 3;
+    }
+    else if(offset == 4){
+        theta = PI / 4;
+    }
 
-    // if(colour == 01){
+    if(colour == 01){
         
-    //     r = 7; g = 0; b = 0;
-    // }
-    // else if(colour == 02){
+        r = 7; g = 0; b = 0;
+    }
+    else if(colour == 02){
 
-    //     r = 0; g = 7; b = 0;
-    // }
-    // else if(colour == 03){
+        r = 0; g = 7; b = 0;
+    }
+    else if(colour == 03){
 
-    //     r = 0; g = 0; b = 7;
-    // }
-    // else{
+        r = 0; g = 0; b = 7;
+    }
+    else{
 
-    //     r = 7; g = 7; b = 7;
-    // }
+        r = 7; g = 7; b = 7;
+    }
     
-    // for(int i = 0; i < count; i++){
+    for(int i = 0; i < count; i++){
 
-    //     x = radius * cos(theta) + (16);
-    //     y = radius * sin(theta) + (16);
+        x = radius * cos(theta) + (16);
+        y = radius * sin(theta) + (16);
 
-    //     matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
-    //     // digitalWrite(11, HIGH);
-    //     // delay(exposure);
+        matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
+        // digitalWrite(11, HIGH);
+        // delay(exposure);
 
-    //     // matrix.drawPixel(x, y, 0);
-    //     // digitalWrite(11, LOW);
-    //     // delay(exposure);
+        // matrix.drawPixel(x, y, 0);
+        // digitalWrite(11, LOW);
+        // delay(exposure);
         
-    //     theta += delta;    
-    // }
+        theta += delta;    
+    }
 
-//   matrix.drawPixel(12, 13, matrix.Color333(7, 7, 7));
-//   delay(exposure);
-//   matrix.drawPixel(15, 19, matrix.Color333(7, 7, 7));
-//   delay(exposure);
-//   matrix.drawPixel(18, 16, matrix.Color333(7, 7, 7));
-//   delay(exposure);
-//   matrix.drawPixel(22, 16, matrix.Color333(7, 7, 7));
-//   delay(exposure); 
+// //   matrix.drawPixel(12, 13, matrix.Color333(7, 7, 7));
+// //   delay(exposure);
+// //   matrix.drawPixel(15, 19, matrix.Color333(7, 7, 7));
+// //   delay(exposure);
+// //   matrix.drawPixel(18, 16, matrix.Color333(7, 7, 7));
+// //   delay(exposure);
+// //   matrix.drawPixel(22, 16, matrix.Color333(7, 7, 7));
+// //   delay(exposure); 
 
-  matrix.drawPixel(24, 13, matrix.Color333(7, 7, 7));
-  delay(exposure);
-  matrix.drawPixel(16, 23, matrix.Color333(7, 7, 7));
-  delay(exposure);
-  matrix.drawPixel(13, 25, matrix.Color333(7, 7, 7));
-  delay(exposure);
-  matrix.drawPixel(19, 9, matrix.Color333(7, 7, 7));
-  delay(exposure);
+//   matrix.drawPixel(24, 13, matrix.Color333(7, 7, 7));
+//   delay(exposure);
+//   matrix.drawPixel(16, 23, matrix.Color333(7, 7, 7));
+//   delay(exposure);
+//   matrix.drawPixel(13, 25, matrix.Color333(7, 7, 7));
+//   delay(exposure);
+//   matrix.drawPixel(19, 9, matrix.Color333(7, 7, 7));
+//   delay(exposure);
 }
 
 void middleBox(){

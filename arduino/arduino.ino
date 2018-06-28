@@ -116,7 +116,7 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
     int16_t y = 0;
     double theta = 0;
     
-    int r = 0; int g = 0; int b = 0;
+    int16_t r, g, b;
 
     if(offset == 3){
         theta = PI / 3;
@@ -293,7 +293,7 @@ void decoder(){
 
         int16_t exposure = concatenate(e1, e2);
 
-        // clean_up();
+        clean_up();
         rings(count, radius, offset, colour, exposure);
     }
     else if(id == 05){ // execute single pixel function

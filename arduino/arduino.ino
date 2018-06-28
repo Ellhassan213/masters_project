@@ -259,7 +259,8 @@ void decoder(){
     else if(id == 03){
 
         clean_up();
-        (*middleBox_pointer)();
+        // (*middleBox_pointer)();
+        (*rings_pointer)(12, 10, 00, 01, 0500);
     }
     else if(id == 04){
         
@@ -431,10 +432,8 @@ void setup(){
 
 void loop(){
 
-    // decoder();
+    decoder();
 //  rectangle_fill(8, 8, 24, 24, 2, 10);
 //  rectangle_fill(8, 8, 24, 24, 2, 10);
-
-(*rings_pointer)(12, 10, 00, 01, 0500);
 
 }

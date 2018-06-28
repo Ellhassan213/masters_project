@@ -183,7 +183,8 @@ window.addEventListener("load", function(){ //when page loads
       elements_array[i] = elements[i].value;
     }
 
-    var data = elements_array.join("");
+    var data = "";
+    data = elements_array.join("");
     document.getElementById("demo").innerHTML = data;
 
     matrix_socket.emit('message', data);

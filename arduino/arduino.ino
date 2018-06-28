@@ -224,7 +224,7 @@ unsigned concatenate(unsigned first, unsigned second){
 
 void decoder(){
         
-    while(Serial.available() > 0 && (itr < 12)){
+    if(Serial.available() > 0 && (itr < 12)){
 
         char_in = Serial.read();
         

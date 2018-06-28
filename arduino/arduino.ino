@@ -147,6 +147,7 @@ void rings(double count, double radius, double offset, double colour, double exp
         x = radius * cos(theta) + (32 / 2);
         y = radius * sin(theta) + (32 / 2);
 
+        delay(2000);
         matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
         digitalWrite(11, HIGH);
         delay(exposure);
@@ -154,8 +155,6 @@ void rings(double count, double radius, double offset, double colour, double exp
         matrix.drawPixel(x, y, 0);
         digitalWrite(11, LOW);
         delay(exposure);
-
-        delay(2000);
         
         theta += delta;    
     }
@@ -232,7 +231,7 @@ void decoder(){
         
         data_in[itr] = (char_in - '0');
 
-        delay(100);
+        delay(10);
         itr++;
     }
 

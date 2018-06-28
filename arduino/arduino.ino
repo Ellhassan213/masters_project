@@ -33,7 +33,7 @@ void (*blinking_pointer)(double);
 void (*align_pointer)(double);
 void (*middleBox_pointer)();
 void (*pixel_pointer)(double, double, double);
-void (*rings_pointer)(double, double, double, double, double);
+// void (*rings_pointer)(double, double, double, double, double);
 void (*rectangle_pointer)(double, double, double, double, double);
 void (*rectangle_fill_pointer)(double, double, double, double, double, double);
 
@@ -279,7 +279,7 @@ void decoder(){
     else if(id == 03){
 
         clean_up();
-         (*middleBox_pointer)();
+        (*middleBox_pointer)();
     }
     else if(id == 04){
         
@@ -294,7 +294,7 @@ void decoder(){
         int16_t exposure = concatenate(e1, e2);
 
         clean_up();
-        (*rings_pointer)(12, 10, 0, 1, 500);
+        rings(count, radius, offset, colour, exposure);
     }
     else if(id == 05){ // execute single pixel function
 
@@ -433,7 +433,7 @@ void setup(){
     blinking_pointer = blinking;
     align_pointer = align;
     middleBox_pointer = middleBox;
-    rings_pointer = rings;
+    // rings_pointer = rings;
     pixel_pointer = pixel;
     rectangle_pointer = rectangle;
     rectangle_fill_pointer = rectangle_fill;

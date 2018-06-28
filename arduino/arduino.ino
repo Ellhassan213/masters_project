@@ -312,7 +312,7 @@ void decoder(){
         clean_up();
         (*rectangle_fill_pointer)(x, y, width, height, colour, exposure);
     }
-    else if(id == 08){  // execute multiple concentric rings
+    else if(id == 09){  // execute multiple concentric rings
 
         double n_o_r = concatenate(data_in[2], data_in[3]);
 

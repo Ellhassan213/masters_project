@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[20];
+char data_in[100];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -311,6 +311,95 @@ void decoder(){
 
         clean_up();
         (*rectangle_fill_pointer)(x, y, width, height, colour, exposure);
+    }
+    else if(id == 08){  // execute multiple concentric rings
+
+        double n_o_r = concatenate(data_in[2], data_in[3]);
+
+        if(n_o_r == 01){    // 1 ring requested
+
+            double count = concatenate(data_in[4], data_in[5]);
+            double radius = concatenate(data_in[6], data_in[7]);
+            double offset = concatenate(data_in[8], data_in[9]);
+            double colour = concatenate(data_in[10], data_in[11]);
+
+            double e1 = concatenate(data_in[12], data_in[13]);
+            double e2 = concatenate(data_in[14], data_in[15]);
+
+            double exposure = concatenate(e1, e2);
+
+            clean_up();
+            (*rings_pointer)(count, radius, offset, colour, exposure);
+        }
+        else if(n_o_r == 02){   // 2 rings requested
+
+            double count_1 = concatenate(data_in[4], data_in[5]);
+            double radius_1 = concatenate(data_in[6], data_in[7]);
+            double offset_1 = concatenate(data_in[8], data_in[9]);
+            double colour_1 = concatenate(data_in[10], data_in[11]);
+
+            double e1_1 = concatenate(data_in[12], data_in[13]);
+            double e2_1 = concatenate(data_in[14], data_in[15]);
+
+            double exposure_1 = concatenate(e1_1, e2_1);
+
+
+
+            double count_2 = concatenate(data_in[16], data_in[17]);
+            double radius_2 = concatenate(data_in[18], data_in[19]);
+            double offset_2 = concatenate(data_in[20], data_in[21]);
+            double colour_2 = concatenate(data_in[22], data_in[23]);
+
+            double e1_2 = concatenate(data_in[24], data_in[25]);
+            double e2_2 = concatenate(data_in[26], data_in[27]);
+
+            double exposure_2 = concatenate(e1_2, e2_2);
+
+            clean_up();
+            (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
+            (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
+        }
+        else if(n_o_r == 03){   // 3 rings requested
+
+            double count_1 = concatenate(data_in[4], data_in[5]);
+            double radius_1 = concatenate(data_in[6], data_in[7]);
+            double offset_1 = concatenate(data_in[8], data_in[9]);
+            double colour_1 = concatenate(data_in[10], data_in[11]);
+
+            double e1_1 = concatenate(data_in[12], data_in[13]);
+            double e2_1 = concatenate(data_in[14], data_in[15]);
+
+            double exposure_1 = concatenate(e1_1, e2_1);
+
+
+
+            double count_2 = concatenate(data_in[16], data_in[17]);
+            double radius_2 = concatenate(data_in[18], data_in[19]);
+            double offset_2 = concatenate(data_in[20], data_in[21]);
+            double colour_2 = concatenate(data_in[22], data_in[23]);
+
+            double e1_2 = concatenate(data_in[24], data_in[25]);
+            double e2_2 = concatenate(data_in[26], data_in[27]);
+
+            double exposure_2 = concatenate(e1_2, e2_2);
+
+
+
+            double count_3 = concatenate(data_in[28], data_in[29]);
+            double radius_3 = concatenate(data_in[30], data_in[31]);
+            double offset_3 = concatenate(data_in[32], data_in[33]);
+            double colour_3 = concatenate(data_in[34], data_in[35]);
+
+            double e1_3 = concatenate(data_in[36], data_in[37]);
+            double e2_3 = concatenate(data_in[38], data_in[39]);
+
+            double exposure_3 = concatenate(e1_3, e2_3);
+
+            clean_up();
+            (*rings_pointer)(count_1, radius_1, offset_1, colour_1, exposure_1);
+            (*rings_pointer)(count_2, radius_2, offset_2, colour_2, exposure_2);
+            (*rings_pointer)(count_3, radius_3, offset_3, colour_3, exposure_3);  
+        }
     }
 }
 

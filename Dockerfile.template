@@ -17,11 +17,6 @@ RUN wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-6.3.0/gcc-6.3.0.
   --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf \
   --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf --enable-checking=release \
 
-&& dd if=/dev/zero of=/swapfile1GB bs=1M count=1024 \
-&& chmod 0600 /swapfile1GB \
-&& mkswap /swapfile1GB \
-&& swapon /swapfile1GB \
-
 && make -j5 \
 
 && make install

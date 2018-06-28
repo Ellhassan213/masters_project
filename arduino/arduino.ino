@@ -234,9 +234,9 @@ void decoder(){
         itr++;
     }
 
-    double id = concatenate(data_in[0], data_in[1]);
+    double did = concatenate(data_in[0], data_in[1]);
 
-    if(id == 1){
+    if(did == 1){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -246,7 +246,7 @@ void decoder(){
         clean_up();
         (*blinking_pointer)(exposure);
     }
-    else if(id == 2){
+    else if(did == 2){
 
         double e1 = concatenate(data_in[2], data_in[3]);
         double e2 = concatenate(data_in[4], data_in[5]);
@@ -256,12 +256,12 @@ void decoder(){
         clean_up();
         (*align_pointer)(exposure);
     }
-    else if(id == 3){
+    else if(did == 3){
 
         clean_up();
         (*middleBox_pointer)();
     }
-    else if(id == 4){
+    else if(did == 4){
         
         double count = concatenate(data_in[2], data_in[3]);
         double radius = concatenate(data_in[4], data_in[5]);
@@ -276,7 +276,7 @@ void decoder(){
         clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }
-    else if(id == 5){ // execute single pixel function
+    else if(did == 5){ // execute single pixel function
 
         double x = concatenate(data_in[2], data_in[3]);
         double y = concatenate(data_in[4], data_in[5]);
@@ -285,7 +285,7 @@ void decoder(){
         clean_up();
         (*pixel_pointer)(x, y, colour);
     }
-    else if(id == 6){ // execute rectangle function
+    else if(did == 6){ // execute rectangle function
 
         double x = concatenate(data_in[2], data_in[3]);
         double y = concatenate(data_in[4], data_in[5]);
@@ -296,7 +296,7 @@ void decoder(){
         clean_up();
         (*rectangle_pointer)(x, y, width, height, colour);
     }
-    else if(id == 7){ // execute rectangle increamental fill function
+    else if(did == 7){ // execute rectangle increamental fill function
 
         double x = concatenate(data_in[2], data_in[3]);
         double y = concatenate(data_in[4], data_in[5]);
@@ -312,7 +312,7 @@ void decoder(){
         clean_up();
         (*rectangle_fill_pointer)(x, y, width, height, colour, exposure);
     }
-    else if(id == 10){  // execute multiple concentric rings
+    else if(did == 10){  // execute multiple concentric rings
 
         double n_o_r = concatenate(data_in[2], data_in[3]);
 

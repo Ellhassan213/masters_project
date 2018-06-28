@@ -5,7 +5,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node
 ENV INITSYSTEM on
 
 #!/bin/dash
-RUN wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-6.3.0/gcc-6.3.0.tar.bz2 \
+wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-6.3.0/gcc-6.3.0.tar.bz2 \
 && tar xf gcc-6.3.0.tar.bz2 \
 && cd gcc-6.3.0 \
 && contrib/download_prerequisites \
@@ -13,8 +13,18 @@ RUN wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-6.3.0/gcc-6.3.0.
 && cd obj \
 
 # for Pi3 and new Pi2
-../configure -v --enable-languages=c,c++ --with-cpu=cortex-a53 \
+&& ../configure -v --enable-languages=c,c++ --with-cpu=cortex-a53 \
   --with-fpu=neon-fp-armv8 --with-float=hard --build=arm-linux-gnueabihf \
+  --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf --enable-checking=release \
+
+&& dd if=/dev/zero of=/swapfile1GB bs=1M count=1024 \
+&& chmod 0600 /swapfile1GB \
+&& mkswap /swapfile1GB \
+&& swapon /swapfile1GB \
+
+&& make -j5 \
+
+&& make install
 
 # install deps
 RUN apt-get update && apt-get install -y --no-install-recommends \

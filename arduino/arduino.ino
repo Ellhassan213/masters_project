@@ -224,7 +224,7 @@ unsigned concatenate(unsigned first, unsigned second){
 
 void decoder(){
         
-    if(Serial.available() > 0 && (itr < 12)){
+    while(Serial.available() > 0){
 
         char_in = Serial.read();
         
@@ -431,7 +431,10 @@ void setup(){
 
 void loop(){
 
-    decoder();
+    // decoder();
 //  rectangle_fill(8, 8, 24, 24, 2, 10);
 //  rectangle_fill(8, 8, 24, 24, 2, 10);
+
+(*rings_pointer)(12, 10, 00, 01, 0500);
+
 }

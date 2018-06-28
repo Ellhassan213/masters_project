@@ -160,21 +160,29 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
 
   matrix.drawPixel(12, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
+  matrix.clear();
   matrix.drawPixel(15, 19, matrix.Color333(7, 7, 7));
   delay(exposure);
+  matrix.clear();
   matrix.drawPixel(18, 16, matrix.Color333(7, 7, 7));
   delay(exposure);
+  matrix.clear();
   matrix.drawPixel(22, 16, matrix.Color333(7, 7, 7));
-  delay(exposure); 
+  delay(exposure);
+  matrix.clear(); 
 
   matrix.drawPixel(24, 13, matrix.Color333(7, 7, 7));
   delay(exposure);
+  matrix.clear();
   matrix.drawPixel(16, 23, matrix.Color333(7, 7, 7));
   delay(exposure);
+  matrix.clear();
   matrix.drawPixel(13, 25, matrix.Color333(7, 7, 7));
   delay(exposure);
+  matrix.clear();
   matrix.drawPixel(19, 9, matrix.Color333(7, 7, 7));
   delay(exposure);
+  matrix.clear();
 }
 
 void middleBox(){

@@ -5,7 +5,7 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node
 ENV INITSYSTEM on
 
 #!/bin/dash
-wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-6.3.0/gcc-6.3.0.tar.bz2 \
+RUN wget ftp://ftp.fu-berlin.de/unix/languages/gcc/releases/gcc-6.3.0/gcc-6.3.0.tar.bz2 \
 && tar xf gcc-6.3.0.tar.bz2 \
 && cd gcc-6.3.0 \
 && contrib/download_prerequisites \

@@ -293,6 +293,8 @@ void decoder(){
 
         int16_t exposure = concatenate(e1, e2);
 
+        delay(1000);
+
         // clean_up();
         (*rings_pointer)(count, radius, offset, colour, exposure);
     }

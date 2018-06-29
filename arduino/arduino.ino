@@ -112,7 +112,7 @@ void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
 
 void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, int16_t  exposure){
 
-    float delta = ( (2 * PI) / count) * (PI/180);
+    float delta = ( (2 * PI) / count ) // * (PI/180);
     int16_t x = 0;
     int16_t y = 0;
     float theta = 0;
@@ -159,7 +159,7 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         digitalWrite(11, LOW);
         delay(exposure);
         
-        theta += delta * (PI/180);    
+        theta += delta //* (180);    
     }
 
     // for(int i = 0; i < 10; i++){

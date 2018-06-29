@@ -34,7 +34,7 @@ void clean_up(){
   
   char_in = 0;
   itr = 0;
-  for(uint i = 0; i < sizeof(data_in); i++){
+  for(unsigned int i = 0; i < sizeof(data_in); i++){
       
       data_in[i] = 0;
   }

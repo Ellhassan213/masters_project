@@ -144,8 +144,6 @@ input[type=submit]:hover {
       </div>
 
       <button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
-
-      <p id="demo"></p>
     
     </form>
   </div>
@@ -167,6 +165,8 @@ socket.on('light', function (data) { //get button status from client
   socket.emit("light", data); //send push button status to back to server
 });
 </script>
+
+<p id="demo"></p>
 
 <script>
 

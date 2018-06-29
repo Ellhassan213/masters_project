@@ -119,12 +119,15 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
     
     int16_t r, g, b;
 
-    // if(offset == 3){
-    //     theta = PI / 3;
-    // }
-    // else if(offset == 4){
-    //     theta = PI / 4;
-    // }
+    if(offset == 3){
+        theta = PI / 3;
+    }
+    else if(offset == 4){
+        theta = PI / 4;
+    }
+    else{
+        theta = 0;
+    }
 
     if(colour == 01){
         
@@ -143,12 +146,12 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         r = 7; g = 7; b = 7;
     }
     
-    for(int i = 0; i < count; i++){
+    for(int16_t i = 0; i < count; i++){
 
         x = radius * cos(theta) + (16);
         y = radius * sin(theta) + (16);
 
-        matrix.drawPixel((int)x, (int)y, matrix.Color333(r, g, b)); 
+        matrix.drawPixel((int16_t)x, (int16_t)y, matrix.Color333(r, g, b)); 
         digitalWrite(11, HIGH);
         delay(exposure);
 

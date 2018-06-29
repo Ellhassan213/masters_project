@@ -148,7 +148,7 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         x = radius * cos(theta) + (16);
         y = radius * sin(theta) + (16);
 
-        matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
+        matrix.drawPixel((int)x, (int)y, matrix.Color333(r, g, b)); 
         digitalWrite(11, HIGH);
         delay(exposure);
 

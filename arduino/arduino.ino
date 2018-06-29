@@ -27,15 +27,6 @@ int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
-/* Function Pointers */
-
-// void (*blinking_pointer)(int16_t);
-// void (*align_pointer)(int16_t);
-// void (*middleBox_pointer)();
-// void (*pixel_pointer)(int16_t, int16_t, int16_t);
-// void (*rings_pointer)(int16_t, int16_t, int16_t, int16_t, int16_t);
-// void (*rectangle_pointer)(int16_t, int16_t, int16_t, int16_t, int16_t);
-// void (*rectangle_fill_pointer)(int16_t, int16_t, int16_t, int16_t, int16_t, int16_t);
 
 /* Functions */
 
@@ -43,7 +34,7 @@ void clean_up(){
   
   char_in = 0;
   itr = 0;
-  for(int i = 0; i < sizeof(data_in); i++){
+  for(uint i = 0; i < sizeof(data_in); i++){
       
       data_in[i] = 0;
   }
@@ -110,7 +101,7 @@ void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
   matrix.fillRect(x, y, w, h, matrix.Color333(r, g, b));
 }
 
-void rings(double count, int radius, int offset, uint16_t  colour, int16_t  exposure){
+void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposure){
 
     float delta = ( (2 * PI) / count );
     float theta = 0;
@@ -145,7 +136,7 @@ void rings(double count, int radius, int offset, uint16_t  colour, int16_t  expo
         r = 7; g = 7; b = 7;
     }
     
-    for(double i = 0; i < count; i++){
+    for(int i = 0; i < count; i++){
 
         x = radius * cos(theta) + (16);
         y = radius * sin(theta) + (16);
@@ -155,39 +146,12 @@ void rings(double count, int radius, int offset, uint16_t  colour, int16_t  expo
         delay(exposure);
 
         matrix.clear();
+
         digitalWrite(11, LOW);
         delay(exposure);
         
         theta += delta;    
     }
-
-    // for(int i = 0; i < 10; i++){
-    //   matrix.drawPixel(12, 13, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear();
-    //   matrix.drawPixel(15, 19, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear();
-    //   matrix.drawPixel(18, 16, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear();
-    //   matrix.drawPixel(22, 16, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear(); 
-
-    //   matrix.drawPixel(24, 13, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear();
-    //   matrix.drawPixel(16, 23, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear();
-    //   matrix.drawPixel(13, 25, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear();
-    //   matrix.drawPixel(19, 9, matrix.Color333(r, g, b));
-    //   delay(exposure);
-    //   matrix.clear();
-    // }
 }
 
 void middleBox(){
@@ -294,7 +258,7 @@ void decoder(){
     }
     else if(id == 04){
         
-        double count = concatenate(data_in[2], data_in[3]);
+        int count = concatenate(data_in[2], data_in[3]);
         int radius = concatenate(data_in[4], data_in[5]);
         int offset = concatenate(data_in[6], data_in[7]);
         uint16_t colour = concatenate(data_in[8], data_in[9]);
@@ -440,15 +404,6 @@ void decoder(){
 
 void setup(){
 
-    // initialise function pointers
-    // blinking_pointer = blinking;
-    // align_pointer = align;
-    // middleBox_pointer = middleBox;
-    // rings_pointer = rings;
-    // pixel_pointer = pixel;
-    // rectangle_pointer = rectangle;
-    // rectangle_fill_pointer = rectangle_fill;
-
     // initialize digital pins
     pinMode(13, OUTPUT);
 
@@ -463,7 +418,4 @@ void setup(){
 void loop(){
 
     decoder();
-//  rectangle_fill(8, 8, 24, 24, 2, 10);
-//  rectangle_fill(8, 8, 24, 24, 2, 10);
-
 }

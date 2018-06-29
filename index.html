@@ -142,6 +142,10 @@ input[type=submit]:hover {
             <input type="text" id="arg5" name="argument5" placeholder="Fifth argument..">
           </div>
       </div>
+
+      <button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
+
+      <p id="demo"></p>
     
     </form>
   </div>
@@ -163,10 +167,6 @@ socket.on('light', function (data) { //get button status from client
   socket.emit("light", data); //send push button status to back to server
 });
 </script>
-
-<button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
-
-<p id="demo"></p>
 
 <script>
 

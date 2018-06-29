@@ -1,172 +1,199 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-    box-sizing: border-box;
-}
-
-input[type=text], select, textarea {
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+/* Full-width input fields */
+input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-}
-
-label {
-    padding: 12px 12px 12px 0;
+    padding: 15px;
+    margin: 5px 0 22px 0;
     display: inline-block;
+    border: none;
+    background: #f1f1f1;
 }
 
-input[type=submit] {
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for all buttons */
+button {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 20px;
+    padding: 14px 20px;
+    margin: 8px 0;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    float: right;
+    width: 100%;
+    opacity: 0.9;
 }
 
-input[type=submit]:hover {
-    background-color: #45a049;
+button:hover {
+    opacity:1;
 }
 
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
 .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+    padding: 16px;
 }
 
-.col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
 }
 
-.col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
-/* Clear floats after the columns */
-.row:after {
+/* Style the horizontal ruler */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
     content: "";
-    display: table;
     clear: both;
+    display: table;
 }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-        width: 100%;
-        margin-top: 0;
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
     }
 }
 </style>
-</head>
-
-<body>
-<h1>Control LED Light</h1>
-<p><input type="checkbox" id="light"></p>
-</body>
-
 <body>
 
-  <h1>LED Matrix Form</h1>
+<h2>Modal Signup Form</h2>
 
-  <div class="container">
-    <form id="matrix_form">
-    
-      <div class="row">
-        <div class="col-25">
-          <label for="function">Function</label>
-        </div>
-        <div class="col-75">
-          <select id="function" name="function">
-              <option value="01">BlinkTest</option>
-              <option value="02">AlignPattern</option>
-              <option value="03">MiddleBox</option>
-              <option value="04">Ring</option>
-              <option value="07">Square</option>
-              <option value="06">Pixel</option>
-          </select>
-        </div>
-      </div>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
       
-      <div class="row">
-        <div class="col-25">
-          <label for="arg1">Argument1</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="arg1" name="argument1" placeholder="First argument..">
-        </div>
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
       </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up 2</button>
+
+<div id="id02" class="modal">
+  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" id="matrix_form">
+    <div class="container">
+      <h1>Sign Up 2</h1>
+      <p>Please fill in this form to create an account 2.</p>
+      <hr>
+      <label for="LED count"><b>LED count</b></label>
+      <input type="text" placeholder="Enter LED count" name="LED count" required>
+
+      <label for="Radius"><b>Radius</b></label>
+      <input type="text" placeholder="Enter Raidus" name="Radius" required>
+
+      <label for="Offset"><b>Offset</b></label>
+      <input type="text" placeholder="Enter Offset" name="Offset" required>
       
-      <div class="row">
-        <div class="col-25">
-          <label for="arg2">Argument2</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="arg2" name="argument2" placeholder="Second argument..">
-        </div>
+      <label for="Colour"><b>Colour</b></label>
+      <input type="text" placeholder="Enter Colour" name="Colour" required>
+      
+      <label for="Exposure"><b>Exposure</b></label>
+      <input type="text" placeholder="Enter Exposure" name="Exposure" required>
+      
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+        <button id="prg_arduino_btn" class="signupbtn">Program Arduino</button>
       </div>
-
-      <div class="row">
-          <div class="col-25">
-            <label for="arg3">Argument3</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="arg3" name="argument3" placeholder="Third argument..">
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col-25">
-            <label for="arg4">Argument4</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="arg4" name="argument4" placeholder="Fourth argument..">
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col-25">
-            <label for="arg4">Argument5</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="arg5" name="argument5" placeholder="Fifth argument..">
-          </div>
-      </div>
-    
-    </form>
-  </div>
-
-</body>
+    </div>
+  </form>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
 
 <script>
-var socket = io(); //load socket.io-client and connect to the host that serves the page
-window.addEventListener("load", function(){ //when page loads
-  var lightbox = document.getElementById("light");
-  lightbox.addEventListener("change", function() { //add event listener for when checkbox changes
-    socket.emit("light", Number(this.checked)); //send button status to server (as 1 or 0)
-  });
-});
-socket.on('light', function (data) { //get button status from client
-  document.getElementById("light").checked = data; //change checkbox according to push button on Raspberry Pi
-  socket.emit("light", data); //send push button status to back to server
-});
+// Get the modal
+var modal = document.getElementById('id01');
+var modal2 = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
+}
 </script>
 
-<button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
-
-<p id="demo"></p>
 
 <script>
 
@@ -185,7 +212,6 @@ window.addEventListener("load", function(){ //when page loads
 
     var data = "";
     data = elements_array.join("");
-    document.getElementById("demo").innerHTML = data;
 
     matrix_socket.emit('message', data);
   });
@@ -193,17 +219,6 @@ window.addEventListener("load", function(){ //when page loads
 
 </script>
 
-<script>
 
-  window.addEventListener("mouseover", function(){
-    var x = document.getElementById('function').value;
-      
-      if(x == "01"){
-      
-        // document.getElementById("arg1").disabled = true;
-      }
-  });
-  
-</script>
-
-</html> 
+</body>
+</html>

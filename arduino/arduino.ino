@@ -112,7 +112,7 @@ void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
 
 void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, int16_t  exposure){
 
-    int16_t delta = (2 * PI) / count;
+    int16_t delta = (2 * 3.14159265358979323846) / count;
     int16_t x = 0;
     int16_t y = 0;
     int16_t theta = 0;

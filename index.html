@@ -8,8 +8,14 @@
     box-sizing: border-box;
 }
 
+div { 
+    width: 300px;
+    resize: both;
+    overflow: auto;
+}
+
 input[type=text], select, textarea {
-    width: 100%;
+    width: 70%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -77,79 +83,165 @@ input[type=submit]:hover {
 
 <body>
 
-  <h1>LED Matrix Form</h1>
+  <div style="float:left;"></div>
 
-  <div class="container">
-    <form id="matrix_form">
-    
-      <div class="row">
-        <div class="col-25">
-          <label for="function">Function</label>
-        </div>
-        <div class="col-75">
-          <select id="function" name="function">
-              <option value="01">BlinkTest</option>
-              <option value="02">AlignPattern</option>
-              <option value="03">MiddleBox</option>
-              <option value="04">Ring</option>
-              <option value="07">Square</option>
-              <option value="06">Pixel</option>
-          </select>
-        </div>
-      </div>
+    <h1>LED Matrix Generic Form</h1>
+
+    <div class="container">
+      <form id="matrix_form">
       
-      <div class="row">
-        <div class="col-25">
-          <label for="arg1">Argument1</label>
+        <div class="row">
+          <div class="col-25">
+            <label for="function">Function</label>
+          </div>
+          <div class="col-75">
+            <select id="function" name="function">
+                <option value="01">BlinkTest</option>
+                <option value="02">AlignPattern</option>
+                <option value="03">MiddleBox</option>
+                <option value="04">Ring</option>
+                <option value="07">Square</option>
+                <option value="06">Pixel</option>
+            </select>
+          </div>
         </div>
-        <div class="col-75">
-          <input type="text" id="arg1" name="argument1" placeholder="First argument..">
+        
+        <div class="row">
+          <div class="col-25">
+            <label for="arg1">Argument1</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="arg1" name="argument1" placeholder="First argument..">
+          </div>
         </div>
-      </div>
+        
+        <div class="row">
+          <div class="col-25">
+            <label for="arg2">Argument2</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="arg2" name="argument2" placeholder="Second argument..">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="arg3">Argument3</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="arg3" name="argument3" placeholder="Third argument..">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="arg4">Argument4</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="arg4" name="argument4" placeholder="Fourth argument..">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="arg4">Argument5</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="arg5" name="argument5" placeholder="Fifth argument..">
+            </div>
+        </div>
+
+        <button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
       
-      <div class="row">
-        <div class="col-25">
-          <label for="arg2">Argument2</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="arg2" name="argument2" placeholder="Second argument..">
-        </div>
-      </div>
-
-      <div class="row">
-          <div class="col-25">
-            <label for="arg3">Argument3</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="arg3" name="argument3" placeholder="Third argument..">
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col-25">
-            <label for="arg4">Argument4</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="arg4" name="argument4" placeholder="Fourth argument..">
-          </div>
-      </div>
-
-      <div class="row">
-          <div class="col-25">
-            <label for="arg4">Argument5</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="arg5" name="argument5" placeholder="Fifth argument..">
-          </div>
-      </div>
-
-      <button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
-    
-    </form>
+      </form>
+    </div>
   </div>
 
 </body>
 
+<body>
+
+  <div style="float:middle;"></div>
+
+    <h1>Cincentric Rings Form</h1>
+
+    <div class="container">
+      <form id="matrix_form">
+      
+        <div class="row">
+          <div class="col-25">
+            <label for="function">Function</label>
+          </div>
+          <div class="col-75">
+            <select id="function" name="function">
+                <option value="01">BlinkTest</option>
+                <option value="02">AlignPattern</option>
+                <option value="03">MiddleBox</option>
+                <option value="04">Ring</option>
+                <option value="07">Square</option>
+                <option value="06">Pixel</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-25">
+            <label for="arg1">Argument1</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="arg1" name="argument1" placeholder="First argument..">
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-25">
+            <label for="arg2">Argument2</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="arg2" name="argument2" placeholder="Second argument..">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="arg3">Argument3</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="arg3" name="argument3" placeholder="Third argument..">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="arg4">Argument4</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="arg4" name="argument4" placeholder="Fourth argument..">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="arg4">Argument5</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="arg5" name="argument5" placeholder="Fifth argument..">
+            </div>
+        </div>
+
+        <button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
+      
+      </form>
+    </div>
+  </div>
+
+</body>
+
+
+
+
+
+<p id="demo"></p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
 
 <script>
@@ -165,8 +257,6 @@ socket.on('light', function (data) { //get button status from client
   socket.emit("light", data); //send push button status to back to server
 });
 </script>
-
-<p id="demo"></p>
 
 <script>
 

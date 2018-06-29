@@ -113,8 +113,8 @@ void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
 void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, int16_t  exposure){
 
     float delta = ( (2 * PI) / count );
-    int16_t x = 0;
-    int16_t y = 0;
+    double x = 0;
+    double y = 0;
     float theta = 0;
     
     int16_t r, g, b;
@@ -151,7 +151,7 @@ void rings(int16_t count, int16_t  radius, int16_t  offset, uint16_t  colour, in
         x = radius * cos(theta) + (16);
         y = radius * sin(theta) + (16);
 
-        matrix.drawPixel(x, y, matrix.Color333(r, g, b)); 
+        matrix.drawPixel((int16_t)x, (int16_t)y, matrix.Color333(r, g, b)); 
         digitalWrite(11, HIGH);
         delay(exposure);
 

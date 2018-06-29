@@ -110,7 +110,7 @@ void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
   matrix.fillRect(x, y, w, h, matrix.Color333(r, g, b));
 }
 
-void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposure){
+void rings(double count, int radius, int offset, uint16_t  colour, int16_t  exposure){
 
     float delta = ( (2 * PI) / count );
     float theta = 0;
@@ -145,7 +145,7 @@ void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposur
         r = 7; g = 7; b = 7;
     }
     
-    for(int i = 0; i < count; i++){
+    for(double i = 0; i < count; i++){
 
         x = radius * cos(theta) + (16);
         y = radius * sin(theta) + (16);
@@ -294,7 +294,7 @@ void decoder(){
     }
     else if(id == 04){
         
-        int count = concatenate(data_in[2], data_in[3]);
+        double count = concatenate(data_in[2], data_in[3]);
         int radius = concatenate(data_in[4], data_in[5]);
         int offset = concatenate(data_in[6], data_in[7]);
         uint16_t colour = concatenate(data_in[8], data_in[9]);

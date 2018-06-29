@@ -184,7 +184,7 @@ input[type=submit]:hover {
             <label for="function">Choose Function</label>
           </div>
           <div class="col-75">
-            <select id="function" name="function">
+            <select id="function2" name="function2">
                 <option value="01" >One Ring</option>
                 <option value="02" >Two Rings</option>
                 <option value="03" >Three Rings</option>
@@ -281,6 +281,69 @@ input[type=submit]:hover {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
 
 <script>
+
+function x_y_coords(count, radius, offset){
+	
+
+	var delta = ( (2 * Math.PI) / count );
+	var theta = 0;
+	var x, y;
+    var x_values = [];
+    var y_values = [];
+    
+    if(offset == 3){
+        theta = Math.PI / 3;
+    }
+    else if(offset == 4){
+        theta = Math.PI / 4;
+    }
+    else{
+        theta = 0;
+    }
+    
+    for(var i = 0; i < count; i++){
+
+    	x = radius * Math.cos(theta) + (16);
+    	y = radius * Math.sin(theta) + (16);
+        
+        x_values[i] = parseInt(x);
+        y_values[i] = parseInt(y);
+
+    	theta += delta;    
+    }
+    
+	return {
+        x_values: x_values,
+        y_values: y_values
+    };
+}
+
+function stream(count, radius, offset){
+
+	var xs = ( x_y_coords(count, radius, offset) ).x_values;
+    var ys = ( x_y_coords(count, radius, offset) ).y_values;
+    var data = [];
+    var zero_string = "0";
+    
+    for(var i = 0; i < count; i++){
+    
+    	if(xs[i] < 10){
+        	
+            xs[i] = zero_string.concat(xs[i]);
+        }
+        if(ys[i] < 10){
+        	
+            ys[i] = zero_string.concat(ys[i]);
+        }
+    	
+    	data[i] = [xs[i], ys[i]].join("");
+    }
+    return data;
+}
+
+</script>
+
+<script>
 var socket = io(); //load socket.io-client and connect to the host that serves the page
 window.addEventListener("load", function(){ //when page loads
   var lightbox = document.getElementById("light");
@@ -342,17 +405,64 @@ window.addEventListener("load", function(){ //when page loads
   
   prg_arduino_data2.addEventListener("click", function() { //add event listener for when checkbox changes
 
-    var elements_array2 = [];
-    var elements2 = document.getElementById("rings_form").elements2;
-    for(var i = 0; i < elements2.length; i++){
-      elements_array2[i] = elements2[i].value;
-    }
+   
+      var id = parseInt( document.getElementById("function2").value );
+      var count1 = document.getElementById("c1").value; var count2 = document.getElementById("c2").value; var count3 = document.getElementById("c3").value;
+      var radius1 = document.getElementById("r1").value; var radius2 = document.getElementById("r2").value; var radius3 = document.getElementById("r3").value;
+      var offset1 = document.getElementById("O1").value; var offset2 = document.getElementById("O2").value; var offset3 = document.getElementById("O3").value;
+      var colour1 = document.getElementById("cl1").value; var colour2 = document.getElementById("cl2").value; var colour3 = document.getElementById("cl3").value;
+      var exposure1 = document.getElementById("e1").value; var exposure2 = document.getElementById("e2").value; var exposure3 = document.getElementById("e3").value;
 
-    var data = "";
-    data = elements_array2.join("");
-    document.getElementById("demo").innerHTML = data;
+      if(id == 1){
 
-    rings_socket.emit('message', data);
+        var data = stream(count1, radius1, offset1);
+        data.push(colour1, exposure1);
+        data = data.join("");
+        var string_id = "9901";
+        data = string_id.concat(data);
+        document.getElementById("demo").innerHTML = data;
+
+        rings_socket.emit('message', data);
+      }
+      else if(id == 2){
+		
+       		var data1 = stream(count1, radius1, offset1);
+       		data1.push(colour1, exposure1);
+        	data1 = data1.join("");
+            
+            var data2 = stream(count2, radius2, offset2);
+        	data2.push(colour2, exposure2);
+        	data2 = data2.join("");
+            
+            var data = [data1, data2].join("");
+            var string_id = "9902";
+            data = string_id.concat(data);
+            document.getElementById("demo").innerHTML = data;
+            
+            rings_socket.emit('message', data);
+      }
+      else if(id == 3){
+		
+       		var data1 = stream(count1, radius1, offset1);
+       		data1.push(colour1, exposure1);
+        	data1 = data1.join("");
+            
+            var data2 = stream(count2, radius2, offset2);
+        	data2.push(colour2, exposure2);
+        	data2 = data2.join("");
+            
+            var data3 = stream(count3, radius3, offset3);
+        	data3.push(colour3, exposure3);
+        	data3 = data3.join("");
+            
+            var data = [data1, data2, data3].join("");
+            var string_id = "9903";
+            data = string_id.concat(data);
+            document.getElementById("demo").innerHTML = data;
+            
+            rings_socket.emit('message', data);
+      }
+  
   });
 });
 

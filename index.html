@@ -9,12 +9,17 @@
 }
 
 div { 
-    width: 300px;
+    width: 350px;
     resize: both;
 }
 
+.column {
+    float: left;
+    width: 25%;
+}
+
 input[type=text], select, textarea {
-    width: 70%;
+    width: 60%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -98,60 +103,69 @@ input[type=submit]:hover {
                 <option value="01">BlinkTest</option>
                 <option value="02">AlignPattern</option>
                 <option value="03">MiddleBox</option>
-                <option value="04">Ring</option>
-                <option value="07">Square</option>
-                <option value="06">Pixel</option>
+                <option value="04">Square</option>
+                <option value="05">Pixel</option>
             </select>
           </div>
         </div>
         
         <div class="row">
           <div class="col-25">
-            <label for="arg1">Argument1</label>
+            <label for="x">x</label>
           </div>
           <div class="col-75">
-            <input type="text" id="arg1" name="argument1" placeholder="First argument..">
+            <input type="text" id="x" name="x" placeholder="x - coordinate..">
           </div>
         </div>
         
         <div class="row">
           <div class="col-25">
-            <label for="arg2">Argument2</label>
+            <label for="y">y</label>
           </div>
           <div class="col-75">
-            <input type="text" id="arg2" name="argument2" placeholder="Second argument..">
+            <input type="text" id="y" name="y" placeholder="y - coordinate..">
           </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-              <label for="arg3">Argument3</label>
+              <label for="width">Width</label>
             </div>
             <div class="col-75">
-              <input type="text" id="arg3" name="argument3" placeholder="Third argument..">
+              <input type="text" id="width" name="width" placeholder="Width..">
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-              <label for="arg4">Argument4</label>
+              <label for="height">Height</label>
             </div>
             <div class="col-75">
-              <input type="text" id="arg4" name="argument4" placeholder="Fourth argument..">
+              <input type="text" id="height" name="height" placeholder="Height..">
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-              <label for="arg4">Argument5</label>
+              <label for="colour">Colour</label>
             </div>
             <div class="col-75">
-              <input type="text" id="arg5" name="argument5" placeholder="Fifth argument..">
+              <input type="text" id="colour" name="colour" placeholder="Colour..">
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-25">
+              <label for="exposure">Exposure</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="exposure" name="exposure" placeholder="Exposure..">
+            </div>
+        </div>
+
       </form>
-      <button id="prg_arduino_btn" style="float: right;">Program Arduino</button>
     </div>
+    <button id="prg_arduino_btn">Program Arduino</button>
   </div>
 
 </body>
@@ -167,71 +181,98 @@ input[type=submit]:hover {
       
         <div class="row">
           <div class="col-25">
-            <label for="function">Function</label>
+            <label for="function">Choose Function</label>
           </div>
           <div class="col-75">
             <select id="function" name="function">
-                <option value="01">BlinkTest</option>
-                <option value="02">AlignPattern</option>
-                <option value="03">MiddleBox</option>
-                <option value="04">Ring</option>
-                <option value="07">Square</option>
-                <option value="06">Pixel</option>
+                <option value="01" >One Ring</option>
+                <option value="02" >Two Rings</option>
+                <option value="03" >Three Rings</option>
             </select>
           </div>
         </div>
         
         <div class="row">
-          <div class="col-25">
-            <label for="arg1">Argument1</label>
+          <div class="column">
+            <label for="LED Count">LED Count</label>
           </div>
-          <div class="col-75">
-            <input type="text" id="arg1" name="argument1" placeholder="First argument..">
+          <div class="column">
+            <input type="text" id="c1" name="LED Count1">
+          </div>
+          <div class="column">
+            <input type="text" id="c2" name="LED Count2">
+          </div>
+          <div class="column">
+            <input type="text" id="c3" name="LED Count3">
           </div>
         </div>
         
         <div class="row">
-          <div class="col-25">
-            <label for="arg2">Argument2</label>
+          <div class="column">
+            <label for="Radius">Circle Radius</label>
           </div>
-          <div class="col-75">
-            <input type="text" id="arg2" name="argument2" placeholder="Second argument..">
+          <div class="column">
+            <input type="text" id="r1" name="Radius1">
+          </div>
+          <div class="column">
+            <input type="text" id="r2" name="Radius2">
+          </div>
+          <div class="column">
+            <input type="text" id="r3" name="Radius3">
           </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
-              <label for="arg3">Argument3</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="arg3" name="argument3" placeholder="Third argument..">
-            </div>
+          <div class="column">
+            <label for="Offset">Angle Offset</label>
+          </div>
+          <div class="column">
+            <input type="text" id="O1" name="Offset1">
+          </div>
+          <div class="column">
+            <input type="text" id="O2" name="Offset2">
+          </div>
+          <div class="column">
+            <input type="text" id="O3" name="Offset3">
+          </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
-              <label for="arg4">Argument4</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="arg4" name="argument4" placeholder="Fourth argument..">
-            </div>
+          <div class="column">
+            <label for="Colour">LED Colour</label>
+          </div>
+          <div class="column">
+            <input type="text" id="cl1" name="Colour1">
+          </div>
+          <div class="column">
+            <input type="text" id="cl2" name="Colour2">
+          </div>
+          <div class="column">
+            <input type="text" id="cl3" name="Colour3">
+          </div>
         </div>
 
         <div class="row">
-            <div class="col-25">
-              <label for="arg4">Argument5</label>
-            </div>
-            <div class="col-75">
-              <input type="text" id="arg5" name="argument5" placeholder="Fifth argument..">
-            </div>
+          <div class="column">
+            <label for="Exposure">Exposure Time</label>
+          </div>
+          <div class="column">
+            <input type="text" id="e1" name="Exposure1">
+          </div>
+          <div class="column">
+            <input type="text" id="e2" name="Exposure2">
+          </div>
+          <div class="column">
+            <input type="text" id="e3" name="Exposure3">
+          </div>
         </div>
+
       </form>
-      <button id="prg_arduino_btn2" style="float: right;">Program Arduino</button>
     </div>
+    <button id="prg_arduino_btn2">Program Arduino</button>
   </div>
 
 </body>
-
 
 
 
@@ -289,6 +330,32 @@ window.addEventListener("load", function(){ //when page loads
       }
   });
   
+</script>
+
+
+<script>
+
+var rings_socket = io(); //load socket.io-client and connect to the host that serves the page
+window.addEventListener("load", function(){ //when page loads
+
+  var prg_arduino_data2= document.getElementById("prg_arduino_btn2");
+  
+  prg_arduino_data2.addEventListener("click", function() { //add event listener for when checkbox changes
+
+    var elements_array2 = [];
+    var elements2 = document.getElementById("rings_form").elements2;
+    for(var i = 0; i < elements2.length; i++){
+      elements_array2[i] = elements2[i].value;
+    }
+
+    var data = "";
+    data = elements_array2.join("");
+    document.getElementById("demo").innerHTML = data;
+
+    rings_socket.emit('message', data);
+  });
+});
+
 </script>
 
 </html> 

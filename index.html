@@ -190,14 +190,7 @@ window.onclick = function(event) {
     }
     if (event.target == modal2) {
         modal2.style.display = "none";
-    }
-}
-</script>
-
-
-<script>
-
-var matrix_socket = io(); //load socket.io-client and connect to the host that serves the page
+        var matrix_socket = io(); //load socket.io-client and connect to the host that serves the page
 window.addEventListener("load", function(){ //when page loads
 
   var prg_arduino_data= document.getElementById("prg_arduino_btn");
@@ -213,10 +206,21 @@ window.addEventListener("load", function(){ //when page loads
 
     var data = "";
     data = elements_array.join("");
+    document.getElementById("demo").innerHTML = data;
 
     matrix_socket.emit('message', data);
   });
 });
+    }
+}
+</script>
+
+
+<p id="demo"></p>
+
+<script>
+
+
 
 </script>
 

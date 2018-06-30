@@ -416,7 +416,7 @@ window.addEventListener("load", function(){ //when page loads
       if(id == 1){
 
         var data = stream(count1, radius1, offset1);
-        data.push(colour1, exposure1);
+        //data.push(colour1, exposure1);
         data = data.join("");
         
         var total_count = parseInt(count1);
@@ -427,7 +427,7 @@ window.addEventListener("load", function(){ //when page loads
         }
        
         
-        var string_id = "99" + total_count;
+        var string_id = "99" + total_count + exposure1 + colour1 ;
         data = string_id.concat(data);
         document.getElementById("demo").innerHTML = data;
 

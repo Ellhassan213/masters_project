@@ -440,13 +440,13 @@ window.addEventListener("load", function(){ //when page loads
       else if(id == 2){
 
         setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
-        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt(exposure1 * count1)); 
+        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt(exposure1 * 2)); 
       }
       else if(id == 3){
 		
         setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
-        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt(exposure1 * count1));
-        setTimeout(function() { send_ring(count3, radius3, offset3, exposure3, colour3) } , parseInt( (exposure1 * count1) + (exposure2 * count2) ));
+        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt(exposure1 * 2));
+        setTimeout(function() { send_ring(count3, radius3, offset3, exposure3, colour3) } , parseInt( (exposure1 * 2) + (exposure2 * 2) ));
       }
   
   });

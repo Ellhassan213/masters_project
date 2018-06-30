@@ -342,7 +342,9 @@ void decoder(){
 
             matrix.drawPixel(concatenate(data_in[i], data_in[i+1]), concatenate(data_in[i+2], data_in[i+3]), matrix.Color333(r, g, b));
         }
-        // clean_up();
+
+        delay(300);
+        clean_up();
     }
 }
 

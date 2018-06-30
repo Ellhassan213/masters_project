@@ -418,14 +418,16 @@ window.addEventListener("load", function(){ //when page loads
         var data = stream(count1, radius1, offset1);
         data.push(colour1, exposure1);
         data = data.join("");
+        
+        var total_count = parseInt(count1);
 
         var zero_string = "0";
-        if(count1 < 10){
-            count1 = zero_string.concat(count1);
+        if(total_count < 10){
+            total_count = zero_string.concat(total_count);
         }
+       
         
-
-        var string_id = "99" + count1;
+        var string_id = "99" + total_count;
         data = string_id.concat(data);
         document.getElementById("demo").innerHTML = data;
 
@@ -443,15 +445,14 @@ window.addEventListener("load", function(){ //when page loads
             
           var data = [data1, data2].join("");
 
-          var zero_string = "0";
-          if(count1 < 10){
-              count1 = zero_string.concat(count1);
-          }
-          if(count2 < 10){
-              count2 = zero_string.concat(count2);
-          }
+        var total_count = parseInt(count1) + parseInt(count2);
+
+        var zero_string = "0";
+        if(total_count < 10){
+            total_count = zero_string.concat(total_count);
+        }
         
-          var string_id = "99" + count1 + count2;
+          var string_id = "99" + total_count;
           data = string_id.concat(data);
           document.getElementById("demo").innerHTML = data;
             
@@ -473,18 +474,14 @@ window.addEventListener("load", function(){ //when page loads
             
           var data = [data1, data2, data3].join("");
 
-          var zero_string = "0";
-          if(count1 < 10){
-              count1 = zero_string.concat(count1);
-          }
-          if(count2 < 10){
-              count2 = zero_string.concat(count2);
-          }
-          if(count3 < 10){
-              count3 = zero_string.concat(count3);
-          }
+        var total_count = parseInt(count1) + parseInt(count2) + parseInt(count3);
 
-          var string_id = "99" + count1 + count2 + count3;
+        var zero_string = "0";
+        if(total_count < 10){
+            total_count = zero_string.concat(total_count);
+        }
+
+          var string_id = "99" + total_count;
           data = string_id.concat(data);
           document.getElementById("demo").innerHTML = data;
           

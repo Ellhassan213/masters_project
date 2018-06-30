@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[100];
+char data_in[70];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);

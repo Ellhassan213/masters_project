@@ -358,7 +358,7 @@ function send_ring(count, radius, offset, exposure, colour){
       total_count = zero_string.concat(total_count);
     }
 
-    var string_id = "99" + total_count + exposure + colour;
+    var string_id = "99" + total_count + exposure + "0" + colour;
     data = string_id.concat(data);
     document.getElementById("demo").innerHTML = data;
 

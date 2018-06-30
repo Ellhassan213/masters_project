@@ -276,9 +276,9 @@ input[type=submit]:hover {
 
 
 
-
 <p id="demo"></p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+
 
 <script>
 
@@ -434,19 +434,19 @@ window.addEventListener("load", function(){ //when page loads
 
       if(id == 1){
 
-		    setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 100);
+		    setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
       }
       
       else if(id == 2){
 
-        setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 100);
-        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , 1500); 
+        setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
+        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt(exposure1 * count1)); 
       }
       else if(id == 3){
 		
-        setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 100);
-        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , 500);
-        setTimeout(function() { send_ring(count3, radius3, offset3, exposure3, colour3) } , 500);
+        setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
+        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt(exposure1 * count1));
+        setTimeout(function() { send_ring(count3, radius3, offset3, exposure3, colour3) } , parseInt(exposure2 * count2));
       }
   
   });

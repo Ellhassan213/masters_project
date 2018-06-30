@@ -284,7 +284,7 @@ input[type=submit]:hover {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
 
 
-<!-- Functions for computing rings components -->
+<!-- Functions for computing rings components and exposures -->
 <script>
 
 function x_y_coords(count, radius, offset){
@@ -358,13 +358,32 @@ function send_ring(count, radius, offset, exposure, colour){
       total_count = zero_string.concat(total_count);
     }
 
-    var string_id = "99" + total_count + exposure + colour;
+    var string_id = "99" + total_count + exposure + "0".concat(colour);
     data = string_id.concat(data);
     document.getElementById("demo").innerHTML = data;
 
     rings_socket.emit('message', data);
 }
 
+function process_exposure(exposure){
+
+    if( (exposure % 2) != 1){
+	
+	exposure = exposure - 1;
+    }
+	
+    if( (exposure.toString().length) == 1){	
+	exposure = "000".concat(exposure);
+    } 
+    else if( (exposure.toString().length) == 2){
+	exposure = "00".concat(exposure);
+    }  
+    else if( (exposure.toString().length) == 3){
+	exposure = "0".concat(exposure);
+    }
+
+    return exposure;
+}
 </script>
 
 <!-- External LED socket functionality -->
@@ -406,20 +425,8 @@ window.addEventListener("load", function(){ //when page loads
     }
 
     var exposure = document.getElementById("exposure").value;
-    if( (exposure % 2) != 1){
-	
-	exposure = exposure - 1;
-    }
-	
-    if( (exposure.toString().length) == 1){	
-	exposure = "000".concat(exposure);
-    } 
-    else if( (exposure.toString().length) == 2){
-	exposure = "00".concat(exposure);
-    }  
-    else if( (exposure.toString().length) == 3){
-	exposure = "0".concat(exposure);
-    }
+
+    exposure = process_exposure(exposure);
 
     elements_array.push(exposure);
     var data = "";
@@ -463,6 +470,8 @@ window.addEventListener("load", function(){ //when page loads
       var colour1 = document.getElementById("cl1").value; var colour2 = document.getElementById("cl2").value; var colour3 = document.getElementById("cl3").value;
       var exposure1 = document.getElementById("e1").value; var exposure2 = document.getElementById("e2").value; var exposure3 = document.getElementById("e3").value;
 
+      exposure1 = process_exposure(exposure1); exposure2 = process_exposure(exposure2); exposure3 = process_exposure(exposure3); 
+
       if(id == 1){
 
 		    setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
@@ -477,7 +486,7 @@ window.addEventListener("load", function(){ //when page loads
 		
         setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
         setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt(exposure1 * count1 * 2));
-        setTimeout(function() { send_ring(count3, radius3, offset3, exposure3, colour3) } , parseInt( (exposure1 * count1 *2) + (exposure2 * count2 * 2) ));
+        setTimeout(function() { send_ring(count3, radius3, offset3, exposure3, colour3) } , parseInt( (exposure1 * count1 * 2) + (exposure2 * count2 * 2) ));
       }
   
   });

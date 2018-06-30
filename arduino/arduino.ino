@@ -69,11 +69,11 @@ void rectangle_fill(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour,
       matrix.drawPixel(i, j, matrix.Color333(r, g, b));
 
       digitalWrite(11, HIGH);
-      delay(exposure);
+      delay(exposure + 1);
 
       matrix.clear();
       digitalWrite(11, LOW);
-      delay(exposure);
+      delay(exposure + 1);
     }
   }
 }
@@ -144,12 +144,12 @@ void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposur
 
         matrix.drawPixel((int16_t)x, (int16_t)y, matrix.Color333(r, g, b)); 
         digitalWrite(11, HIGH);
-        delay(exposure);
+        delay(exposure + 1);
 
         matrix.clear();
 
         digitalWrite(11, LOW);
-        delay(exposure);
+        delay(exposure + 1);
         
         theta += delta;    
     }
@@ -168,21 +168,21 @@ void align(int16_t exposure){
 
   // Align
   matrix.drawPixel(16, 13, matrix.Color333(7, 7, 7));
-  delay(exposure);
+  delay(exposure + 1);
   matrix.drawPixel(16, 19, matrix.Color333(7, 7, 7));
-  delay(exposure);
+  delay(exposure + 1);
   matrix.drawPixel(13, 16, matrix.Color333(7, 7, 7));
-  delay(exposure);
+  delay(exposure + 1);
   matrix.drawPixel(19, 16, matrix.Color333(7, 7, 7));
-  delay(exposure);  
+  delay(exposure + 1);  
 }
 
 void blinking(int16_t exposure){
     
     digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
-    delay(exposure);              // wait for a second
+    delay(exposure + 1);              // wait for a second
     digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
-    delay(exposure);             // wait for a second
+    delay(exposure + 1);             // wait for a second
 }
 
 void pixel(int16_t x, int16_t y, uint16_t colour){
@@ -341,12 +341,12 @@ void decoder(){
 
             matrix.drawPixel(concatenate(data_in[i], data_in[i+1]), concatenate(data_in[i+2], data_in[i+3]), matrix.Color333(r, g, b));
             digitalWrite(11, HIGH);
-            delay(exposure);
+            delay(exposure + 1);
 
             matrix.clear();
 
             digitalWrite(11, LOW);
-            delay(exposure);
+            delay(exposure + 1);
         }
         clean_up();
     }

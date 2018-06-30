@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+<!-- Styling -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -80,11 +81,13 @@ input[type=submit]:hover {
 </style>
 </head>
 
-<body>
+<!-- External LED Body -->
+<body>  
 <h1>Control LED Light</h1>
 <p><input type="checkbox" id="light"></p>
 </body>
 
+<!-- Generic form fody -->
 <body>
 
   <div style="float:left;"></div>
@@ -100,11 +103,11 @@ input[type=submit]:hover {
           </div>
           <div class="col-75">
             <select id="function" name="function">
-                <option value="01">BlinkTest</option>
-                <option value="02">AlignPattern</option>
-                <option value="03">MiddleBox</option>
-                <option value="07">Square</option>
-                <option value="05">Pixel</option>
+                <option value="1">BlinkTest</option>
+                <option value="2">AlignPattern</option>
+                <option value="3">MiddleBox</option>
+                <option value="7">Square</option>
+                <option value="5">Pixel</option>
             </select>
           </div>
         </div>
@@ -170,6 +173,7 @@ input[type=submit]:hover {
 
 </body>
 
+<!-- Concentric Rings form body -->
 <body>
 
   <div style="float:middle;"></div>
@@ -280,6 +284,7 @@ input[type=submit]:hover {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
 
 
+<!-- Functions for computing rings components -->
 <script>
 
 function x_y_coords(count, radius, offset){
@@ -362,6 +367,7 @@ function send_ring(count, radius, offset, exposure, colour){
 
 </script>
 
+<!-- External LED socket functionality -->
 <script>
 var socket = io(); //load socket.io-client and connect to the host that serves the page
 window.addEventListener("load", function(){ //when page loads
@@ -376,6 +382,7 @@ socket.on('light', function (data) { //get button status from client
 });
 </script>
 
+<!-- Processing Generic form -->
 <script>
 
 var matrix_socket = io(); //load socket.io-client and connect to the host that serves the page
@@ -387,10 +394,34 @@ window.addEventListener("load", function(){ //when page loads
 
     var elements_array = [];
     var elements = document.getElementById("matrix_form").elements;
-    for(var i = 0; i < elements.length; i++){
+    var zero_string = "0";
+
+    for(var i = 0; i < (elements.length-1); i++){
+	
       elements_array[i] = elements[i].value;
+
+      if(elements_array[i] < 10){
+	elements_array[i] = zero_string.concat(elements_array[i]);
+      }
     }
 
+    var exposure = document.getElementById("exposure").value;
+    if( (exposure % 2) != 1){
+	
+	exposure = exposure - 1;
+    }
+	
+    if( (exposure.toString().length) == 1){	
+	exposure = "000".concat(exposure);
+    } 
+    else if( (exposure.toString().length) == 2){
+	exposure = "00".concat(exposure);
+    }  
+    else if( (exposure.toString().length) == 3){
+	exposure = "0".concat(exposure);
+    }
+
+    elements_array.push(exposure);
     var data = "";
     data = elements_array.join("");
     document.getElementById("demo").innerHTML = data;
@@ -414,7 +445,7 @@ window.addEventListener("load", function(){ //when page loads
   
 </script>
 
-
+<!-- Processing Concentric rings form -->
 <script>
 
 var rings_socket = io(); //load socket.io-client and connect to the host that serves the page

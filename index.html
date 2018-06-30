@@ -470,23 +470,23 @@ window.addEventListener("load", function(){ //when page loads
       var colour1 = document.getElementById("cl1").value; var colour2 = document.getElementById("cl2").value; var colour3 = document.getElementById("cl3").value;
       var exposure1 = document.getElementById("e1").value; var exposure2 = document.getElementById("e2").value; var exposure3 = document.getElementById("e3").value;
 
-      exposure1 = process_exposure(exposure1); exposure2 = process_exposure(exposure2); exposure3 = process_exposure(exposure3); 
+      var expo1 = process_exposure(exposure1); var expo2 = process_exposure(exposure2); var expo3 = process_exposure(exposure3); 
 
       if(id == 1){
 
-		    setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
+		    setTimeout(function() { send_ring(count1, radius1, offset1, expo1, colour1) } , 0);
       }
       
       else if(id == 2){
 
-        setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
-        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt((exposure1 + 1) * count1 * 2)); 
+        setTimeout(function() { send_ring(count1, radius1, offset1, expo1, colour1) } , 0);
+        setTimeout(function() { send_ring(count2, radius2, offset2, expo2, colour2) } , parseInt(exposure1 * count1 * 2)); 
       }
       else if(id == 3){
 		
-        setTimeout(function() { send_ring(count1, radius1, offset1, exposure1, colour1) } , 0);
-        setTimeout(function() { send_ring(count2, radius2, offset2, exposure2, colour2) } , parseInt((exposure1 + 1) * count1 * 2));
-        setTimeout(function() { send_ring(count3, radius3, offset3, exposure3, colour3) } , parseInt( ((exposure1 + 1) * count1 * 2) + ((exposure2 + 1) * count2 * 2) ));
+        setTimeout(function() { send_ring(count1, radius1, offset1, expo1, colour1) } , 0);
+        setTimeout(function() { send_ring(count2, radius2, offset2, expo2, colour2) } , parseInt(exposure1 * count1 * 2));
+        setTimeout(function() { send_ring(count3, radius3, offset3, expo3, colour3) } , parseInt( (exposure1 * count1 * 2) + (exposure2 * count2 * 2) ));
       }
   
   });

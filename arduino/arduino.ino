@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[50];
+char data_in[100];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -306,95 +306,6 @@ void decoder(){
 
         clean_up();
         rectangle_fill(x, y, width, height, colour, exposure);
-    }
-    else if(id == 10){  // execute multiple concentric rings
-
-        int16_t n_o_r = concatenate(data_in[2], data_in[3]);
-
-        if(n_o_r == 01){    // 1 ring requested
-
-            int16_t count = concatenate(data_in[4], data_in[5]);
-            int16_t radius = concatenate(data_in[6], data_in[7]);
-            int16_t offset = concatenate(data_in[8], data_in[9]);
-            uint16_t colour = concatenate(data_in[10], data_in[11]);
-
-            int16_t e1 = concatenate(data_in[12], data_in[13]);
-            int16_t e2 = concatenate(data_in[14], data_in[15]);
-
-            int16_t exposure = concatenate(e1, e2);
-
-            clean_up();
-            rings(count, radius, offset, colour, exposure);
-        }
-        else if(n_o_r == 02){   // 2 rings requested
-
-            int16_t count_1 = concatenate(data_in[4], data_in[5]);
-            int16_t radius_1 = concatenate(data_in[6], data_in[7]);
-            int16_t offset_1 = concatenate(data_in[8], data_in[9]);
-            uint16_t colour_1 = concatenate(data_in[10], data_in[11]);
-
-            int16_t e1_1 = concatenate(data_in[12], data_in[13]);
-            int16_t e2_1 = concatenate(data_in[14], data_in[15]);
-
-            int16_t exposure_1 = concatenate(e1_1, e2_1);
-
-
-
-            int16_t count_2 = concatenate(data_in[16], data_in[17]);
-            int16_t radius_2 = concatenate(data_in[18], data_in[19]);
-            int16_t offset_2 = concatenate(data_in[20], data_in[21]);
-            uint16_t colour_2 = concatenate(data_in[22], data_in[23]);
-
-            int16_t e1_2 = concatenate(data_in[24], data_in[25]);
-            int16_t e2_2 = concatenate(data_in[26], data_in[27]);
-
-            int16_t exposure_2 = concatenate(e1_2, e2_2);
-
-            clean_up();
-            rings(count_1, radius_1, offset_1, colour_1, exposure_1);
-            rings(count_2, radius_2, offset_2, colour_2, exposure_2);
-        }
-        else if(n_o_r == 03){   // 3 rings requested
-
-            int16_t count_1 = concatenate(data_in[4], data_in[5]);
-            int16_t radius_1 = concatenate(data_in[6], data_in[7]);
-            int16_t offset_1 = concatenate(data_in[8], data_in[9]);
-            uint16_t colour_1 = concatenate(data_in[10], data_in[11]);
-
-            int16_t e1_1 = concatenate(data_in[12], data_in[13]);
-            int16_t e2_1 = concatenate(data_in[14], data_in[15]);
-
-            int16_t exposure_1 = concatenate(e1_1, e2_1);
-
-
-
-            int16_t count_2 = concatenate(data_in[16], data_in[17]);
-            int16_t radius_2 = concatenate(data_in[18], data_in[19]);
-            int16_t offset_2 = concatenate(data_in[20], data_in[21]);
-            uint16_t colour_2 = concatenate(data_in[22], data_in[23]);
-
-            int16_t e1_2 = concatenate(data_in[24], data_in[25]);
-            int16_t e2_2 = concatenate(data_in[26], data_in[27]);
-
-            int16_t exposure_2 = concatenate(e1_2, e2_2);
-
-
-
-            int16_t count_3 = concatenate(data_in[28], data_in[29]);
-            int16_t radius_3 = concatenate(data_in[30], data_in[31]);
-            int16_t offset_3 = concatenate(data_in[32], data_in[33]);
-            uint16_t colour_3 = concatenate(data_in[34], data_in[35]);
-
-            int16_t e1_3 = concatenate(data_in[36], data_in[37]);
-            int16_t e2_3 = concatenate(data_in[38], data_in[39]);
-
-            int16_t exposure_3 = concatenate(e1_3, e2_3);
-
-            clean_up();
-            rings(count_1, radius_1, offset_1, colour_1, exposure_1);
-            rings(count_2, radius_2, offset_2, colour_2, exposure_2);
-            rings(count_3, radius_3, offset_3, colour_3, exposure_3);  
-        }
     }
 }
 

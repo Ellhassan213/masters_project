@@ -418,7 +418,14 @@ window.addEventListener("load", function(){ //when page loads
         var data = stream(count1, radius1, offset1);
         data.push(colour1, exposure1);
         data = data.join("");
-        var string_id = "9901";
+
+        var zero_string = "0";
+        if(count1 < 10){
+            count1 = zero_string.concat(count1);
+        }
+        
+
+        var string_id = "99" + count1;
         data = string_id.concat(data);
         document.getElementById("demo").innerHTML = data;
 
@@ -430,16 +437,25 @@ window.addEventListener("load", function(){ //when page loads
        		data1.push(colour1, exposure1);
         	data1 = data1.join("");
             
-            var data2 = stream(count2, radius2, offset2);
+          var data2 = stream(count2, radius2, offset2);
         	data2.push(colour2, exposure2);
         	data2 = data2.join("");
             
-            var data = [data1, data2].join("");
-            var string_id = "9902";
-            data = string_id.concat(data);
-            document.getElementById("demo").innerHTML = data;
+          var data = [data1, data2].join("");
+
+          var zero_string = "0";
+          if(count1 < 10){
+              count1 = zero_string.concat(count1);
+          }
+          if(count2 < 10){
+              count2 = zero_string.concat(count2);
+          }
+        
+          var string_id = "99" + count1 + count2;
+          data = string_id.concat(data);
+          document.getElementById("demo").innerHTML = data;
             
-            rings_socket.emit('message', data);
+          rings_socket.emit('message', data);
       }
       else if(id == 3){
 		
@@ -455,12 +471,24 @@ window.addEventListener("load", function(){ //when page loads
         	data3.push(colour3, exposure3);
         	data3 = data3.join("");
             
-            var data = [data1, data2, data3].join("");
-            var string_id = "9903";
-            data = string_id.concat(data);
-            document.getElementById("demo").innerHTML = data;
-            
-            rings_socket.emit('message', data);
+          var data = [data1, data2, data3].join("");
+
+          var zero_string = "0";
+          if(count1 < 10){
+              count1 = zero_string.concat(count1);
+          }
+          if(count2 < 10){
+              count2 = zero_string.concat(count2);
+          }
+          if(count3 < 10){
+              count3 = zero_string.concat(count3);
+          }
+
+          var string_id = "99" + count1 + count2 + count3;
+          data = string_id.concat(data);
+          document.getElementById("demo").innerHTML = data;
+          
+          rings_socket.emit('message', data);
       }
   
   });

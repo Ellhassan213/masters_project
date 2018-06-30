@@ -311,7 +311,7 @@ void decoder(){
     else if(id == 99){
 
         char data_here[array_size];
-        data_here = data_in;
+        memcpy(&data_in, data_here, array_size);
         int16_t count = concatenate(data_here[2], data_here[3]);
 
         int16_t e1 = concatenate(data_here[4], data_here[5]);

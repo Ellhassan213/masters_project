@@ -340,7 +340,7 @@ void decoder(){
 
         for(int16_t i = 10; i <= count * 4; i + 4){
 
-            matrix.drawPixel(concatenate(data_in[i], data_in[i+1]);, concatenate(data_in[i+2], data_in[i+3]);, matrix.Color333(r, g, b));
+            matrix.drawPixel(concatenate(data_in[i], data_in[i+1]), concatenate(data_in[i+2], data_in[i+3]), matrix.Color333(r, g, b));
         }
     }
 }

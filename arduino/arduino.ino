@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-const int array_size = 100;
+const int array_size = 70;
 char data_in[array_size] = {};
 int itr = 0;
 
@@ -310,13 +310,14 @@ void decoder(){
     }
     else if(id == 99){
 
-        int16_t count = concatenate(data_in[2], data_in[3]);
+        char data_here = data_in;
+        int16_t count = concatenate(data_here[2], data_here[3]);
 
-        int16_t e1 = concatenate(data_in[4], data_in[5]);
-        int16_t e2 = concatenate(data_in[6], data_in[7]);
+        int16_t e1 = concatenate(data_here[4], data_here[5]);
+        int16_t e2 = concatenate(data_here[6], data_here[7]);
         int16_t exposure = concatenate(e1, e2);
 
-        uint16_t colour = concatenate(data_in[8], data_in[9]);
+        uint16_t colour = concatenate(data_here[8], data_here[9]);
 
         int16_t r, g, b;
 
@@ -339,7 +340,7 @@ void decoder(){
 
         for(int16_t i = 10; i <= (count * 4) + 6; i += 4){
 
-            matrix.drawPixel(concatenate(data_in[i], data_in[i+1]), concatenate(data_in[i+2], data_in[i+3]), matrix.Color333(r, g, b));
+            matrix.drawPixel(concatenate(data_here[i], data_here[i+1]), concatenate(data_here[i+2], data_here[i+3]), matrix.Color333(r, g, b));
         }
     }
 }

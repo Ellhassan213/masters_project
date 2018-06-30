@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[50];
+char data_in[100];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -258,41 +258,6 @@ void decoder(){
     }
     else if(id == 04){
         
-        int count = concatenate(data_in[2], data_in[3]);
-        int radius = concatenate(data_in[4], data_in[5]);
-        int offset = concatenate(data_in[6], data_in[7]);
-        uint16_t colour = concatenate(data_in[8], data_in[9]);
-
-        int16_t e1 = concatenate(data_in[10], data_in[11]);
-        int16_t e2 = concatenate(data_in[12], data_in[13]);
-
-        int16_t exposure = concatenate(e1, e2);
-
-        clean_up();
-        rings(count, radius, offset, colour, exposure);
-    }
-    else if(id == 05){ // execute single pixel function
-
-        int16_t x = concatenate(data_in[2], data_in[3]);
-        int16_t y = concatenate(data_in[4], data_in[5]);
-        uint16_t colour = concatenate(data_in[6], data_in[7]);
-
-        clean_up();
-        pixel(x, y, colour);
-    }
-    else if(id == 06){ // execute rectangle function
-
-        int16_t x = concatenate(data_in[2], data_in[3]);
-        int16_t y = concatenate(data_in[4], data_in[5]);
-        int16_t width = concatenate(data_in[6], data_in[7]);
-        int16_t height = concatenate(data_in[8], data_in[9]);
-        uint16_t colour = concatenate(data_in[10], data_in[11]);
-
-        clean_up();
-        rectangle(x, y, width, height, colour);
-    }
-    else if(id == 07){ // execute rectangle increamental fill function
-
         int16_t x = concatenate(data_in[2], data_in[3]);
         int16_t y = concatenate(data_in[4], data_in[5]);
         int16_t width = concatenate(data_in[6], data_in[7]);
@@ -307,7 +272,43 @@ void decoder(){
         clean_up();
         rectangle_fill(x, y, width, height, colour, exposure);
     }
-    else if(id == 10){  // execute multiple concentric rings
+    else if(id == 05){ // execute single pixel function
+
+        int16_t x = concatenate(data_in[2], data_in[3]);
+        int16_t y = concatenate(data_in[4], data_in[5]);
+        uint16_t colour = concatenate(data_in[6], data_in[7]);
+
+        clean_up();
+        pixel(x, y, colour);
+    }
+    else if(id == 06){ // execute rectangle function
+
+        // int16_t x = concatenate(data_in[2], data_in[3]);
+        // int16_t y = concatenate(data_in[4], data_in[5]);
+        // int16_t width = concatenate(data_in[6], data_in[7]);
+        // int16_t height = concatenate(data_in[8], data_in[9]);
+        // uint16_t colour = concatenate(data_in[10], data_in[11]);
+
+        // clean_up();
+        // rectangle(x, y, width, height, colour);
+    }
+    else if(id == 07){ // execute rectangle increamental fill function
+
+        // int16_t x = concatenate(data_in[2], data_in[3]);
+        // int16_t y = concatenate(data_in[4], data_in[5]);
+        // int16_t width = concatenate(data_in[6], data_in[7]);
+        // int16_t height = concatenate(data_in[8], data_in[9]);
+        // uint16_t colour = concatenate(data_in[10], data_in[11]);
+        
+        // int16_t e1 = concatenate(data_in[12], data_in[13]);
+        // int16_t e2 = concatenate(data_in[14], data_in[15]);
+
+        // int16_t exposure = concatenate(e1, e2);
+
+        // clean_up();
+        // rectangle_fill(x, y, width, height, colour, exposure);
+    }
+    else if(id == 99){  // execute multiple concentric rings
 
         int16_t n_o_r = concatenate(data_in[2], data_in[3]);
 

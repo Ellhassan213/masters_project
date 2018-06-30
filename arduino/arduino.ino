@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[90];
+char data_in[70];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -338,7 +338,7 @@ void decoder(){
             r = 7; g = 7; b = 7;
         }
 
-        for(int16_t i = 12; i <= nr * count * 4; i + 4){
+        for(int16_t i = 12; i <= count * 4; i + 4){
 
             matrix.drawPixel(concatenate(data_in[i], data_in[i+1]), concatenate(data_in[i+2], data_in[i+3]), matrix.Color333(r, g, b));
         }

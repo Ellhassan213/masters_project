@@ -350,7 +350,7 @@ void decoder(){
             delay(exposure);
         }
 
-        delay(300);
+        // delay(300);
         clean_up();
     }
 }

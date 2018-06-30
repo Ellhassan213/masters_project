@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-char data_in[70];
+char data_in[200];
 int itr = 0;
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
@@ -306,6 +306,42 @@ void decoder(){
 
         clean_up();
         rectangle_fill(x, y, width, height, colour, exposure);
+    }
+    else if(id == 99){
+
+        int16_t count = concatenate(data_in[2], data_in[3]);
+
+        int16_t e1 = concatenate(data_in[4], data_in[5]);
+        int16_t e2 = concatenate(data_in[6], data_in[7]);
+        int16_t exposure = concatenate(e1, e2);
+
+        uint16_t colour = concatenate(data_in[8], data_in[9]);
+
+        int16_t r, g, b;
+
+        if(colour == 01){
+            
+            r = 7; g = 0; b = 0;
+        }
+        else if(colour == 02){
+
+            r = 0; g = 7; b = 0;
+        }
+        else if(colour == 03){
+
+            r = 0; g = 0; b = 7;
+        }
+        else{
+
+            r = 7; g = 7; b = 7;
+        }
+
+
+
+        for(int16_t i = 10; i <= count * 4; i + 4){
+
+            matrix.drawPixel(concatenate(data_in[i], data_in[i+1]);, concatenate(data_in[i+2], data_in[i+3]);, matrix.Color333(r, g, b));
+        }
     }
 }
 

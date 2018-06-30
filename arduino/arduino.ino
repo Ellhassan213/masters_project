@@ -22,7 +22,7 @@
 
 /*Global Variables */
 char char_in = -1;
-int array_size = 100;
+const int array_size = 100;
 char data_in[array_size] = {};
 int itr = 0;
 

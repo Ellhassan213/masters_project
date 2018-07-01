@@ -128,7 +128,7 @@ void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
         r = 7; g = 7; b = 7;
     }
 
-    matrix.rectangle(x, y, w, h, matrix.Color333(r, g, b));    
+    matrix.drawRect(x, y, w, h, matrix.Color333(r, g, b));    
 }
 
 void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposure){

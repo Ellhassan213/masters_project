@@ -346,8 +346,8 @@ void decoder(){
         clean_up();
         line(x, width, y, colour);
         line(x, width, height, colour);
-        line(y, height, x, colour);
-        line(y, height, width, colour);
+        line(height, y, x, colour);
+        line(height, y, width, colour);
     }
     else if(id == 05){ // execute single pixel function
 

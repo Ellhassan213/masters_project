@@ -337,6 +337,7 @@ void decoder(){
             r = 7; g = 7; b = 7;
         }
 
+        matrix.clear();
         for(int16_t i = 10; i <= (count * 4) + 6; i += 4){
 
             matrix.drawPixel(concatenate(data_in[i], data_in[i+1]), concatenate(data_in[i+2], data_in[i+3]), matrix.Color333(r, g, b));

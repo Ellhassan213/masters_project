@@ -42,7 +42,7 @@ void clean_up(){
   matrix.clear();
 }
 
-void rectangle_fill(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour, int16_t exposure){
+void rectangle_fill_incr(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour, int16_t exposure){
 
   int16_t r, g, b;
 
@@ -78,7 +78,7 @@ void rectangle_fill(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour,
   }
 }
 
-void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
+void rectangle_fill(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
 
     int16_t r, g, b;
 
@@ -155,13 +155,17 @@ void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposur
     }
 }
 
-void middleBox(){
+void middleBox(int16_t exposure){
   
   // draw middle box
   matrix.drawPixel(15, 15, matrix.Color333(7, 7, 7));
+  delay(exposure + 1);
   matrix.drawPixel(15, 16, matrix.Color333(7, 7, 7));
+  delay(exposure + 1);
   matrix.drawPixel(16, 16, matrix.Color333(7, 7, 7));
+  delay(exposure + 1);
   matrix.drawPixel(16, 15, matrix.Color333(7, 7, 7));
+  delay(exposure + 1);
 }
 
 void align(int16_t exposure){
@@ -290,7 +294,7 @@ void decoder(){
         uint16_t colour = concatenate(data_in[10], data_in[11]);
 
         clean_up();
-        rectangle(x, y, width, height, colour);
+        rectangle_fill(x, y, width, height, colour);
     }
     else if(id == 07){ // execute rectangle increamental fill function
 
@@ -306,7 +310,7 @@ void decoder(){
         int16_t exposure = concatenate(e1, e2);
 
         clean_up();
-        rectangle_fill(x, y, width, height, colour, exposure);
+        rectangle_fill_incr(x, y, width, height, colour, exposure);
     }
     else if(id == 99){
 

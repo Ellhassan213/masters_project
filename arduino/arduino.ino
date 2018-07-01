@@ -320,8 +320,8 @@ void decoder(){
     int16_t id = concatenate(data_in[0], data_in[1]);
 
     if(id == 01){
-        
-        matrix.clear();
+
+        clean_up();
     }
     else if(id == 02){
 

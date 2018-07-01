@@ -116,37 +116,37 @@ input[type=submit]:hover {
         
         <div class="row">
           <div class="col-25">
-            <label for="x">x</label>
+            <label for="x">x1</label>
           </div>
           <div class="col-75">
-            <input type="text" id="x" name="x" placeholder="x - coordinate..">
+            <input type="text" id="x1" name="x" placeholder="x - coordinate..">
           </div>
         </div>
         
         <div class="row">
           <div class="col-25">
-            <label for="y">y</label>
+            <label for="y">y1</label>
           </div>
           <div class="col-75">
-            <input type="text" id="y" name="y" placeholder="y - coordinate..">
+            <input type="text" id="y1" name="y" placeholder="y - coordinate..">
           </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-              <label for="width">Width</label>
+              <label for="width">x2</label>
             </div>
             <div class="col-75">
-              <input type="text" id="width" name="width" placeholder="Width..">
+              <input type="text" id="x2" name="width" placeholder="Width..">
             </div>
         </div>
 
         <div class="row">
             <div class="col-25">
-              <label for="height">Height</label>
+              <label for="height">y2</label>
             </div>
             <div class="col-75">
-              <input type="text" id="height" name="height" placeholder="Height..">
+              <input type="text" id="y2" name="height" placeholder="Height..">
             </div>
         </div>
 
@@ -170,7 +170,7 @@ input[type=submit]:hover {
 
       </form>
     </div>
-    <button id="prg_arduino_btn" onclick="alert('Hey Lawal, How are you!? Would you like to meet me?')">Program Arduino</button>
+    <button id="prg_arduino_btn">Program Arduino</button>
   </div>
 
 </body>
@@ -441,14 +441,15 @@ window.addEventListener("load", function(){ //when page loads
 
 </script>
 
+<!-- Handling Generic form visibility -->
 <script>
 
   window.addEventListener("mouseover", function(){
-    var x = document.getElementById('function').value;
+    var sorter = document.getElementById('function').value;
       
-      if(x == "01"){
+      if(sorter == "1"){
       
-        // document.getElementById("arg1").disabled = true;
+       // document.getElementById("x1").disabled = true;
       }
   });
   

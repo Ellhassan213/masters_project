@@ -258,8 +258,13 @@ void decoder(){
     }
     else if(id == 03){
 
+        int16_t e1 = concatenate(data_in[2], data_in[3]);
+        int16_t e2 = concatenate(data_in[4], data_in[5]);
+
+        int16_t exposure = concatenate(e1, e2);
+
         clean_up();
-        middleBox();
+        middleBox(exposure);
     }
     else if(id == 04){
         

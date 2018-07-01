@@ -103,10 +103,32 @@ void rectangle_fill(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour)
         for(int16_t j = y; j < h; j++){
 
         matrix.drawPixel(i, j, matrix.Color333(r, g, b));
-
-        // delay(exposure + 1);
         }
     }
+}
+
+void rectangle(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour){
+
+    int16_t r, g, b;
+
+    if(colour == 01){
+        
+        r = 7; g = 0; b = 0;
+    }
+    else if(colour == 02){
+
+        r = 0; g = 7; b = 0;
+    }
+    else if(colour == 03){
+
+        r = 0; g = 0; b = 7;
+    }
+    else{
+
+        r = 7; g = 7; b = 7;
+    }
+
+    matrix.rectangle(x, y, w, h, matrix.Color333(r, g, b));    
 }
 
 void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposure){
@@ -275,18 +297,27 @@ void decoder(){
     }
     else if(id == 04){
         
-        int count = concatenate(data_in[2], data_in[3]);
-        int radius = concatenate(data_in[4], data_in[5]);
-        int offset = concatenate(data_in[6], data_in[7]);
-        uint16_t colour = concatenate(data_in[8], data_in[9]);
+        // int count = concatenate(data_in[2], data_in[3]);
+        // int radius = concatenate(data_in[4], data_in[5]);
+        // int offset = concatenate(data_in[6], data_in[7]);
+        // uint16_t colour = concatenate(data_in[8], data_in[9]);
 
-        int16_t e1 = concatenate(data_in[10], data_in[11]);
-        int16_t e2 = concatenate(data_in[12], data_in[13]);
+        // int16_t e1 = concatenate(data_in[10], data_in[11]);
+        // int16_t e2 = concatenate(data_in[12], data_in[13]);
 
-        int16_t exposure = concatenate(e1, e2);
+        // int16_t exposure = concatenate(e1, e2);
+
+        // clean_up();
+        // rings(count, radius, offset, colour, exposure);
+
+        int16_t x = concatenate(data_in[2], data_in[3]);
+        int16_t y = concatenate(data_in[4], data_in[5]);
+        int16_t width = concatenate(data_in[6], data_in[7]);
+        int16_t height = concatenate(data_in[8], data_in[9]);
+        uint16_t colour = concatenate(data_in[10], data_in[11]);
 
         clean_up();
-        rings(count, radius, offset, colour, exposure);
+        rectangle(x, y, width, height, colour);
     }
     else if(id == 05){ // execute single pixel function
 

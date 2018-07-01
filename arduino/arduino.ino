@@ -320,14 +320,8 @@ void decoder(){
     int16_t id = concatenate(data_in[0], data_in[1]);
 
     if(id == 01){
-
-        int16_t e1 = concatenate(data_in[2], data_in[3]);
-        int16_t e2 = concatenate(data_in[4], data_in[5]);
-
-        int16_t exposure = concatenate(e1, e2);
         
-        clean_up();
-        blinking(exposure);
+        matrix.clear();
     }
     else if(id == 02){
 
@@ -351,19 +345,6 @@ void decoder(){
     }
     else if(id == 04){
         
-        // int count = concatenate(data_in[2], data_in[3]);
-        // int radius = concatenate(data_in[4], data_in[5]);
-        // int offset = concatenate(data_in[6], data_in[7]);
-        // uint16_t colour = concatenate(data_in[8], data_in[9]);
-
-        // int16_t e1 = concatenate(data_in[10], data_in[11]);
-        // int16_t e2 = concatenate(data_in[12], data_in[13]);
-
-        // int16_t exposure = concatenate(e1, e2);
-
-        // clean_up();
-        // rings(count, radius, offset, colour, exposure);
-
         int16_t x = concatenate(data_in[2], data_in[3]);
         int16_t y = concatenate(data_in[4], data_in[5]);
         int16_t width = concatenate(data_in[6], data_in[7]);

@@ -42,7 +42,7 @@ void clean_up(){
   matrix.clear();
 }
 
-void line(int16_t start, int16_t finish, int16_t axis, int16_t colour){
+void line_x(int16_t start, int16_t finish, int16_t axis, int16_t colour){
 
     int16_t r, g, b;
 
@@ -66,6 +66,33 @@ void line(int16_t start, int16_t finish, int16_t axis, int16_t colour){
     for(int16_t i = start; i <= finish; i++){
 
         matrix.drawPixel(i, axis, matrix.Color333(r, g, b));
+    }
+}
+
+void line_y(int16_t start, int16_t finish, int16_t axis, int16_t colour){
+
+    int16_t r, g, b;
+
+    if(colour == 01){
+        
+        r = 7; g = 0; b = 0;
+    }
+    else if(colour == 02){
+
+        r = 0; g = 7; b = 0;
+    }
+    else if(colour == 03){
+
+        r = 0; g = 0; b = 7;
+    }
+    else{
+
+        r = 7; g = 7; b = 7;
+    }
+
+    for(int16_t i = start; i <= finish; i++){
+
+        matrix.drawPixel(axis, i, matrix.Color333(r, g, b));
     }
 }
 
@@ -344,10 +371,10 @@ void decoder(){
         uint16_t colour = concatenate(data_in[10], data_in[11]);
 
         clean_up();
-        line(x, width, y, colour);
-        line(x, width, height, colour);
-        line(height, y, x, colour);
-        line(height, y, width, colour);
+        line_x(x, width, y, colour);
+        line_x(x, width, height, colour);
+        line_y(y, height, x, colour);
+        line_y(y, height, width, colour);
     }
     else if(id == 05){ // execute single pixel function
 

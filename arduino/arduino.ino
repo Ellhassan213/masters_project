@@ -98,8 +98,15 @@ void rectangle_fill(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colour)
 
         r = 7; g = 7; b = 7;
     }
+    
+    for(int16_t i = x; i < w; i++) {
+        for(int16_t j = y; j < h; j++){
 
-  matrix.fillRect(x, y, w, h, matrix.Color333(r, g, b));
+        matrix.drawPixel(i, j, matrix.Color333(r, g, b));
+
+        // delay(exposure + 1);
+        }
+    }
 }
 
 void rings(int count, int radius, int offset, uint16_t  colour, int16_t  exposure){
